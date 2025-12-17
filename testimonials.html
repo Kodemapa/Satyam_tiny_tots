@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Testimonials - Satyam Tiny Tots</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{ 
+            --primary-blue:#009ceb; 
+            --primary-yellow:#fdd800; 
+            --primary-purple:#7d6caa; 
+            --primary-orange:#f05a28; 
+            --primary-green:#8cc63f; 
+            --text-dark:#212529; 
+            --footer-bg:#1f1f1f; 
+        }
+        
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background: #fdfdfd; }
+        
+        /* --- Navbar --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-dot { width: 10px; height: 10px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; }
+        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; }
+        
+        /* --- Footer --- */
+        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; z-index: 10; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes expandWidth { from { width: 0; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* --- Page Header --- */
+        .page-header { padding: 80px 0 60px 0; background: #fff; position: relative; }
+        .header-title-wrapper { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+        
+        .header-title { 
+            font-weight: 900; 
+            /* Fluid Typography */
+            font-size: clamp(2rem, 5vw, 3rem); 
+            line-height: 1.2;
+            margin: 0; color: #222; 
+        }
+        
+        .header-line { height: 6px; background: var(--primary-blue); width: 0; flex-grow: 1; animation: expandWidth 1.5s ease-out forwards; border-radius: 4px; }
+        .intro-text { font-size: 1.1rem; line-height: 1.8; color: #555; max-width: 900px; }
+
+        /* Optimized Quick Links (Pills) */
+        .quick-links { margin-bottom: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
+        .quick-link-item { 
+            color: var(--primary-blue); 
+            background: rgba(0, 156, 235, 0.1);
+            font-weight: 700; 
+            text-decoration: none; 
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem; 
+            transition: 0.3s;
+        }
+        .quick-link-item:hover { 
+            background: var(--primary-blue); 
+            color: #fff; 
+            transform: translateY(-2px);
+        }
+
+        /* --- Testimonial Cards --- */
+        .review-section { padding: 60px 0; background-color: #f9f9f9; position: relative; }
+        .decor-ring {
+            position: absolute; top: -30px; right: 5%;
+            width: 80px; height: 80px;
+            border: 6px solid var(--primary-green);
+            border-radius: 50%;
+            z-index: 1;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .review-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 8px; /* Slight rounded corners look cleaner */
+            border-left: 5px solid var(--primary-yellow);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .review-card:hover { transform: translateY(-5px); }
+        .review-icon { 
+            font-size: 2rem; color: #eee; 
+            position: absolute; top: 20px; right: 20px; 
+        }
+        .review-text { font-size: 1rem; color: #555; font-style: italic; line-height: 1.7; margin-bottom: 20px; }
+        .reviewer-info { display: flex; align-items: center; gap: 15px; }
+        .reviewer-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #ddd; }
+        .reviewer-name { font-weight: 800; font-size: 1rem; margin: 0; color: #333; }
+        .reviewer-role { font-size: 0.85rem; color: var(--primary-blue); font-weight: 600; }
+
+        /* --- Participation Section --- */
+        .participation-section { padding: 80px 0; background: #fff; }
+        .section-heading { 
+            font-weight: 900; 
+            font-size: clamp(1.8rem, 4vw, 2.2rem); 
+            margin-bottom: 30px; color: #222; 
+        }
+        .feature-title { font-weight: 800; font-size: 1.2rem; margin-bottom: 10px; color: #222; margin-top: 30px; }
+        .feature-text { font-size: 1rem; color: #666; line-height: 1.6; margin-bottom: 15px; }
+        
+        .text-highlight-link { color: var(--primary-blue); font-weight: 700; text-decoration: none; }
+        .text-highlight-link:hover { text-decoration: underline; }
+
+        .participation-imgs { margin-top: 40px; }
+        .participation-img-box {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        .participation-img-box img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .participation-img-box:hover img { transform: scale(1.05); }
+
+        /* ============================ */
+        /* MOBILE RESPONSIVE TWEAKS     */
+        /* ============================ */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #fff;
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-dot { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            /* Adjust spacing */
+            .page-header, .review-section, .participation-section { padding: 40px 0; }
+            
+            /* Header */
+            .header-title-wrapper { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .header-line { width: 50px; flex-grow: 0; }
+            .intro-text { margin-bottom: 20px; }
+            
+            /* Decor */
+            .decor-ring { display: none; }
+            
+            /* Images */
+            .participation-img-box { height: 200px; }
+            
+            /* Footer */
+            footer { text-align: center; padding-top: 50px; }
+            .footer-decor-strip { display: none; }
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .d-flex.flex-column.align-items-end {
+                align-items: center !important;
+                flex-direction: row !important;
+                justify-content: center;
+                gap: 10px;
+            }
+            .social-circle { margin: 0 5px; }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="School Logo" height="50" style="max-height: 40px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center mt-3 mt-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown">School</a>
+                        <ul class="dropdown-menu text-center text-lg-start">
+                            <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
+                            <li><a class="dropdown-item" href="admission.html">Admission in the school</a></li>
+                            <li><a class="dropdown-item" href="team.html">Team</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">The Life of <br class="d-none d-lg-block">the "Generation"</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        
+        <section class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto animate-up">
+                        <div class="header-title-wrapper">
+                            <h1 class="header-title">Parents' Voice</h1>
+                            <div class="header-line"></div>
+                        </div>
+
+                        <div class="intro-text mb-4">
+                            Parents are an important part of the "teacher-student-parent" triad, and we pay a lot of attention to the development of the parent community. We believe that transparent communication creates the best environment for our 'Tiny Tots'.
+                        </div>
+
+                        <div class="quick-links">
+                            <a href="#" class="quick-link-item">School Menu</a>
+                            <a href="#" class="quick-link-item">Knowledge Base</a>
+                            <a href="#" class="quick-link-item">Telegram Channel</a>
+                            <a href="#" class="quick-link-item">Principal's Letters</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="review-section">
+            <div class="decor-ring"></div>
+            <div class="container">
+                <div class="row g-4">
+                    
+                    <div class="col-md-6 animate-up delay-1">
+                        <div class="review-card">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "Satyam Tiny Tots has been a second home for my daughter, Ananya. The way the teachers (didis) handle the children with patience is commendable. We have seen a massive improvement in her social skills and confidence."
+                            </p>
+                            <div class="reviewer-info">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
+                                <div>
+                                    <h5 class="reviewer-name">Mrs. Priya Sharma</h5>
+                                    <span class="reviewer-role">Mother of Ananya (LKG)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 animate-up delay-2">
+                        <div class="review-card" style="border-left-color: var(--primary-green);">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "What I love most is the balance between modern education and our Indian sanskars. Festivals like Diwali and Independence Day are celebrated with such enthusiasm. It keeps the children rooted in our culture."
+                            </p>
+                            <div class="reviewer-info">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
+                                <div>
+                                    <h5 class="reviewer-name">Mr. Rajesh Gupta</h5>
+                                    <span class="reviewer-role">Father of Vihaan (UKG)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 animate-up delay-1">
+                        <div class="review-card" style="border-left-color: var(--primary-purple);">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "The safety and hygiene standards at Satyam are top-notch. As working parents, we are stress-free knowing our son is in safe hands. The WhatsApp updates regarding meals and activities are very reassuring."
+                            </p>
+                            <div class="reviewer-info">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
+                                <div>
+                                    <h5 class="reviewer-name">Mrs. Sneha Patil</h5>
+                                    <span class="reviewer-role">Mother of Arjun (Nursery)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 animate-up delay-2">
+                        <div class="review-card" style="border-left-color: var(--primary-orange);">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "The project-based learning method is fantastic. My son explains concepts of science and nature to us at home! The teachers truly put in effort to make learning fun and not just about rote memorization."
+                            </p>
+                            <div class="reviewer-info">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
+                                <div>
+                                    <h5 class="reviewer-name">Mr. Amit Verma</h5>
+                                    <span class="reviewer-role">Father of Kabir (Grade 1)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="participation-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto animate-up">
+                        <h2 class="section-heading">Participation of parents in the life of the school</h2>
+                        
+                        <div class="feature-block">
+                            <h4 class="feature-title">WhatsApp & Telegram Updates</h4>
+                            <p class="feature-text">
+                                For the convenience of parents, we have active WhatsApp groups and a <a href="#" class="text-highlight-link">Telegram channel</a>. We share daily updates, photos of classroom activities, and urgent notices instantly. This ensures you never miss out on your child's milestones.
+                            </p>
+                        </div>
+
+                        <div class="feature-block">
+                            <h4 class="feature-title">Principal's Coffee Mornings</h4>
+                            <p class="feature-text">
+                                Another way of honest and open communication is the <a href="#" class="text-highlight-link">"Coffee with Principal"</a> initiative. Once a month, parents are invited to an open discussion on relevant topics—nutrition, screen time, and child psychology.
+                            </p>
+                        </div>
+
+                        <div class="feature-block">
+                            <h4 class="feature-title">Grandparents' Day & Events</h4>
+                            <p class="feature-text">
+                                We believe education involves the whole family. We organize special events like Grandparents' Day, Matru-Pitru Pujan, and Sports Day where parents actively participate in races and fun games.
+                            </p>
+                        </div>
+
+                        <div class="participation-imgs row g-4">
+                            <div class="col-md-6 animate-up delay-1">
+                                <div class="participation-img-box">
+                                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Parents Event">
+                                </div>
+                            </div>
+                            <div class="col-md-6 animate-up delay-2">
+                                <div class="participation-img-box">
+                                    <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Group of Parents and Teachers">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo" style="max-height: 60px;"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                        <div class="col-6">
+                            <a href="#" class="footer-link">School</a>
+                            <a href="#" class="footer-link">The life of a generation</a>
+                            <a href="#" class="footer-link">Contacts</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="footer-link">Projects</a>
+                            <a href="#" class="footer-link">Partners</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title" style="font-weight: 700; display:block; margin-bottom:15px;">We are</span>
+                            <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
+                            <p class="mb-1 text-white-50">+91 9876543210</p>
+                            <p class="mb-3 text-white-50">satyam@gmail.com</p>
+                            <a href="#" style="color:var(--primary-blue); text-decoration:none;">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex flex-column align-items-end">
+                            <a href="#" class="social-circle"><i class="fa-brands fa-vk"></i></a>
+                            <a href="#" class="social-circle"><strong>R</strong></a>
+                            <a href="#" class="social-circle"><i class="fa-solid fa-shapes"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

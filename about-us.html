@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Satyam Tiny Tots</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{ 
+            --primary-blue:#009ceb; 
+            --primary-yellow:#fdd800; 
+            --primary-purple:#7d6caa; 
+            --primary-orange:#f05a28; 
+            --primary-green:#8cc63f; 
+            --text-dark:#212529; 
+            --footer-bg:#1f1f1f; 
+        }
+        
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background-color: #fff; }
+        
+        /* Navbar */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; }
+        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; }
+        
+        /* Footer Decor */
+        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+        @keyframes bounceIcon {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Intro Section */
+        .intro-section { 
+            padding: 100px 0 80px 0; 
+            position: relative;
+            overflow: hidden;
+        }
+        .intro-bg-diag {
+            position: absolute;
+            top: 0; left: 0;
+            width: 40%; height: 100%;
+            background: rgba(253, 216, 0, 0.1); 
+            clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);
+            z-index: -1;
+        }
+
+        .float-shape { position: absolute; opacity: 0.6; z-index: -1; animation: float 6s infinite ease-in-out; }
+        .shape-circle { width: 50px; height: 50px; border-radius: 50%; border: 4px solid var(--primary-purple); top: 15%; right: 10%; }
+        .shape-square { width: 40px; height: 40px; background: var(--primary-blue); transform: rotate(15deg); bottom: 20%; left: 5%; animation-delay: 1s; }
+
+        .intro-title { 
+            /* Responsive Font Size: Minimum 2.5rem, grows with viewport */
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900; 
+            margin-bottom: 20px; 
+            color: #222; 
+            position: relative;
+        }
+        .title-underline {
+            height: 6px;
+            background: var(--primary-purple);
+            margin-bottom: 30px;
+            animation: expandWidth 1s ease-out forwards;
+        }
+
+        .intro-text { 
+            font-size: 1.1rem; 
+            line-height: 1.8; 
+            color: #555; 
+            margin-bottom: 20px; 
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Features Section (Triangles) */
+        .features-section { 
+            background-color: #f9f9f9; 
+            padding: 100px 0; 
+            position: relative;
+        }
+
+        .triangle-item {
+            text-align: center;
+            margin-bottom: 60px; 
+            position: relative;
+            padding-top: 20px;
+            transition: transform 0.3s;
+        }
+        .triangle-item:hover { transform: translateY(-5px); }
+
+        .triangle-shape {
+            width: 0;
+            height: 0;
+            border-left: 90px solid transparent;
+            border-right: 90px solid transparent;
+            border-top: 140px solid #ddd;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+
+        .triangle-item:hover .triangle-shape { transform: scale(1.05); }
+
+        .triangle-yellow { border-top-color: var(--primary-yellow); }
+        .triangle-green { border-top-color: var(--primary-green); }
+        .triangle-purple { border-top-color: var(--primary-purple); }
+        .triangle-orange { border-top-color: var(--primary-orange); }
+
+        .triangle-icon {
+            position: absolute;
+            top: -115px; 
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: #212529; 
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        
+        .triangle-item:hover .triangle-icon {
+            animation: bounceIcon 1s infinite;
+            color: #000;
+        }
+
+        .triangle-label {
+            margin-top: 25px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #222;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mission Text */
+        .mission-text-area { padding-bottom: 80px; background-color: #f9f9f9; }
+        .mission-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 8px solid var(--primary-blue);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .mission-box:hover { transform: translateY(-5px); }
+        .mission-heading { font-weight: 800; font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-blue); }
+
+        /* Campus Section */
+        .campus-section { padding: 100px 0; background: #fff; }
+        
+        .campus-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-bottom: 5px solid transparent;
+        }
+        .campus-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        .campus-card.b-blue { border-bottom-color: var(--primary-blue); }
+        .campus-card.b-orange { border-bottom-color: var(--primary-orange); }
+        .campus-card.b-green { border-bottom-color: var(--primary-green); }
+
+        .campus-img-wrapper {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .campus-img-wrapper img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .campus-card:hover img { transform: scale(1.1); }
+        
+        .campus-caption {
+            padding: 20px;
+            font-weight: 800;
+            color: #333;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        /* ============================ */
+        /* MOBILE RESPONSIVENESS     */
+        /* ============================ */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #fff;
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-dot { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            /* General Section Spacing */
+            .intro-section, .features-section, .campus-section {
+                padding: 50px 0;
+            }
+            
+            /* Intro */
+            .intro-section { padding-top: 40px; }
+            .intro-bg-diag { width: 80%; opacity: 0.05; }
+            .float-shape { display: none; /* Hide floating shapes on mobile to keep text readable */ }
+            
+            /* Triangles */
+            /* Crucial fix: Add top margin to stacked triangles so the icon doesn't overlap previous text */
+            .triangle-item {
+                margin-top: 50px; 
+                margin-bottom: 30px;
+            }
+            
+            /* Mission Box */
+            .mission-text-area { padding-bottom: 40px; }
+            .mission-box { padding: 25px; }
+            .mission-heading { font-size: 1.5rem; }
+            
+            /* Campus */
+            .campus-img-wrapper { height: 200px; }
+            .campus-section h3 { font-size: 2rem !important; }
+            
+            /* Footer */
+            footer { padding: 40px 0 60px 0; text-align: center; }
+            .footer-decor-strip { display: none; }
+            .footer-top-strip { width: 100%; }
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .d-flex.flex-column.align-items-end {
+                align-items: center !important;
+                flex-direction: row !important;
+                justify-content: center;
+            }
+            .social-circle { margin: 0 5px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="Satyam Logo" height="50" style="max-height: 40px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center mt-3 mt-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown">School</a>
+                        <ul class="dropdown-menu text-center text-lg-start" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
+                            <li><a class="dropdown-item" href="admission.html">Admission in the school</a></li>
+                            <li><a class="dropdown-item" href="team.html">Team</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">The Life of <br class="d-none d-lg-block">the "Generation"</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html" >Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="intro-section">
+            <div class="intro-bg-diag"></div>
+            <div class="float-shape shape-circle"></div>
+            <div class="float-shape shape-square"></div>
+
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 animate-up">
+                        <h1 class="intro-title">About the school</h1>
+                        <div class="title-underline"></div>
+                        
+                        <p class="intro-text">
+                            "Satyam Tiny Tots" is a special place where enthusiastic and energetic experienced teachers organize the educational process with the help of educational standards, modern Montessori methods, and project activities. Our core values are friendship, hard work, mutual respect, and love — loyalty to these principles helps not just to exist in this world, but to live and enjoy life.
+                        </p>
+                        
+                        <p class="intro-text">
+                            Our goal is to make learning inspiring, stimulating knowledge and opportunities and, of course, exciting, so that all students can develop erudition, skills, and interests, thereby enriching their lives. We regularly bring something new to develop the educational process and school life, providing additional opportunities for our students in the future. We try to ensure that most of our students are passionate about the educational process and are ready for life in the 21st century.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block animate-up delay-1">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students Learning" class="img-fluid rounded-4 shadow" style="transform: rotate(3deg); border: 5px solid #fff;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    
+                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-1">
+                        <div class="triangle-shape triangle-yellow">
+                            <div class="triangle-icon"><i class="fa-solid fa-handshake"></i></div>
+                        </div>
+                        <h4 class="triangle-label">Individual<br>Approach</h4>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-2">
+                        <div class="triangle-shape triangle-green">
+                            <div class="triangle-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        </div>
+                        <h4 class="triangle-label">A Team of<br>Professionals</h4>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-3">
+                        <div class="triangle-shape triangle-purple">
+                            <div class="triangle-icon"><i class="fa-regular fa-lightbulb"></i></div>
+                        </div>
+                        <h4 class="triangle-label">Creative<br>Potential</h4>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-3">
+                        <div class="triangle-shape triangle-orange">
+                            <div class="triangle-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                        </div>
+                        <h4 class="triangle-label">Comfortable<br>Environment</h4>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-text-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto animate-up">
+                        <div class="mission-box">
+                            <h3 class="mission-heading">Our Mission & Values</h3>
+                            <p class="intro-text" style="font-size: 1rem;">
+                                Our mission is to find an individual approach to each child in accordance with their personal needs, their level of knowledge, cultural characteristics, and the interests of their families. We believe in the Indian philosophy of "Vasudhaiva Kutumbakam" (The World is One Family), instilling a sense of belonging in every child.
+                            </p>
+                            <p class="intro-text" style="font-size: 1rem; margin-bottom: 0;">
+                                We are ready to offer many additional types of work in order to inspire our students to develop their artistic, sports, and social skills. In addition to perfect mastery of the subjects, we strive to raise exemplary citizens of the world, faithful to their principles and values, such as respect, care, and love.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="campus-section">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mb-5 animate-up">
+                    <div>
+                        <h3 style="font-weight: 800; font-size: 2.5rem; color:var(--primary-blue); line-height: 1;">Our Campus</h3>
+                        <div style="height: 4px; width: 50px; background: var(--primary-yellow); margin-top: 10px;"></div>
+                    </div>
+                    <div class="text-muted d-none d-md-block" style="font-weight: 500;">Where learning comes alive</div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4 animate-up delay-1">
+                        <div class="campus-card b-blue">
+                            <div class="campus-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Learning Wall">
+                            </div>
+                            <div class="campus-caption">Interactive Learning Spaces</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 animate-up delay-2">
+                        <div class="campus-card b-orange">
+                            <div class="campus-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="School Atrium">
+                            </div>
+                            <div class="campus-caption">Safe & Spacious Environment</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 animate-up delay-3">
+                        <div class="campus-card b-green">
+                            <div class="campus-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cafeteria / Play Area">
+                            </div>
+                            <div class="campus-caption">Nutritious Meals & Dining</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5 animate-up delay-3" style="color:var(--primary-orange); font-weight:700;">
+                    <i class="fa-solid fa-arrow-left me-3" style="cursor:pointer; transition: 0.3s;"></i> 
+                    <span class="mx-2">1 / 15</span> 
+                    <i class="fa-solid fa-arrow-right ms-3" style="cursor:pointer; transition: 0.3s;"></i>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo" style="max-height: 60px;"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                        <div class="col-6">
+                            <a href="#" class="footer-link">School</a>
+                            <a href="#" class="footer-link">The life of a generation</a>
+                            <a href="#" class="footer-link">Contacts</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="footer-link">Projects</a>
+                            <a href="#" class="footer-link">Partners</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title" style="font-weight: 700; display:block; margin-bottom:15px;">We are</span>
+                            <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
+                            <p class="mb-1 text-white-50">+91 9876543210</p>
+                            <p class="mb-3 text-white-50">satyam@gmail.com</p>
+                            <a href="#" style="color:var(--primary-blue); text-decoration:none;">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex flex-column align-items-end">
+                            <a href="#" class="social-circle"><i class="fa-brands fa-vk"></i></a>
+                            <a href="#" class="social-circle"><strong>R</strong></a>
+                            <a href="#" class="social-circle"><i class="fa-solid fa-shapes"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

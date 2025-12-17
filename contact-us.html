@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - Satyam Tiny Tots</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #009ceb;
+            --primary-yellow: #fdd800;
+            --primary-purple: #7d6caa;
+            --primary-orange: #f05a28;
+            --primary-green: #8cc63f;
+            --text-dark: #212529;
+            --footer-bg: #1f1f1f;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            background-color: #f9f9f9;
+            color: var(--text-dark);
+        }
+
+        /* --- Navbar --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; white-space: nowrap; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; }
+        .navbar .dropdown-menu { min-width: 260px; background: #f5f5f5; border: none; box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding: 18px 12px; }
+
+        /* --- Footer --- */
+        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: 0.3s;}
+        .footer-link:hover { padding-left: 5px; opacity: 0.8; }
+        .footer-col-title { color: #fff; font-weight: 700; margin-bottom: 15px; display: block; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
+
+        /* --- Contacts Section --- */
+        .contacts-section { padding: 80px 0 100px 0; position: relative; background: #f9f9f9; overflow: hidden; }
+        
+        /* Fluid Typography for Title */
+        .page-title { 
+            font-weight: 900; 
+            font-size: clamp(2.5rem, 5vw, 3.5rem); 
+            margin-bottom: 40px; 
+            color: #222; 
+        }
+
+        .contact-info p { font-size: 1.05rem; color: #444; line-height: 1.6; margin-bottom: 5px; }
+        
+        .social-row { margin-top: 30px; display: flex; gap: 15px; }
+        .social-icon-small { 
+            width: 40px; height: 40px; 
+            background: #fff; 
+            border: 1px solid #ddd;
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            color: #555; text-decoration: none; font-size: 16px; 
+            transition: 0.3s;
+        }
+        .social-icon-small:hover { background: var(--primary-blue); color: #fff; border-color: var(--primary-blue); }
+
+        /* Decorative Elements */
+        .green-circle-decor { width: 60px; height: 60px; background-color: var(--primary-green); border-radius: 50%; position: absolute; bottom: -80px; left: 0; }
+        .dot-orange { width: 15px; height: 15px; background: var(--primary-orange); border-radius: 50%; position: absolute; top: -20px; left: 100px; }
+
+        /* --- Diamond Map Wrapper --- */
+        .map-wrapper { 
+            position: relative; 
+            height: 500px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 10; 
+        }
+        .diamond-map-box { 
+            width: 380px; height: 380px; 
+            border: 8px solid var(--primary-purple); 
+            transform: rotate(45deg); 
+            overflow: hidden; 
+            background: #fff; 
+            position: relative; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+            transition: transform 0.3s;
+        }
+        /* Counter-rotate the iframe so map looks straight */
+        .diamond-map-box iframe { 
+            position: absolute; 
+            top: 50%; left: 50%; 
+            width: 150%; height: 150%; 
+            transform: translate(-50%, -50%) rotate(-45deg) scale(1.1); 
+            border: 0; 
+        }
+
+        /* Map Decor Lines */
+        .map-decor-line { position: absolute; width: 50px; height: 6px; background-color: #f7941d; z-index: 20; }
+        .line-top-left { top: 60px; left: 60px; transform: rotate(-45deg); }
+        .line-bottom-right { bottom: 60px; right: 60px; transform: rotate(-45deg); }
+
+        /* Right Column Info */
+        .info-text-right { font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 30px; max-width: 300px; }
+        
+        .btn-write-us { 
+            background-color: var(--primary-blue); 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            font-size: 12px; 
+            position: relative; 
+            transition: 0.3s;
+        }
+        .btn-write-us:hover { background-color: #0081c2; }
+        
+        .btn-write-us::after { 
+            content: ''; 
+            position: absolute; 
+            right: -25px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            width: 25px; 
+            height: 5px; 
+            background: var(--primary-yellow); 
+        }
+
+        /* ============================ */
+        /* MOBILE RESPONSIVE TWEAKS     */
+        /* ============================ */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #fff;
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-dot { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            /* Adjust spacing */
+            .contacts-section { padding: 50px 0; text-align: center; }
+            
+            /* Center elements */
+            .contact-info, .social-row, .info-text-right { 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                margin-left: auto; 
+                margin-right: auto;
+            }
+            .social-row { flex-direction: row; }
+
+            /* Map Adjustments for Mobile */
+            .map-wrapper { height: 400px; margin: 30px 0; }
+            .diamond-map-box { width: 260px; height: 260px; border-width: 5px; }
+            /* Hide decorative lines sticking out on mobile to prevent overflow */
+            .map-decor-line { display: none; } 
+            
+            /* Hide absolute decor */
+            .green-circle-decor, .dot-orange { display: none; }
+            
+            /* Button fix */
+            .btn-write-us { display: inline-block; margin-top: 20px; }
+            .btn-write-us::after { display: none; } /* Hide the decorative tail on mobile */
+
+            /* Footer */
+            footer { text-align: center; padding-top: 50px; }
+            .footer-decor-strip { display: none; }
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .d-flex.flex-column.align-items-end {
+                align-items: center !important;
+                flex-direction: row !important;
+                justify-content: center;
+            }
+            .social-circle { margin: 0 5px; }
+        }
+
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+           <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="School Logo" style="max-height: 40px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center mt-3 mt-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
+                        <ul class="dropdown-menu text-center text-lg-start" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
+                            <li><a class="dropdown-item" href="admission.html">Admission in the school</a></li>
+                            <li><a class="dropdown-item" href="team.html">Team</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">The Life of <br class="d-none d-lg-block">the "Generation"</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="contacts-section">
+        <div class="container">
+            <div class="row align-items-center">
+                
+                <div class="col-lg-3 position-relative mb-5 mb-lg-0 text-center text-lg-start">
+                    <div class="dot-orange"></div>
+
+                    <h1 class="page-title">Contacts</h1>
+
+                    <div class="contact-info">
+                        <p class="fw-bold mb-2">Moka road, Gandhi Nagar</p>
+                        <p>+91 1234567890 (Reception)</p>
+                        <p>+91 9876504321 (Security)</p>
+                        <p>satyam@gmail.com</p>
+                    </div>
+
+                    <div class="social-row">
+                        <a href="#" class="social-icon-small"><i class="fa-brands fa-vk"></i></a>
+                        <a href="#" class="social-icon-small"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+
+                    <div class="green-circle-decor"></div>
+                </div>
+
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="map-wrapper">
+                        <div class="map-decor-line line-top-left"></div>
+
+                        <div class="diamond-map-box">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.540632556754!2d76.9248233!3d15.4552083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb7b7a602167d53%3A0xc06727287238271e!2sSatyam%20International%20School!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+
+                        <div class="map-decor-line line-bottom-right"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 ps-lg-5 text-center text-lg-start">
+                    <p class="info-text-right">
+                        You can get all the information you are interested in if you send us a message through the feedback form below.
+                    </p>
+
+                    <button class="btn-write-us">WRITE TO US</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo" style="max-height: 60px;"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                        <div class="col-6">
+                            <a href="#" class="footer-link">School</a>
+                            <a href="#" class="footer-link">The life of a generation</a>
+                            <a href="#" class="footer-link">Contacts</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="footer-link">Projects</a>
+                            <a href="#" class="footer-link">Partners</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title">We are</span>
+                            <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
+                            <p class="mb-1 text-white-50">+91 9876543210</p>
+                            <p class="mb-3 text-white-50">satyam@gmail.com</p>
+                            <a href="#" style="color:var(--primary-blue); text-decoration:none;">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex flex-column align-items-end">
+                            <a href="#" class="social-circle"><i class="fa-brands fa-vk"></i></a>
+                            <a href="#" class="social-circle"><strong>R</strong></a>
+                            <a href="#" class="social-circle"><i class="fa-solid fa-shapes"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

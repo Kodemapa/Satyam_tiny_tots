@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Team - Satyam Tiny Tots</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{ 
+            --primary-blue:#009ceb; 
+            --primary-yellow:#fdd800; 
+            --primary-purple:#7d6caa; 
+            --primary-orange:#f05a28; 
+            --primary-green:#8cc63f; 
+            --text-dark:#212529; 
+            --footer-bg:#1f1f1f; 
+        }
+        
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background: #fff; }
+        
+        /* --- Navbar --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-dot { width: 10px; height: 10px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; }
+        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; }
+        
+        /* --- Footer --- */
+        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; z-index: 10; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+
+        /* --- Team Page Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* --- Header Section --- */
+        .team-header { padding: 80px 0 40px 0; position: relative; }
+        .page-title { 
+            font-weight: 900; 
+            /* Fluid Typography: Scales smoothly between 2.5rem and 3.5rem */
+            font-size: clamp(2.5rem, 5vw, 3.5rem); 
+            margin-bottom: 25px; 
+            color: #222; 
+            position: relative; 
+            display: inline-block; 
+        }
+        
+        /* Floating Decorations */
+        .decor-circle-green {
+            position: absolute; top: -20px; right: -60px;
+            width: 60px; height: 60px;
+            border: 5px solid var(--primary-green);
+            border-radius: 50%;
+            animation: float 4s infinite ease-in-out;
+        }
+        .decor-dot-orange {
+            position: absolute; bottom: 20px; right: -120px;
+            width: 20px; height: 20px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out reverse;
+        }
+
+        .team-intro { font-size: 1.05rem; line-height: 1.7; color: #555; max-width: 800px; margin-bottom: 50px; }
+
+        /* --- Department Filters --- */
+        .dept-filters { 
+            list-style: none; padding: 0; margin-bottom: 60px; 
+            display: flex; flex-wrap: wrap; gap: 15px; 
+        }
+        .dept-link { 
+            text-decoration: none; 
+            color: #444; 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            transition: color 0.3s; 
+            position: relative;
+            padding: 5px 10px; /* Bigger touch target for mobile */
+        }
+        .dept-link:hover, .dept-link.active { color: var(--primary-blue); }
+        .dept-link.active::after {
+            content: ''; position: absolute; bottom: 0; left: 10px; width: calc(100% - 20px); height: 3px; background: var(--primary-blue);
+        }
+
+        /* --- Team Grid --- */
+        .team-section { position: relative; padding-bottom: 100px; overflow-x: hidden; }
+
+        .bg-yellow-shape {
+            position: absolute; top: 100px; right: 0;
+            width: 35%; height: 100%;
+            background: var(--primary-yellow);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%); 
+            transform: skewX(-15deg) translateX(100px); 
+            z-index: 0; opacity: 0.9;
+        }
+
+        .team-card { margin-bottom: 40px; position: relative; z-index: 2; }
+        .team-img-box {
+            width: 100%;
+            aspect-ratio: 1/1; 
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #f0f0f0;
+            border-radius: 4px; /* Slight radius looks cleaner */
+        }
+        .team-img-box img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.4s ease;
+            filter: grayscale(10%);
+        }
+        .team-card:hover .team-img-box img { transform: scale(1.05); filter: grayscale(0%); }
+
+        .team-name { font-weight: 800; font-size: 1.2rem; color: #222; margin-bottom: 8px; transition: color 0.3s; }
+        .team-card:hover .team-name { color: var(--primary-blue); }
+        .team-role { font-size: 0.9rem; color: #777; line-height: 1.4; font-weight: 500; }
+        .team-role.highlight { color: var(--primary-blue); font-weight: 700; }
+
+        /* Load More Button */
+        .btn-more-container { text-align: center; margin-top: 40px; position: relative; z-index: 2; }
+        .btn-more {
+            background-color: var(--primary-blue);
+            color: #fff;
+            border: none;
+            padding: 12px 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .btn-more:hover { transform: translateY(-3px); color: #fff; }
+        .btn-more::after {
+            content: ''; position: absolute; right: -25px; bottom: 15px;
+            width: 25px; height: 4px; background: var(--primary-yellow);
+        }
+
+        /* ============================ */
+        /* MOBILE RESPONSIVE TWEAKS     */
+        /* ============================ */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #fff;
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-dot { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            /* Header */
+            .team-header { padding: 50px 0 20px 0; text-align: center; }
+            .decor-circle-green, .decor-dot-orange { display: none; /* Hide floating decor on mobile to prevent overflow */ }
+            
+            /* Introduction Text */
+            .team-intro { margin-bottom: 30px; font-size: 1rem; }
+            
+            /* Filters */
+            .dept-filters { 
+                justify-content: center; 
+                gap: 10px; 
+                margin-bottom: 40px; 
+            }
+            .dept-link { font-size: 0.8rem; }
+            
+            /* Background Shape */
+            .bg-yellow-shape { width: 60%; opacity: 0.2; transform: skewX(-10deg) translateX(50px); }
+            
+            /* Cards */
+            .team-card { text-align: center; margin-bottom: 30px; }
+            .team-img-box { margin-bottom: 15px; width: 80%; margin-left: auto; margin-right: auto; } /* Center and reduce size slightly */
+            
+            /* Footer */
+            footer { text-align: center; padding-top: 50px; }
+            .footer-decor-strip { display: none; }
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .d-flex.flex-column.align-items-end {
+                align-items: center !important;
+                flex-direction: row !important;
+                justify-content: center;
+                gap: 10px;
+            }
+            .social-circle { margin: 0 5px; }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="School Logo" height="50" style="max-height: 40px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center mt-3 mt-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown">School</a>
+                        <ul class="dropdown-menu text-center text-lg-start">
+                            <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
+                            <li><a class="dropdown-item" href="admission.html">Admission in the school</a></li>
+                            <li><a class="dropdown-item" href="team.html">Team</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">The Life of <br class="d-none d-lg-block">the "Generation"</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        
+        <section class="team-header">
+            <div class="container">
+                <div class="position-relative d-inline-block animate-up">
+                    <h1 class="page-title">Team</h1>
+                    <div class="decor-circle-green"></div>
+                    <div class="decor-dot-orange"></div>
+                </div>
+                
+                <div class="row justify-content-center justify-content-lg-start">
+                    <div class="col-lg-10">
+                        <p class="team-intro animate-up delay-1">
+                            We are result-oriented professionals, so we pay great attention to the selection process when forming a team. If you share our values, we will be glad to see you in our team! Our educators are not just teachers but mentors who guide your children with love and patience.
+                        </p>
+                    </div>
+                </div>
+
+                <ul class="dept-filters animate-up delay-1">
+                    <li><a href="#" class="dept-link active">Management</a></li>
+                    <li><a href="#" class="dept-link">Primary School</a></li>
+                    <li><a href="#" class="dept-link">Mathematics & Arts</a></li>
+                    <li><a href="#" class="dept-link">Sports & Activities</a></li>
+                    <li><a href="#" class="dept-link">Support Staff</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="bg-yellow-shape"></div>
+            
+            <div class="container position-relative" style="z-index: 2;">
+                <div class="row g-4">
+                    
+                    <div class="col-md-6 col-lg-3 animate-up delay-1">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Principal">
+                            </div>
+                            <h5 class="team-name">Mrs. Rajeshwari Devi</h5>
+                            <p class="team-role highlight">Principal</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 animate-up delay-2">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Vice Principal">
+                            </div>
+                            <h5 class="team-name">Mrs. Anjali Sharma</h5>
+                            <p class="team-role">Vice Principal &<br>Academic Head</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 animate-up delay-3">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Admin Head">
+                            </div>
+                            <h5 class="team-name">Mr. Vikram Singh</h5>
+                            <p class="team-role">Director of General Affairs</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 animate-up delay-3">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Headmistress">
+                            </div>
+                            <h5 class="team-name">Mrs. Meera Iyer</h5>
+                            <p class="team-role">Headmistress<br>Primary Wing</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 animate-up delay-1">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Teacher">
+                            </div>
+                            <h5 class="team-name">Ms. Kavita Reddy</h5>
+                            <p class="team-role">English Department Head</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 animate-up delay-2">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Teacher">
+                            </div>
+                            <h5 class="team-name">Mrs. Sunita Patel</h5>
+                            <p class="team-role">Mathematics Teacher</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 animate-up delay-3">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Coach">
+                            </div>
+                            <h5 class="team-name">Mr. Rahul Verma</h5>
+                            <p class="team-role">Head of Sports &<br>Physical Education</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 animate-up delay-3">
+                        <div class="team-card">
+                            <div class="team-img-box">
+                                <img src="images/1" alt="Arts Teacher">
+                            </div>
+                            <h5 class="team-name">Ms. Priya Das</h5>
+                            <p class="team-role">Creative Arts &<br>Music Teacher</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="btn-more-container animate-up delay-2">
+                    <button class="btn btn-more">More</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo" style="max-height: 60px;"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                        <div class="col-6">
+                            <a href="#" class="footer-link">School</a>
+                            <a href="#" class="footer-link">The life of a generation</a>
+                            <a href="#" class="footer-link">Contacts</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="footer-link">Projects</a>
+                            <a href="#" class="footer-link">Partners</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title" style="font-weight: 700; display:block; margin-bottom:15px;">We are</span>
+                            <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
+                            <p class="mb-1 text-white-50">+91 9876543210</p>
+                            <p class="mb-3 text-white-50">satyam@gmail.com</p>
+                            <a href="#" style="color:var(--primary-blue); text-decoration:none;">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex flex-column align-items-end">
+                            <a href="#" class="social-circle"><i class="fa-brands fa-vk"></i></a>
+                            <a href="#" class="social-circle"><strong>R</strong></a>
+                            <a href="#" class="social-circle"><i class="fa-solid fa-shapes"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
