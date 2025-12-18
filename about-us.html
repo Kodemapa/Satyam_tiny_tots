@@ -19,15 +19,28 @@
             --footer-bg:#1f1f1f; 
         }
         
-        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background-color: #fff; }
+        body{ 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x:hidden; 
+            color:var(--text-dark); 
+            background-color: #fff; 
+        }
         
         /* Navbar */
-        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; }
+        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; position: relative; }
         .nav-link:hover { color: var(--primary-blue); }
-        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; }
-        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; }
-        
+        /* Playful Nav Hover */
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; 
+            background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px;
+        }
+        .nav-link:hover::after { width: 80%; }
+
+        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
+        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; border-radius: 10px; }
+        .dropdown-item:hover { background-color: #e9ecef; color: var(--primary-blue); border-radius: 5px; }
+
         /* Footer Decor */
         footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
         .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
@@ -36,18 +49,20 @@
         .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
         .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
         .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
-        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); } /* Added spin on hover */
         .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
-        .footer-link:hover { opacity: 1; padding-left: 5px; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
 
-        /* Animations */
+        /* =========================================
+           KINDERGARTEN ANIMATIONS
+           ========================================= */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
         @keyframes expandWidth {
             from { width: 0; }
@@ -57,11 +72,32 @@
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(-10px); }
         }
+        @keyframes bounceDot {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        @keyframes gentleSwing {
+            0% { transform: rotate(2deg); }
+            50% { transform: rotate(4deg); }
+            100% { transform: rotate(2deg); }
+        }
+        @keyframes blobMorph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
 
         .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+
+        /* Social Icons */
+        .social-icons { list-style: none; display: flex; gap: 14px; padding: 0; margin: 0; }
+        .social-circle a { width: 46px; height: 46px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #000; font-size: 22px; transition: all 0.3s ease; }
+        .social-circle a:hover { background: #ffd800; color: #000; transform: translateY(-2px); }
+        .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
+        .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
 
         /* Intro Section */
         .intro-section { 
@@ -78,12 +114,27 @@
             z-index: -1;
         }
 
+        /* Floating Shapes - Added Playful Blobs */
         .float-shape { position: absolute; opacity: 0.6; z-index: -1; animation: float 6s infinite ease-in-out; }
-        .shape-circle { width: 50px; height: 50px; border-radius: 50%; border: 4px solid var(--primary-purple); top: 15%; right: 10%; }
-        .shape-square { width: 40px; height: 40px; background: var(--primary-blue); transform: rotate(15deg); bottom: 20%; left: 5%; animation-delay: 1s; }
+        .shape-circle { 
+            width: 60px; height: 60px; border-radius: 50%; 
+            border: 4px solid var(--primary-purple); top: 15%; right: 10%; 
+            animation-duration: 7s;
+        }
+        .shape-square { 
+            width: 40px; height: 40px; background: var(--primary-blue); 
+            transform: rotate(15deg); bottom: 20%; left: 5%; 
+            animation: float 8s infinite ease-in-out reverse; 
+            border-radius: 8px; /* Soften edges for kids theme */
+        }
+        .shape-blob {
+            position: absolute; top: 40%; right: -5%; width: 150px; height: 150px;
+            background: rgba(140, 198, 63, 0.1);
+            animation: blobMorph 8s infinite linear;
+            z-index: -1;
+        }
 
         .intro-title { 
-            /* Responsive Font Size: Minimum 2.5rem, grows with viewport */
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 900; 
             margin-bottom: 20px; 
@@ -95,6 +146,7 @@
             background: var(--primary-purple);
             margin-bottom: 30px;
             animation: expandWidth 1s ease-out forwards;
+            border-radius: 3px;
         }
 
         .intro-text { 
@@ -105,12 +157,23 @@
             position: relative;
             z-index: 2;
         }
+        
+        /* Playful Image Swing */
+        .intro-img-swing {
+            transform-origin: top center;
+            animation: gentleSwing 4s ease-in-out infinite;
+            border: 8px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
 
         /* Features Section (Triangles) */
         .features-section { 
             background-color: #f9f9f9; 
             padding: 100px 0; 
             position: relative;
+            /* Added background pattern */
+            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         .triangle-item {
@@ -118,9 +181,9 @@
             margin-bottom: 60px; 
             position: relative;
             padding-top: 20px;
-            transition: transform 0.3s;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
         }
-        .triangle-item:hover { transform: translateY(-5px); }
+        .triangle-item:hover { transform: translateY(-10px) scale(1.02); }
 
         .triangle-shape {
             width: 0;
@@ -176,7 +239,16 @@
             border-left: 8px solid var(--primary-blue);
             box-shadow: 0 15px 30px rgba(0,0,0,0.05);
             transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
         }
+        /* Decor for mission box */
+        .mission-box::after {
+            content: ''; position: absolute; top: -50px; right: -50px;
+            width: 100px; height: 100px; background: rgba(0, 156, 235, 0.05);
+            border-radius: 50%;
+        }
+
         .mission-box:hover { transform: translateY(-5px); }
         .mission-heading { font-weight: 800; font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-blue); }
 
@@ -188,11 +260,11 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
             border-bottom: 5px solid transparent;
         }
         .campus-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) rotate(1deg); /* Playful tilt */
             box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
         .campus-card.b-blue { border-bottom-color: var(--primary-blue); }
@@ -230,6 +302,8 @@
                 box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             }
             .nav-dot { display: none; }
+            .nav-link::after { display: none; } /* Remove underline effect on mobile for cleaner look */
+            .navbar-brand img { height: 40px; }
         }
 
         @media (max-width: 768px) {
@@ -239,25 +313,32 @@
             }
             
             /* Intro */
-            .intro-section { padding-top: 40px; }
+            .intro-section { padding-top: 30px; }
             .intro-bg-diag { width: 80%; opacity: 0.05; }
             .float-shape { display: none; /* Hide floating shapes on mobile to keep text readable */ }
             
-            /* Triangles */
-            /* Crucial fix: Add top margin to stacked triangles so the icon doesn't overlap previous text */
+            /* Triangles - Critical fix for overlapping icons */
             .triangle-item {
-                margin-top: 50px; 
+                margin-top: 80px;  /* Increased margin so icon has space */
                 margin-bottom: 30px;
             }
+            /* Reduce triangle size slightly on mobile */
+            .triangle-shape {
+                border-left: 80px solid transparent;
+                border-right: 80px solid transparent;
+                border-top: 120px solid #ddd;
+            }
+            .triangle-icon { top: -100px; font-size: 2.5rem; }
             
             /* Mission Box */
             .mission-text-area { padding-bottom: 40px; }
-            .mission-box { padding: 25px; }
+            .mission-box { padding: 25px; border-left-width: 5px; }
             .mission-heading { font-size: 1.5rem; }
             
             /* Campus */
-            .campus-img-wrapper { height: 200px; }
+            .campus-img-wrapper { height: 220px; }
             .campus-section h3 { font-size: 2rem !important; }
+            .text-muted.d-none.d-md-block { display: block !important; margin-top: 5px; font-size: 0.9rem; } /* Show caption on mobile */
             
             /* Footer */
             footer { padding: 40px 0 60px 0; text-align: center; }
@@ -301,7 +382,7 @@
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
-                    
+                    <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
                     <li class="nav-item"><a class="nav-link" href="index.html">The Life of <br class="d-none d-lg-block">the "Generation"</a></li>
                     <li class="nav-item"><a class="nav-link" href="activities.html" >Activities</a></li>
                     <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
@@ -316,6 +397,7 @@
             <div class="intro-bg-diag"></div>
             <div class="float-shape shape-circle"></div>
             <div class="float-shape shape-square"></div>
+            <div class="float-shape shape-blob"></div>
 
             <div class="container">
                 <div class="row align-items-center">
@@ -332,7 +414,7 @@
                         </p>
                     </div>
                     <div class="col-lg-4 d-none d-lg-block animate-up delay-1">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students Learning" class="img-fluid rounded-4 shadow" style="transform: rotate(3deg); border: 5px solid #fff;">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students Learning" class="img-fluid rounded-4 intro-img-swing">
                     </div>
                 </div>
             </div>
@@ -397,7 +479,7 @@
                 <div class="d-flex justify-content-between align-items-end mb-5 animate-up">
                     <div>
                         <h3 style="font-weight: 800; font-size: 2.5rem; color:var(--primary-blue); line-height: 1;">Our Campus</h3>
-                        <div style="height: 4px; width: 50px; background: var(--primary-yellow); margin-top: 10px;"></div>
+                        <div style="height: 4px; width: 50px; background: var(--primary-yellow); margin-top: 10px; border-radius: 2px;"></div>
                     </div>
                     <div class="text-muted d-none d-md-block" style="font-weight: 500;">Where learning comes alive</div>
                 </div>
@@ -441,24 +523,24 @@
 
     </main>
 
-    <footer>
+     <footer>
         <div class="footer-top-strip"></div>
         <div class="footer-decor-strip"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
-                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo" style="max-height: 60px;"></a>
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="row text-center text-md-start">
                         <div class="col-6">
-                            <a href="#" class="footer-link">School</a>
-                            <a href="#" class="footer-link">The life of a generation</a>
-                            <a href="#" class="footer-link">Contacts</a>
+                            <a href="about-us.html" class="footer-link">About-us</a>
+                            <a href="index.html" class="footer-link">The life of a generation</a>
+                            <a href="contact-us.html" class="footer-link">Contacts</a>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="footer-link">Projects</a>
-                            <a href="#" class="footer-link">Partners</a>
+                            <a href="information.html" class="footer-link">Information</a>
+                            <a href="activities.html" class="footer-link">Activities</a>
                         </div>
                     </div>
                 </div>
@@ -466,16 +548,25 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <span class="footer-col-title" style="font-weight: 700; display:block; margin-bottom:15px;">We are</span>
+                            <span class="footer-col-title">We are</span>
                             <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
                             <p class="mb-1 text-white-50">+91 9876543210</p>
                             <p class="mb-3 text-white-50">satyam@gmail.com</p>
-                            <a href="#" style="color:var(--primary-blue); text-decoration:none;">All rights reserved by Kodemapa</a>
+                            <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
                         </div>
-                        <div class="d-flex flex-column align-items-end">
-                            <a href="#" class="social-circle"><i class="fa-brands fa-vk"></i></a>
-                            <a href="#" class="social-circle"><strong>R</strong></a>
-                            <a href="#" class="social-circle"><i class="fa-solid fa-shapes"></i></a>
+                        <div class="d-flex justify-content-end">
+                            <ul class="large-icon dark social-icons">
+                                <li class="social-circle">
+                                    <a class="facebook" href="" target="_blank">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="social-circle">
+                                    <a class="instagram" href="" target="_blank">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
