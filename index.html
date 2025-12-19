@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satyam Tiny Tots</title>
+    <title>Tiny Tots</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -24,6 +24,199 @@
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             width: 100%;
+        }
+
+        /* =========================================
+           NEW & ENHANCED ANIMATIONS
+           ========================================= */
+        
+        /* 1. Icon Wiggle on Hover */
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        /* 2. Card Shine Effect */
+        .program-card {
+            position: relative;
+            overflow: hidden; /* Ensure shine doesn't spill out */
+        }
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .program-card:hover::before {
+            left: 125%;
+            transition: 0.7s ease-in-out;
+        }
+        .program-card:hover .program-icon {
+            animation: wiggle 0.6s ease-in-out;
+        }
+
+        /* 3. Button Pulse Ring */
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(240, 90, 40, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(240, 90, 40, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(240, 90, 40, 0); }
+        }
+        .play-btn-circle {
+            animation: pulseRing 2s infinite;
+        }
+
+        /* 4. Organic Blob Morphing */
+        @keyframes blobMorph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+        .blob-shape {
+            position: absolute;
+            background: rgba(140, 198, 63, 0.15);
+            animation: blobMorph 8s linear infinite alternate, floatY 10s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        /* 5. Header Bubble Rise */
+        .header-bubbles .bubble {
+            position: absolute;
+            bottom: -20px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: riseUp 4s infinite ease-in;
+        }
+        .b1 { width: 10px; height: 10px; left: 10%; animation-delay: 0s; }
+        .b2 { width: 15px; height: 15px; left: 50%; animation-delay: 1.5s; background: var(--primary-yellow) !important; }
+        .b3 { width: 8px; height: 8px; left: 80%; animation-delay: 2.5s; background: var(--primary-purple) !important; }
+
+        @keyframes riseUp {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-60px) scale(1.2); opacity: 0; }
+        }
+
+        /* 6. Navbar Slide Down Load */
+        @keyframes slideDownNav {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .navbar-nav .nav-item {
+            opacity: 0;
+            animation: slideDownNav 0.5s ease forwards;
+        }
+        /* Stagger the nav items */
+        .navbar-nav .nav-item:nth-child(1) { animation-delay: 0.1s; }
+        .navbar-nav .nav-item:nth-child(2) { animation-delay: 0.2s; }
+        .navbar-nav .nav-item:nth-child(3) { animation-delay: 0.3s; }
+        .navbar-nav .nav-item:nth-child(4) { animation-delay: 0.4s; }
+        .navbar-nav .nav-item:nth-child(5) { animation-delay: 0.5s; }
+        .navbar-nav .nav-item:nth-child(6) { animation-delay: 0.6s; }
+        .navbar-nav .nav-item:nth-child(7) { animation-delay: 0.7s; }
+
+        /* =========================================
+           EXISTING STYLES (Preserved)
+           ========================================= */
+
+        .programs-section { 
+            padding: 100px 0; 
+            background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%); 
+            position: relative; 
+            overflow: hidden;
+        }
+        
+        .prog-decor-circle {
+            position: absolute; top: 10%; left: -50px; width: 150px; height: 150px;
+            border: 15px solid rgba(253, 216, 0, 0.15); border-radius: 50%; z-index: 0;
+            animation: floatY 7s ease-in-out infinite;
+        }
+        .prog-decor-triangle {
+            position: absolute; bottom: 10%; right: -20px; width: 0; height: 0;
+            border-left: 20px solid transparent; border-right: 20px solid transparent;
+            border-bottom: 35px solid rgba(140, 198, 63, 0.2);
+            transform: rotate(15deg); z-index: 0;
+            animation: rotateSimple 15s linear infinite;
+        }
+
+        .programs-header { text-align: center; margin-bottom: 60px; position: relative; z-index: 2; }
+        .programs-header h2 { 
+            font-size: clamp(2rem, 3.5vw, 3rem); 
+            color: #212529; 
+            margin-bottom: 20px; 
+            font-weight: 800;
+        }
+        .programs-header h2::after {
+            content: ''; display: block; width: 60px; height: 6px; 
+            background: var(--primary-orange); 
+            margin: 15px auto 0; border-radius: 3px;
+        }
+
+        .programs-header p.programs-intro { 
+            font-size: 1.05rem; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.7; 
+        }
+
+        .programs-grid { position: relative; z-index: 2; }
+
+        .program-card { 
+            background: #fff; 
+            border-radius: 16px; 
+            padding: 35px 30px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
+            text-align: left; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            height: 100%; 
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.02);
+            overflow: hidden;
+        }
+        
+        .program-card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1); 
+        }
+
+        .program-card-content { display: flex; flex-direction: column; height: 100%; position: relative; z-index: 2;}
+
+        .program-icon-wrapper { margin-bottom: 20px; }
+        .program-icon { 
+            font-size: 24px; width: 56px; height: 56px; 
+            border-radius: 50%; display: inline-flex; 
+            align-items: center; justify-content: center; 
+            color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .program-title { 
+            font-weight: 800; font-size: 1.25rem; color: #222; margin-bottom: 12px; 
+        }
+        .program-desc { 
+            color: #666; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; margin-bottom: 15px;
+        }
+        .program-meta { 
+            font-size: 0.85rem; color: #999; font-weight: 600; border-top: 1px solid #eee; padding-top: 15px;
+        }
+
+        /* Specific Icon Gradients based on image */
+        .ic-kreedo { background: linear-gradient(135deg, #00c2a8, #009985); }
+        .ic-senses { background: linear-gradient(135deg, #ffd166, #ffb347); }
+        .ic-music { background: linear-gradient(135deg, #ff7aa2, #ff5e62); }
+        .ic-art { background: linear-gradient(135deg, #a18cd1, #7d6caa); }
+        .ic-outdoor { background: linear-gradient(135deg, #8cc63f, #6aa029); }
+        .ic-lang { background: linear-gradient(135deg, #fdd800, #f39200); }
+
+        @media (max-width: 991px){
+            .programs-section { padding: 60px 0; }
         }
 
         /* =========================================
@@ -61,12 +254,20 @@
             from { width: 0; }
             to { width: 35px; }
         }
+        @keyframes mobileFloat {
+            0% { transform: rotate(45deg) translateY(0) translateX(0) scale(1); }
+            50% { transform: rotate(45deg) translateY(-8px) translateX(6px) scale(1.01); }
+            100% { transform: rotate(45deg) translateY(0) translateX(0) scale(1); }
+        }
 
         /* Animation Utility Classes */
-        .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        /* Note: 'in-view' class is added via JS now to trigger these */
+        .animate-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .animate-up.in-view { opacity: 1; transform: translateY(0); }
+        
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
 
         /* =========================================
            COMPONENT STYLES
@@ -78,7 +279,6 @@
         .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; white-space: nowrap; transition: color 0.3s; position: relative; }
         .nav-link:hover { color: var(--primary-blue); }
         
-        /* Navbar Hover Effect */
         .nav-link::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px; background: var(--primary-yellow); transition: 0.3s;
         }
@@ -106,9 +306,6 @@
         }
         .navbar .dropdown-item:hover { background: #eaeaea; color: var(--primary-blue); padding-left: 20px; }
 
-        /* Match global font */
-        .matched-style { font-family: 'Montserrat', 'Inter', sans-serif; }
-
         /* --- HERO SECTION --- */
         .hero { 
             padding-top: 80px; padding-bottom: 100px; 
@@ -122,7 +319,7 @@
         .purple-double-dash span { display: block; width: 35px; height: 6px; background-color: var(--hero-purple-deco); animation: expandWidth 1s ease-out forwards; }
         .hero-title { 
             font-weight: 900; 
-            font-size: clamp(3rem, 5vw, 4.5rem); /* Responsive Font Size */
+            font-size: clamp(3rem, 5vw, 4.5rem); 
             line-height: 1.1; color: #222; 
             margin-bottom: 40px; position: relative;
         }
@@ -180,11 +377,6 @@
             background-size: 8px 8px; opacity: 0.3;
             animation: floatY 6s ease-in-out infinite reverse;
         }
-        .hero-blur-circle {
-            position: absolute; top: -20px; left: 20%; width: 180px; height: 180px;
-            background: var(--primary-yellow); border-radius: 50%; filter: blur(50px);
-            opacity: 0.25; z-index: 0; animation: breathe 8s infinite;
-        }
         .hero-small-blue-ring {
             position: absolute; top: 10%; left: 60%; width: 25px; height: 25px;
             border: 3px solid var(--primary-blue); border-radius: 50%;
@@ -196,44 +388,165 @@
             animation: rotateSimple 20s linear infinite;
         }
 
-        /* Right Side Composition - The Diamond Image */
+        /* Right Side Composition */
         .composition-area {
             position: relative; height: 600px; display: flex; justify-content: center; align-items: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease; --mx: 0; --my: 0;
         }
+
+        .composition-area::before {
+            content: '';
+            position: absolute; inset: -10%; right: -5%; width: 70%; height: 110%;
+            background: radial-gradient(closest-side, rgba(240,233,150,0.12), transparent 40%);
+            z-index: 1; filter: blur(40px); pointer-events: none; animation: rotateSlow 18s linear infinite;
+        }
+
         .purple-strip-diag {
             position: absolute; width: 280px; height: 10px; background-color: var(--hero-purple-deco);
-            top: 52%; left: 2%; transform: rotate(45deg); z-index: 2;
+            top: 52%; left: 2%; transform: rotate(45deg); z-index: 6;
             animation: slideDiag 6s ease-in-out infinite;
         }
+
         .diamond-box {
             width: 450px; height: 450px; transform: rotate(45deg); overflow: hidden;
-            border: 10px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            position: relative; z-index: 5; background: #eee;
-            transition: 0.3s;
+            border: 10px solid #fff; box-shadow: 0 24px 50px rgba(0,0,0,0.12);
+            position: relative; z-index: 8; background: #eee;
+            transition: transform 0.25s cubic-bezier(.2,.9,.2,1), box-shadow 0.25s;
         }
-        .diamond-box:hover { transform: rotate(45deg) scale(1.02); }
+        .diamond-box::before{
+            content: '';
+            position: absolute; inset: -6px; z-index: -1; border-radius: 6px;
+            background: conic-gradient(from 200deg at 50% 50%, rgba(240,88,40,0.18), rgba(255,216,0,0.18), rgba(125,108,170,0.18));
+            filter: blur(12px);
+            animation: rotateSimple 8s linear infinite;
+        }
+
+        .diamond-box::after{
+            content: '';
+            position: absolute; right: -22%; top: 8%; width: 460px; height: 460px;
+            background: radial-gradient(circle at 70% 30%, rgba(240,88,40,0.16) 0%, rgba(255,216,0,0.10) 25%, rgba(125,108,170,0.06) 55%, transparent 75%);
+            filter: blur(60px);
+            z-index: -2; pointer-events: none; transform: translateZ(0);
+            animation: hueShift 12s linear infinite alternate;
+            transition: opacity 0.3s ease;
+            opacity: 0.98;
+        }
+
+        .diamond-box:hover { transform: rotate(45deg) scale(1.035); box-shadow: 0 30px 80px rgba(0,0,0,0.16); }
         .diamond-box img {
             width: 100%; height: 100%; object-fit: cover; transform: rotate(-45deg) scale(1.45);
+            transition: transform 0.5s ease;
         }
+        .diamond-box:hover img{ transform: rotate(-45deg) scale(1.53) translateY(-6px); }
+
+        .hero::before{
+            content: '';
+            position: absolute; left: -5%; top: -25%; width: 110%; height: 140%;
+            background:
+                radial-gradient(circle at 18% 25%, rgba(255,220,0,0.16) 0%, transparent 18%),
+                radial-gradient(circle at 50% 40%, rgba(125,108,170,0.06) 0%, transparent 25%),
+                radial-gradient(circle at 85% 60%, rgba(140,198,63,0.08) 0%, transparent 30%);
+            z-index: 0; pointer-events: none; animation: hueShift 12s linear infinite alternate; filter: blur(30px); opacity: 0.95;
+        }
+
+        .hero::after{
+            content: '';
+            position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background-image: radial-gradient(circle at 10% 10%, rgba(125,108,170,0.08) 6%, transparent 6%),
+                              radial-gradient(circle at 90% 40%, rgba(140,198,63,0.06) 6%, transparent 6%),
+                              radial-gradient(circle at 60% 85%, rgba(240,90,40,0.06) 6%, transparent 6%);
+            background-size: 14% 14%, 14% 14%, 14% 14%;
+            animation: confettiFloat 9s ease-in-out infinite; opacity: 0.9;
+        }
+
+        @keyframes hueShift {
+            0% { filter: hue-rotate(0deg) saturate(1); }
+            50% { filter: hue-rotate(40deg) saturate(1.1); }
+            100% { filter: hue-rotate(80deg) saturate(1); }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            line-height: 1.1; color: #222; margin-bottom: 40px; position: relative;
+            background: linear-gradient(90deg, #5c4b4b 0%, #ff8259 40%, #ffe433 70%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            transition: transform 0.25s ease, filter 0.25s ease;
+            animation: titleFloat 6s ease-in-out infinite;
+        }
+        @keyframes titleFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+
+        .title-wrapper::after{
+            content: '';
+            position: absolute; left: -10px; top: -8px; z-index: 0; width: 360px; height: 200px;
+            background: radial-gradient(circle at 30% 30%, rgba(253,216,0,0.14), transparent 45%);
+            filter: blur(40px); pointer-events: none; opacity: 0.95;
+            transition: opacity 0.4s ease;
+        }
+
+        .composition-area::after{
+            content: '';
+            position: absolute; inset: 0; z-index: 2; pointer-events: none;
+            background-image: radial-gradient(circle at 10% 10%, rgba(125,108,170,0.18) 6%, transparent 6%),
+                              radial-gradient(circle at 90% 40%, rgba(140,198,63,0.12) 6%, transparent 6%),
+                              radial-gradient(circle at 60% 85%, rgba(240,90,40,0.12) 6%, transparent 6%);
+            background-size: 18% 18%, 18% 18%, 18% 18%;
+            animation: confettiFloat 8s ease-in-out infinite;
+        }
+        @keyframes confettiFloat{
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.9; }
+            50% { transform: translateY(-12px) translateX(6px) rotate(6deg); opacity: 0.95; }
+            100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.9; }
+        }
+
+        .hero-small-accent {
+            position: absolute; left: 18%; top: 50%; transform: translateY(-50%); z-index: 3;
+            width: 20px; height: 20px; border-radius: 4px; background: linear-gradient(180deg, var(--primary-blue), var(--primary-purple));
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            animation: floatY 4.5s ease-in-out infinite;
+        }
+
         .yellow-triangle-large {
             position: absolute; top: 20px; right: 20px; width: 380px; height: 380px;
-            background-color: var(--primary-yellow); clip-path: polygon(100% 0, 0 0, 100% 100%); z-index: 4;
+            background-color: var(--primary-yellow); clip-path: polygon(100% 0, 0 0, 100% 100%); z-index: 4; opacity: 0.98;
         }
         .red-bookmark-flag {
             position: absolute; top: 0; right: 80px; width: 50px; height: 70px;
             background: #b71c1c; color: #fff; display: flex; align-items: center; justify-content: center;
             font-weight: bold; font-size: 11px; z-index: 6; animation: floatY 5s ease-in-out infinite;
+            transform-origin: top center;
         }
+        /* Added Pop animation for flag on hover */
+        .yellow-triangle-large:hover .red-bookmark-flag {
+             animation: swing 1s ease-in-out infinite alternate;
+        }
+        @keyframes swing {
+            0% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
+        }
+
         .red-bookmark-flag::after {
             content: ''; position: absolute; bottom: -15px; left: 0; width: 0; height: 0;
             border-left: 25px solid #b71c1c; border-right: 25px solid #b71c1c; border-bottom: 15px solid transparent;
         }
         .nav-arrows {
-            position: absolute; bottom: 30px; right: 60px; font-size: 13px; font-weight: 800; color: #333;
+            position: absolute; bottom: 30px; right: 60px; font-size: 13px; font-weight: 800; color: #333; z-index: 6;
         }
         .nav-arrows i { margin: 0 5px; color: var(--primary-orange); cursor: pointer; transition: 0.3s; }
         .nav-arrows i:hover { transform: scale(1.4); }
+
+        @media (max-width: 991px) {
+            .composition-area { height: 520px; }
+            .diamond-box { width: 380px; height: 380px; }
+        }
+
+        @media (max-width: 767px) {
+            .title-wrapper::after { display: block; width: 220px; height: 140px; left: -4px; top: -6px; filter: blur(26px); opacity: 0.85; }
+        }
 
         /* =========================================
            VALUES SECTION
@@ -254,13 +567,19 @@
         }
         .value-item:hover { transform: translateY(-15px); }
         .value-icon-box { font-size: 3rem; margin-bottom: 0px; position: relative; z-index: 2; transition: 0.3s; }
-        .value-item:hover .value-icon-box { transform: scale(1.2); }
+        .value-item:hover .value-icon-box { transform: scale(1.2) rotate(10deg); } /* Added Rotate */
         
         .value-bg-number { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
             font-size: 11rem; font-weight: 900; z-index: -1; line-height: 0; 
             font-family: 'Montserrat', sans-serif; letter-spacing: -5px;
+            animation: floatNumbers 8s ease-in-out infinite alternate;
         }
+        @keyframes floatNumbers {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(-45%, -55%); }
+        }
+
         .on-yellow .value-bg-number { color: rgba(0,0,0, 0.05); }
         .on-yellow .value-label { color: #212529; } 
         .on-purple .value-bg-number { color: rgba(255, 255, 255, 0.08); }
@@ -279,6 +598,23 @@
         .line-stripe { height: 12px; background: var(--primary-yellow); transform: rotate(-45deg); border-radius: 10px; }
         .stripe-long { width: 140px; background: var(--primary-yellow); }
         .stripe-short { width: 80px; margin-left: 40px; background: var(--primary-orange); }
+
+        /* -----------------------------------------
+           PROGRAMS & ACTIVITIES (Satyam Tiny Tots - Bellary)
+           ----------------------------------------- */
+        .programs-section { padding: 64px 0; background: linear-gradient(180deg,#fdfcc5 0%, #aaf7fa 100%); position: relative; }
+        /* See New & Enhanced section for card shine and wobble */
+
+        @media (max-width: 991px){
+            .programs-section{ padding:40px 0; }
+            .programs-grid .col-md-6{ margin-bottom:18px; }
+        }
+
+        @media (max-width: 767px){
+            .programs-section{ padding:28px 0; }
+            .programs-header h2{ font-size:1.2rem; }
+            .program-card{ padding:16px; }
+        }
 
         /* =========================================
            MISSION SECTION
@@ -309,8 +645,10 @@
         .btn-learn-more {
             background-color: #009ceb; color: #fff; font-weight: 700; font-size: 0.9rem; padding: 15px 35px;
             text-transform: uppercase; border: none; border-radius: 0; text-decoration: none; transition: background 0.3s;
+            position: relative; overflow: hidden;
         }
-        .btn-learn-more:hover { background-color: #0081c2; color: #fff; }
+        .btn-learn-more:hover { background-color: #0081c2; color: #fff; animation: pulseRing 1s; }
+        
         .yellow-dash-btn {
             display: block; width: 30px; height: 6px; background-color: #fdd800; margin-left: -5px; position: relative; z-index: 2;
         }
@@ -336,13 +674,20 @@
             font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 14rem; line-height: 1;
             color: #d69f00; letter-spacing: -25px; position: relative; z-index: 1; margin-right: 15px;
             transition: 0.3s;
+            text-shadow: 5px 5px 0px rgba(255,255,255,0.2);
+            animation: textShadowPulse 3s infinite alternate;
         }
+        @keyframes textShadowPulse {
+            from { text-shadow: 5px 5px 0px rgba(255,255,255,0.2); }
+            to { text-shadow: 10px 10px 0px rgba(255,255,255,0.5); transform: scale(1.02); }
+        }
+
         .play-btn-circle {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 80px; height: 80px; background-color: #f05a28; border-radius: 50%; z-index: 5;
             display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;
             border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s;
-            animation: breathe 3s infinite;
+            /* Animation pulseRing added in new section */
         }
         .play-btn-circle:hover { transform: translate(-50%, -50%) scale(1.1); }
         .canvas-footer-text { margin-top: 10px; text-transform: uppercase; color: #777; font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; }
@@ -374,6 +719,7 @@
             position: absolute;
             top: -10px; left: 50%;
             transform: translateX(-50%);
+            animation: breathe 2s infinite;
         }
 
         .orange-header-line {
@@ -413,7 +759,7 @@
         .complex-list-item:hover { color: #009ceb; }
 
         .list-dot { width: 12px; height: 12px; background-color: #eee; border-radius: 50%; transition: all 0.3s; }
-        .complex-list-item:hover .list-dot { background-color: #7d6caa; transform: scale(1.2); }
+        .complex-list-item:hover .list-dot { background-color: #7d6caa; transform: scale(1.4); } /* Scale increased */
 
         .btn-all-projects-wrapper { display: flex; align-items: center; position: relative; z-index: 5; }
         .btn-all-projects {
@@ -502,9 +848,23 @@
                 left: -15px; /* Slight centering adjustment */
             }
             
-            /* Hide absolute decorations that cause scroll */
-            .hero-green-ring, .hero-orange-dot, .hero-decor-triangle-orange, 
-            .hero-decor-plus, .hero-dots-pattern, .hero-blur-circle, .nav-arrows { display: none; }
+            /* Keep simplified decorations on mobile (lightweight & non-intrusive) */
+            .hero-green-ring { bottom: -20px; left: 40px; width: 70px; height: 70px; border-width: 4px; animation: floatY 6s ease-in-out infinite alternate; opacity: 0.9; display: block; }
+            .hero-orange-dot { bottom: 40px; left: 60%; width: 16px; height: 16px; opacity: 0.95; display: block; }
+            .hero-decor-triangle-orange { top: 6px; left: 82%; transform: rotate(-30deg) scale(0.8); display: block; }
+            .hero-decor-plus { top: 4%; left: 8%; width: 22px; height: 22px; display: block; animation-duration: 12s; }
+            .hero-dots-pattern { top: 40%; left: 72%; width: 36px; height: 36px; opacity: 0.22; display: block; }
+            .hero-blur-circle { top: -8px; left: 15%; width: 120px; height: 120px; filter: blur(22px); opacity: 0.22; display: block; }
+            .nav-arrows { display: none; }
+
+            /* Mobile-friendly pseudo element adjustments */
+            .hero::before { left: -2%; top: -16%; width: 105%; height: 120%; filter: blur(20px); opacity: 0.8; animation-duration: 18s; }
+            .hero::after { background-size: 20% 20%, 20% 20%, 20% 20%, 20% 20%; animation-duration: 14s; opacity: 0.75; }
+
+            .composition-area::before { display: block; inset: -6% -2% -6% -2%; width: 60%; height: 90%; filter: blur(18px); opacity: 0.75; }
+            .composition-area::after { background-size: 14% 14%, 14% 14%, 14% 14%, 14% 14%; animation-duration: 9s; opacity: 0.8; }
+
+            .diamond-box::after { right: -12%; top: 10%; width: 320px; height: 320px; filter: blur(40px); opacity: 0.75; }
             
             /* Values */
             .values-section { padding-top: 60px; }
@@ -520,12 +880,31 @@
             .mission-text { text-align: center; margin: 0 auto 25px auto; }
             .mission-tagline { text-align: center; }
             .btn-wrapper { justify-content: center; }
-            
+
+            /* Mobile mission stacking: show canvas first, then text + small image */
+            .mission-right-col { order: 1; }
+            .mission-left-col { order: 2; }
+            .mission-small-img { position: relative; width: 100%; max-width: 360px; margin: 18px auto 12px auto; display: block; box-shadow:0 10px 30px rgba(0,0,0,0.08); transition: transform .45s ease, box-shadow .45s ease; }
+            .mission-small-img:hover{ transform:translateY(-6px) scale(1.01); }
+
+            /* entrance animation helpers for mobile */
+            .mission-section .mission-title, .mission-section .mission-text, .mission-section .mission-small-img, .mission-section .grey-canvas{ opacity:0; transform:translateY(12px); transition: all .55s cubic-bezier(.2,.9,.2,1); }
+            .mission-section.in-view .mission-title{ opacity:1; transform:none; transition-delay:0.04s; }
+            .mission-section.in-view .mission-text{ opacity:1; transform:none; transition-delay:0.12s; }
+            .mission-section.in-view .grey-canvas{ opacity:1; transform:none; transition-delay:0.18s; }
+            .mission-section.in-view .mission-small-img{ opacity:1; transform:none; transition-delay:0.22s; }
+
             /* The Big "20" on mobile */
             .grey-canvas { height: 280px; padding: 20px 0; }
             .text-20 { font-size: 6rem; letter-spacing: -10px; margin-right: 5px; }
             .graphic-20-container { width: 100%; height: auto; }
             .play-btn-circle { width: 50px; height: 50px; font-size: 16px; border-width: 2px; }
+
+            /* mobile animation friendly tweaks */
+            .diamond-box { will-change: transform; }
+            .diamond-box { animation: mobileFloat 9s ease-in-out infinite; }
+            .hero-title { animation: titleFloat 7s ease-in-out infinite; }
+            .composition-area::before { transition: transform 0.6s ease, opacity 0.6s; }
 
             /* Complex Section */
             .complex-section { padding: 50px 0; }
@@ -545,33 +924,33 @@
             .col-lg-4 .d-flex.justify-content-end { justify-content: center !important; margin-top: 20px; }
         }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
            <a class="navbar-brand" href="#">
-                <img src="images/Satyam_Icon_1.png" alt="Satyam Logo">
+                <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav align-items-center text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
                         <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
                             <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
-                            <li><a class="dropdown-item" href="admission.html">Admission in the school</a></li>
+                            <li><a class="dropdown-item" href="activities.html">Activities</a></li>
                             <li><a class="dropdown-item" href="team.html">Team</a></li>
                             <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
-                            <li><a class="dropdown-item" href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
                     <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html">The Life of <br class="d-none d-lg-block">the "Generation"</a></li>
-                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
                     <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacts</a></li>
                 </ul>
@@ -594,8 +973,7 @@
 
                     <div class="title-wrapper animate-up">
                         <div class="purple-double-dash">
-                            <span></span>
-                            <span></span>
+                            <span></span><span></span>
                         </div>
                         <h1 class="hero-title">
                             The School <br> of Your <br> Time
@@ -604,24 +982,16 @@
                     <div class="mb-5 animate-up delay-1">
                         <div class="yellow-dash"></div>
                     </div>
-                    <div class="mt-5 text-muted animate-up delay-2" style="font-size: 15px; font-weight: 500;">
-                        <p class="mb-1">Moka road, Gandhi Nagar</p>
-                        <p class="mb-1">+91 9876543210</p>
-                        <p>satyam@gmail.com</p>
-                    </div>
                 </div>
 
                 <div class="col-lg-7">
                     <div class="composition-area">
                         <div class="yellow-triangle-large">
-                             <div class="red-bookmark-flag">Satyam</div>
+                             <div class="red-bookmark-flag">Tiny<br>tots</div>
                         </div>
                         <div class="purple-strip-diag"></div>
                         <div class="diamond-box">
-                            <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student">
-                        </div>
-                        <div class="nav-arrows">
-                            <i class="fa-solid fa-arrow-left"></i> &nbsp; &nbsp;|&nbsp; &nbsp; <i class="fa-solid fa-arrow-right"></i>
+                            <img src="images/home-diamond-header.jpg" alt="Student">
                         </div>
                     </div>
                 </div>
@@ -676,6 +1046,98 @@
         </div>
     </section>
 
+<section class="programs-section">
+        <div class="prog-decor-circle"></div>
+        <div class="prog-decor-triangle"></div>
+
+        <div class="container">
+            <div class="programs-header animate-up">
+                <h2>Tiny Tots — Bellary</h2>
+                <p class="programs-intro">At our Bellary center we provide a rich early years curriculum that combines play-based learning with hands-on labs and sensory-rich activities — including <strong>Kreedo Labs</strong>, senses &amp; feeling games, music &amp; movement, art &amp; craft and guided outdoor play to foster curiosity, social skills and healthy development.</p>
+            </div>
+
+            <div class="row g-4 programs-grid">
+                <div class="col-md-6 col-lg-4 animate-up delay-1">
+                    <div class="program-card">
+                        <div class="program-card-content">
+                            <div class="program-icon-wrapper">
+                                <div class="program-icon ic-kreedo"><i class="fa-solid fa-flask"></i></div>
+                            </div>
+                            <div class="program-title">Kreedo Labs</div>
+                            <div class="program-desc">A child-friendly STEM lab where kids explore simple experiments, build things, and learn cause &amp; effect through guided play and discovery.</div>
+                            <div class="program-meta">Hands-on, safe &amp; supervised • Age 3+</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-2">
+                    <div class="program-card">
+                        <div class="program-card-content">
+                            <div class="program-icon-wrapper">
+                                <div class="program-icon ic-senses"><i class="fa-solid fa-hand-sparkles"></i></div>
+                            </div>
+                            <div class="program-title">Senses &amp; Feeling Games</div>
+                            <div class="program-desc">Sensory stations and tactile games help children learn through touch, sound, smell and movement — great for sensory integration and emotional vocabulary.</div>
+                            <div class="program-meta">Small groups • Creative play</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-3">
+                    <div class="program-card">
+                        <div class="program-card-content">
+                            <div class="program-icon-wrapper">
+                                <div class="program-icon ic-music"><i class="fa-solid fa-music"></i></div>
+                            </div>
+                            <div class="program-title">Music &amp; Movement</div>
+                            <div class="program-desc">Rhythm, songs and movement activities build coordination, listening skills and joyful group participation.</div>
+                            <div class="program-meta">Daily sessions • Social learning</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-1">
+                    <div class="program-card">
+                        <div class="program-card-content">
+                            <div class="program-icon-wrapper">
+                                <div class="program-icon ic-art"><i class="fa-solid fa-paint-brush"></i></div>
+                            </div>
+                            <div class="program-title">Art &amp; Craft</div>
+                            <div class="program-desc">Open-ended art, collage and craft projects help build fine motor skills and encourage creative expression.</div>
+                            <div class="program-meta">Materials provided • Guided activities</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-2">
+                    <div class="program-card">
+                        <div class="program-card-content">
+                            <div class="program-icon-wrapper">
+                                <div class="program-icon ic-outdoor"><i class="fa-solid fa-child-reaching"></i></div>
+                            </div>
+                            <div class="program-title">Outdoor &amp; Play</div>
+                            <div class="program-desc">Structured outdoor play and free movement sessions for gross motor development, team games and exploration.</div>
+                            <div class="program-meta">Safe outdoor spaces • Supervised</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-3">
+                    <div class="program-card">
+                        <div class="program-card-content">
+                            <div class="program-icon-wrapper">
+                                <div class="program-icon ic-lang"><i class="fa-solid fa-book-open-reader"></i></div>
+                            </div>
+                            <div class="program-title">Language &amp; Story Circle</div>
+                            <div class="program-desc">Storytelling, circle time and guided language activities build vocabulary, listening and early literacy skills.</div>
+                            <div class="program-meta">Daily story time • Parent updates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="mission-section">
         <div class="mission-decor-green-ring"></div>
         <div class="mission-decor-orange-line"></div>
@@ -695,7 +1157,7 @@
                         <span class="yellow-dash-btn"></span>
                     </div>
                     <div class="decor-red-triangle"></div>
-                    <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students" class="mission-small-img">
+                    <img src="images/kids-playing.webp" alt="Students" class="mission-small-img">
                 </div>
                 <div class="col-lg-7 mission-right-col animate-up delay-1">
                     <div class="grey-canvas">
@@ -713,17 +1175,24 @@
     </section>
     <section class="complex-section">
         <div class="orange-header-line"></div>
+        <div class="blob-shape" style="top: 10%; left: -50px; width: 200px; height: 200px; opacity: 0.1;"></div>
+        <div class="blob-shape" style="bottom: 10%; right: -50px; width: 300px; height: 300px; background: rgba(0, 156, 235, 0.1); opacity: 0.1; animation-delay: 2s;"></div>
         
         <div class="container">
             <div class="complex-header-title animate-up">
                 <div class="complex-header-dot"></div>
                 Educational complex
+                <span class="header-bubbles" aria-hidden="true">
+                  <span class="bubble b1"></span>
+                  <span class="bubble b2"></span>
+                  <span class="bubble b3"></span>
+                </span>
             </div>
 
             <div class="row">
                 <div class="col-lg-6 animate-up delay-1">
                     <div class="complex-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Satyam Tiny Tots" class="complex-main-img">
+                        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tiny Tots" class="complex-main-img">
                         
                         <div class="green-triangle-outline"></div>
                     </div>
@@ -732,12 +1201,12 @@
                 <div class="col-lg-6 animate-up delay-2">
                     <div class="complex-content-right">
                         
-                        <div class="complex-active-title">Satyam Tiny Tots Wing</div>
+                        <div class="complex-active-title">Tiny Tots Wing</div>
                         <div class="complex-subtitle">School Projects</div>
 
                         <div class="complex-list-group">
                             <div class="complex-list-item">
-                                Satyam Tiny Tots (Playgroup)
+                                Tiny Tots (Playgroup)
                                 <div class="list-dot"></div>
                             </div>
                             <div class="complex-list-item">
@@ -799,7 +1268,7 @@
                             <span class="footer-col-title">We are</span>
                             <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
                             <p class="mb-1 text-white-50">+91 9876543210</p>
-                            <p class="mb-3 text-white-50">satyam@gmail.com</p>
+                            <p class="mb-3 text-white-50">tinytots@gmail.com</p>
                             <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
                         </div>
                         <div class="d-flex justify-content-end">
@@ -824,5 +1293,28 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js" defer></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // Optional: stop observing once animate in
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-up');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>

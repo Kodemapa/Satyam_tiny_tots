@@ -2,13 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Global defaults to keep typography consistent with contact-us page */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-dark, #212529);
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .wrap {
   max-width: 1300px;
   margin: auto;
 }
+
+/* Heading weight normalization */
+h1 { font-weight: 900; line-height: 1.05; }
+h2 { font-weight: 800; }
+h3 { font-weight: 700; }
 
 /* HEADER */
 .header {
@@ -123,9 +136,6 @@
   border-radius: 50%;
 }
 
-.dot-green { background: #2ecc71; top: 80px; right: 120px; }
-.dot-orange { background: #ff9f1a; bottom: 120px; left: 200px; }
-
 .circle {
   position: absolute;
   border-radius: 50%;
@@ -134,4 +144,227 @@
   height: 90px;
   bottom: 40px;
   left: 60px;
+}
+
+/* Complex section - playful styles 🔧 */
+.complex-section{
+  padding: 80px 0;
+  background: linear-gradient(135deg, #88eae1 0%, #e8eda9 100%);
+  position: relative;
+  overflow: hidden;
+}
+.orange-header-line{
+  height:4px;
+  background:linear-gradient(90deg,#ffb347,#ffcc33);
+  width:220px;
+  margin-bottom:18px;
+  border-radius:2px;
+}
+.complex-header-title{
+  font-size:40px;
+  font-weight:800;
+  color:#222;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:30px;
+}
+.complex-header-dot{
+  width:14px;
+  height:14px;
+  background: radial-gradient(circle at 30% 30%, #ffd166, #f54);
+  border-radius:50%;
+  box-shadow:0 6px 18px rgba(245,80,90,0.18);
+  animation: headerDotPulse 2s infinite;
+}
+.header-bubbles{ position:relative; display:inline-block; margin-left:10px; width:72px; height:18px; }
+.header-bubbles .bubble{ position:absolute; bottom:0; width:12px; height:12px; border-radius:50%; opacity:0.98; }
+.header-bubbles .b1{ left:0; background:#ffb3c7; animation: bubbleRise 3.6s infinite; }
+.header-bubbles .b2{ left:24px; background:#ffd166; animation: bubbleRise 3.2s 0.4s infinite; }
+.header-bubbles .b3{ left:48px; background:#9be564; animation: bubbleRise 3.8s 0.2s infinite; }
+@keyframes bubbleRise{ 0%{transform:translateY(0) scale(1); opacity:0.98} 50%{transform:translateY(-18px) scale(1.15); opacity:0.9} 100%{transform:translateY(0) scale(1); opacity:0.98} }
+@keyframes headerDotPulse{
+  0%{transform:scale(1); opacity:1}
+  50%{transform:scale(1.35); opacity:0.85}
+  100%{transform:scale(1); opacity:1}
+}
+.complex-img-wrapper{
+  position:relative;
+  padding:20px;
+  background:linear-gradient(180deg,#fff,#fff7f0);
+  border-radius:12px;
+  box-shadow:0 18px 45px rgba(30,40,60,0.07);
+}
+.complex-main-img{
+  width:100%;
+  border-radius:10px;
+  display:block;
+  transform-origin:center;
+  animation: floatImage 6s ease-in-out infinite;
+  transition:transform .3s;
+  border:8px solid rgba(255,255,255,0.6);
+}
+@keyframes floatImage{
+  0%{transform:translateY(0px) rotate(-0.2deg)}
+  50%{transform:translateY(-10px) rotate(0.6deg)}
+  100%{transform:translateY(0px) rotate(-0.2deg)}
+}
+.green-triangle-outline{
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  width:80px;
+  height:80px;
+  border-left:4px solid #9be564;
+  border-bottom:4px solid #9be564;
+  transform:rotate(-45deg);
+  animation: triangleWiggle 4s infinite;
+}
+@keyframes triangleWiggle{
+  0%{transform:rotate(-45deg) translateY(0)}
+  50%{transform:rotate(-35deg) translateY(-6px)}
+  100%{transform:rotate(-45deg) translateY(0)}
+}
+.complex-content-right{
+  position:relative;
+  padding-left:30px;
+}
+.complex-active-title{ color:#09a3f2; font-weight:700; font-size:22px; margin-bottom:6px; }
+.complex-subtitle{ color:#7c7c7c; margin-bottom:18px; }
+.complex-list-item{
+  font-weight:700;
+  font-size:18px;
+  margin-bottom:18px;
+  position:relative;
+  padding-right:36px;
+  transition:transform .25s;
+}
+.complex-list-item:hover{ transform:translateX(6px); color:#ff7aa2; }
+.list-dot{
+  position:absolute;
+  right:6px;
+  top:6px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:linear-gradient(90deg,#ffd166,#9be564);
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  animation: dotBounce 2.2s infinite ease-in-out;
+}
+@keyframes dotBounce{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+  100%{transform:translateY(0)}
+}
+.btn-all-projects{
+  display:inline-block;
+  background:#09a3f2;
+  color:#fff;
+  padding:12px 22px;
+  border-radius:4px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 12px 30px rgba(9,163,242,0.16);
+}
+.btn-all-projects:hover{ transform:translateY(-4px); }
+.btn-dash-yellow{
+  display:inline-block;
+  width:36px;
+  height:6px;
+  background:#ffd166;
+  margin-left:12px;
+  vertical-align:middle;
+  border-radius:3px;
+  animation: dashPop 1.6s infinite;
+}
+@keyframes dashPop{ 0%{transform:scaleX(1)} 50%{transform:scaleX(0.6)} 100%{transform:scaleX(1)} }
+.complex-decor-circle-green{
+  position:absolute;
+  right:70px;
+  bottom:40px;
+  width:70px;
+  height:70px;
+  background:#c7f06e;
+  border-radius:50%;
+  box-shadow:0 14px 40px rgba(199,240,110,0.18);
+  animation: circleRotate 10s linear infinite;
+}
+@keyframes circleRotate{
+  0%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-8px) rotate(180deg)}
+  100%{transform:translateY(0) rotate(360deg)}
+}
+
+/* reveal + staggered list (only when JS is enabled) */
+.js-enabled .complex-list-group .complex-list-item{ opacity:0; transform:translateX(18px); transition:all .6s cubic-bezier(.2,.9,.2,1); }
+.js-enabled .complex-list-group.in-view .complex-list-item{ opacity:1; transform:translateX(0); }
+.js-enabled .complex-list-group.in-view .complex-list-item:nth-child(1){ transition-delay:0.08s; }
+.js-enabled .complex-list-group.in-view .complex-list-item:nth-child(2){ transition-delay:0.18s; }
+.js-enabled .complex-list-group.in-view .complex-list-item:nth-child(3){ transition-delay:0.28s; }
+.js-enabled .complex-list-group.in-view .complex-list-item:nth-child(4){ transition-delay:0.38s; }
+.js-enabled .complex-list-group.in-view .complex-list-item:nth-child(5){ transition-delay:0.48s; }
+
+/* When JS is not available keep items visible */
+.no-js .complex-list-group .complex-list-item{ opacity:1; transform:none; transition:none; }
+
+/* one-off pulse helper */
+.pulse-once{ animation: circlePulse .9s ease; }
+@keyframes circlePulse{ 0%{transform:scale(1)} 50%{transform:scale(1.15)} 100%{transform:scale(1)} }
+
+/* responsive adjustments */
+@media (max-width: 767px){
+  .complex-section{
+    padding:40px 12px;
+    background: linear-gradient(180deg, #f6ffff 0%, #f7fff9 100%);
+    overflow: visible; /* allow decorative elements to be visible */
+  }
+  .orange-header-line{
+    width:60%;
+    max-width:260px;
+    margin:0 auto 12px;
+  }
+  /* Make header static and centered to avoid clipping on small screens */
+  .complex-header-title{
+    font-size:26px;
+    display:block;
+    position:static;
+    left:auto;
+    transform:none;
+    text-align:center;
+    margin:0 auto 18px;
+    width:100%;
+    max-width:calc(100% - 40px);
+    word-break:break-word;
+    z-index:5;
+  }
+  .complex-header-dot{ position:relative; top:0; left:0; margin:0 6px 0 0; display:inline-block; }
+  .header-bubbles{ display:none; }
+  .complex-img-wrapper{
+    padding:12px;
+    border-radius:12px;
+    box-shadow:0 12px 30px rgba(30,40,60,0.06);
+    margin-left:auto;
+    margin-right:auto;
+    max-width:520px;
+  }
+  .complex-main-img{ border-width:6px; border-radius:8px; }
+  .green-triangle-outline{ left:8px; bottom:8px; width:56px; height:56px; }
+  .complex-decor-circle-green{ right:20px; bottom:10px; width:56px; height:56px; }
+  .complex-content-right{ padding-left:0; margin-top:18px; padding-right:24px;}
+  .complex-active-title{ font-size:18px; }
+  .complex-list-item{ font-size:16px; margin-bottom:14px; padding-right:34px; }
+  .list-dot{ right:10px; top:8px; width:12px; height:12px; }
+  .btn-all-projects{ padding:10px 18px; }
+  .container{ padding-left:12px; padding-right:12px; }
+}
+
+@media (max-width: 420px){
+  .complex-header-title{ font-size:22px; }
+  .complex-active-title{ font-size:16px; }
+  .complex-list-item{ font-size:15px; }
+  .orange-header-line{ max-width:200px; }
+}
+/* respect reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .complex-main-img,.green-triangle-outline,.list-dot,.btn-dash-yellow,.complex-decor-circle-green{ animation:none!important; transition:none!important; }
 }
