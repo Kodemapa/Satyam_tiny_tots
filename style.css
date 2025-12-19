@@ -136,9 +136,6 @@ h3 { font-weight: 700; }
   border-radius: 50%;
 }
 
-.dot-green { background: #2ecc71; top: 80px; right: 120px; }
-.dot-orange { background: #ff9f1a; bottom: 120px; left: 200px; }
-
 .circle {
   position: absolute;
   border-radius: 50%;
