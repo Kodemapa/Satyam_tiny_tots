@@ -152,7 +152,7 @@ h3 { font-weight: 700; }
 /* Complex section - playful styles 🔧 */
 .complex-section{
   padding: 80px 0;
-  background: linear-gradient(135deg, #ffcd68 0%, #f5fff2 100%);
+  background: linear-gradient(135deg, #88eae1 0%, #e8eda9 100%);
   position: relative;
   overflow: hidden;
 }
@@ -318,7 +318,7 @@ h3 { font-weight: 700; }
 @media (max-width: 767px){
   .complex-section{
     padding:40px 12px;
-    background: linear-gradient(180deg, #fffbf6 0%, #f7fff9 100%);
+    background: linear-gradient(180deg, #f6ffff 0%, #f7fff9 100%);
     overflow: visible; /* allow decorative elements to be visible */
   }
   .orange-header-line{
