@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandatory Disclosure - Satyam International School</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #009ceb;
+            --primary-yellow: #fdd800;
+            --primary-purple: #7d6caa;
+            --primary-orange: #f05a28;
+            --primary-green: #8cc63f;
+            --text-dark: #212529;
+            --footer-bg: #1f1f1f;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+            color: var(--text-dark); 
+            background-color: #fdfdfd;
+        }
+
+        /* --- Navbar --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .navbar-brand img { height: 50px; width: auto; }
+        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; position: relative; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; 
+            background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px;
+        }
+        .nav-link:hover::after { width: 80%; }
+        .nav-dot { width: 10px; height: 10px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
+        .navbar .dropdown-menu { min-width: 260px; background: #f5f5f5; border: none; box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding: 18px 12px; border-radius: 12px; }
+        .dropdown-item { border-radius: 5px; padding: 8px 15px; font-weight: 500;}
+        .dropdown-item:hover { background-color: #e9ecef; color: var(--primary-blue); }
+
+        /* --- Animations --- */
+        @keyframes gradientText { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes bounceDot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } }
+
+        /* --- Header Section --- */
+        .page-header { 
+            padding: 80px 0 60px 0; 
+            background: linear-gradient(135deg, #fdfbf7 0%, #fff 100%); 
+            position: relative; 
+            overflow: hidden; 
+            text-align: center;
+        }
+        .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out; }
+        .shape-circle { width: 50px; height: 50px; border-radius: 50%; border: 4px solid var(--primary-yellow); top: 10%; right: 10%; }
+        .shape-square { width: 40px; height: 40px; background: var(--primary-purple); top: 70%; left: 5%; transform: rotate(15deg); }
+        
+        .header-badge {
+            background-color: #eef5ff; color: var(--primary-blue); 
+            padding: 8px 16px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; 
+            letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; display: inline-block;
+        }
+        .header-title { 
+            font-weight: 900; 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            margin-bottom: 20px; 
+            background: linear-gradient(45deg, #222, var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradientText 5s ease infinite;
+        }
+        .header-desc { max-width: 700px; margin: 0 auto; color: #555; font-size: 1.1rem; }
+
+        /* --- Accordion Styles --- */
+        .disclosure-section { padding: 60px 0; background-color: #fff; }
+        
+        .accordion-item {
+            border: none;
+            margin-bottom: 20px;
+            border-radius: 12px !important;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-left: 5px solid transparent; /* For colorful borders */
+        }
+        .accordion-item:hover { transform: translateY(-3px); }
+
+        .accordion-button {
+            color: #444;
+            font-weight: 700;
+            font-size: 1.15rem;
+            padding: 20px 25px;
+            background: #fff;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+            transition: all 0.3s;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+        }
+        
+        .accordion-button::after { transition: 0.3s; }
+        .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
+
+        .accordion-body { padding: 0; background-color: #fff; border-top: 1px solid #eee; }
+
+        /* Colorful Accordion Themes */
+        /* 1. General (Blue) */
+        .acc-blue { border-left-color: var(--primary-blue); }
+        .acc-blue .accordion-button:not(.collapsed) { background: var(--primary-blue); }
+        .acc-blue .accordion-button { color: var(--primary-blue); }
+        .acc-blue .accordion-button:not(.collapsed) { color: white; }
+
+        /* 2. Documents (Orange) */
+        .acc-orange { border-left-color: var(--primary-orange); }
+        .acc-orange .accordion-button:not(.collapsed) { background: var(--primary-orange); }
+        .acc-orange .accordion-button { color: var(--primary-orange); }
+        .acc-orange .accordion-button:not(.collapsed) { color: white; }
+
+        /* 3. Results (Green) */
+        .acc-green { border-left-color: var(--primary-green); }
+        .acc-green .accordion-button:not(.collapsed) { background: var(--primary-green); }
+        .acc-green .accordion-button { color: var(--primary-green); }
+        .acc-green .accordion-button:not(.collapsed) { color: white; }
+
+        /* 4. Staff (Purple) */
+        .acc-purple { border-left-color: var(--primary-purple); }
+        .acc-purple .accordion-button:not(.collapsed) { background: var(--primary-purple); }
+        .acc-purple .accordion-button { color: var(--primary-purple); }
+        .acc-purple .accordion-button:not(.collapsed) { color: white; }
+
+        /* 5. Infrastructure (Yellow - Dark Text) */
+        .acc-yellow { border-left-color: var(--primary-yellow); }
+        .acc-yellow .accordion-button:not(.collapsed) { background: var(--primary-yellow); color: #222; }
+        .acc-yellow .accordion-button { color: #d4a000; }
+        .acc-yellow .accordion-button:not(.collapsed)::after { filter: none; } /* Keep arrow dark */
+
+        /* --- Tables --- */
+        .table-custom { margin-bottom: 0; width: 100%; }
+        .table-custom thead th {
+            background-color: #f8f9fa;
+            color: #555;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            padding: 15px 25px;
+            border-bottom: 2px solid #eee;
+        }
+        .table-custom td {
+            padding: 15px 25px;
+            vertical-align: middle;
+            color: #444;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        .table-custom tr:hover td { background-color: #fcfcfc; color: var(--primary-blue); }
+        .table-custom tr:last-child td { border-bottom: none; }
+        .sno-col { width: 80px; text-align: center; font-weight: 700; color: #aaa; }
+        
+        /* --- View PDF Button --- */
+        .btn-view-pdf {
+            background-color: #fff;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 130px;
+        }
+        .btn-view-pdf:hover {
+            background-color: var(--primary-blue);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 156, 235, 0.3);
+        }
+
+        /* --- Status Colors --- */
+        .status-pass { color: var(--primary-green); font-weight: 700; }
+        .status-blue { color: var(--primary-blue); font-weight: 700; }
+
+        /* --- Footer --- */
+        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-left: 10px; transition: 0.3s; text-decoration: none; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="Satyam Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown">School</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
+                            <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="information.html" style="color:var(--primary-blue)">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="float-shape shape-circle"></div>
+            <div class="float-shape shape-square"></div>
+            <div class="container" data-aos="fade-up">
+                <span class="header-badge">CBSE Compliance</span>
+                <h1 class="header-title">Mandatory Public Disclosure</h1>
+                <p class="header-desc">Transparent access to our essential school details, infrastructure information, academic records, and compliance documents.</p>
+            </div>
+        </section>
+
+        <section class="disclosure-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        
+                        <div class="accordion" id="disclosureAccordion">
+
+                            <div class="accordion-item acc-blue" data-aos="fade-up" data-aos-delay="100">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+                                        <i class="fa-solid fa-circle-info me-3"></i> General Information
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#disclosureAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-custom">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sno-col">S.NO</th>
+                                                        <th>Information</th>
+                                                        <th>Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td class="sno-col">1</td><td>Name of the School</td><td>Satyam International School</td></tr>
+                                                    <tr><td class="sno-col">2</td><td>Affiliation No.</td><td>830478</td></tr>
+                                                    <tr><td class="sno-col">3</td><td>School Code</td><td>45397</td></tr>
+                                                    <tr><td class="sno-col">4</td><td>Complete Address</td><td>Satyam International School, After 2nd Canal, Kappagal Village Road, Bellary – 583103</td></tr>
+                                                    <tr><td class="sno-col">5</td><td>Principal Name & Qualification</td><td>Gina Grace (M.Com B.Ed)</td></tr>
+                                                    <tr><td class="sno-col">6</td><td>School Email ID</td><td>info@satyam.com</td></tr>
+                                                    <tr><td class="sno-col">7</td><td>Contact Details</td><td>+91 809538616</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item acc-orange" data-aos="fade-up" data-aos-delay="200">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
+                                        <i class="fa-solid fa-folder-open me-3"></i> Documents & Information
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#disclosureAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-custom">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sno-col">S.NO</th>
+                                                        <th>Documents / Information</th>
+                                                        <th class="text-end pe-5">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="sno-col">1</td>
+                                                        <td>Copies of Affiliation/Upgradation Letter and Recent Extension</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/School-Affiliation.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">2</td>
+                                                        <td>Copies of Societies/Trust/Company Registration/Renewal Certificate</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Society-Members-List.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">3</td>
+                                                        <td>Copy of No Objection Certificate (NOC) Issued by State Govt.</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/NOC.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">4</td>
+                                                        <td>Copies of Recognition Certificate under RTE Act, 2009</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Recognition-Certificate.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">5</td>
+                                                        <td>Copy of Valid Building Safety Certificate (NBC)</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Building-Safety-Certificate.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">6</td>
+                                                        <td>Copy of Valid Fire Safety Certificate</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Fire-Safety.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">7</td>
+                                                        <td>Copy of the DEO Certificate for Affiliation</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/DEO-Certificate.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">8</td>
+                                                        <td>Copies of Valid Water, Health, and Sanitation Certificates</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Drinking-Water.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">9</td>
+                                                        <td>Copy of Fee Structure of School</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Fee-Structure-for-the-year-2025-26.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">10</td>
+                                                        <td>Copy of PTA List</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/PTA-List.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">11</td>
+                                                        <td>Copy of SMC List</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/SMC-List.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">12</td>
+                                                        <td>Copy of Academic Calendar</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Academic-Calender.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">13</td>
+                                                        <td>3 Year Results of Class X</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/3years_results" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="sno-col">14</td>
+                                                        <td>Mandatory Public Disclosure</td>
+                                                        <td class="text-end"><a href="https://satyaminternationalschool.com/wp-content/uploads/2025/06/Mandatory-Disclosure-Details.pdf" target="_blank" class="btn-view-pdf"><i class="fa-solid fa-file-arrow-down"></i> View PDF</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item acc-green" data-aos="fade-up" data-aos-delay="300">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false">
+                                        <i class="fa-solid fa-square-poll-vertical me-3"></i> Result and Academics
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#disclosureAccordion">
+                                    <div class="accordion-body p-4">
+                                        <div class="mb-4">
+                                            <h5 class="mb-3" style="color:var(--primary-green); font-weight:700; border-left:4px solid var(--primary-yellow); padding-left:10px;">Result Class: X</h5>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered text-center table-custom">
+                                                    <thead style="background:#f0fff4 !important; color:var(--primary-green) !important;">
+                                                        <tr><th>Year</th><th>Registered</th><th>Passed</th><th>Pass %</th><th>Remarks</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>2016</td><td>74</td><td>74</td><td class="status-pass">100%</td><td>Nil</td></tr>
+                                                        <tr><td>2017</td><td>91</td><td>91</td><td class="status-pass">100%</td><td>Nil</td></tr>
+                                                        <tr><td>2018</td><td>101</td><td>101</td><td class="status-pass">100%</td><td>Nil</td></tr>
+                                                        <tr><td>2019</td><td>105</td><td>105</td><td class="status-pass">100%</td><td>Nil</td></tr>
+                                                        <tr><td>2020</td><td>141</td><td>135</td><td class="status-blue">95.74%</td><td>Nil</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-3" style="color:var(--primary-green); font-weight:700; border-left:4px solid var(--primary-yellow); padding-left:10px;">Result Class: XII</h5>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered text-center table-custom">
+                                                    <thead style="background:#f0fff4 !important; color:var(--primary-green) !important;">
+                                                        <tr><th>Year</th><th>Registered</th><th>Passed</th><th>Pass %</th><th>Remarks</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>2020</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item acc-purple" data-aos="fade-up" data-aos-delay="400">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false">
+                                        <i class="fa-solid fa-chalkboard-user me-3"></i> Staff (Teaching)
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#disclosureAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-custom">
+                                                <thead>
+                                                    <tr><th class="sno-col">S.NO</th><th>Information</th><th>Details</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td class="sno-col">1</td><td>Principal</td><td class="status-blue">1</td></tr>
+                                                    <tr><td class="sno-col">2</td><td>Total No. of Teachers</td><td class="status-blue">44</td></tr>
+                                                    <tr><td class="sno-col">3</td><td>Teachers Section Ratio</td><td class="status-blue">1.8</td></tr>
+                                                    <tr><td class="sno-col">4</td><td>Details of Special Educator</td><td>T Sunkeswarara Reddy</td></tr>
+                                                    <tr><td class="sno-col">5</td><td>Details of Counsellor and Wellness Teacher</td><td>Chrislene Pallavi</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item acc-yellow" data-aos="fade-up" data-aos-delay="500">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false">
+                                        <i class="fa-solid fa-school me-3"></i> School Infrastructure
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#disclosureAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-custom">
+                                                <thead>
+                                                    <tr><th class="sno-col">S.NO</th><th>Information</th><th>Details</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td class="sno-col">1</td><td>Total Campus Area (Sq Mtr)</td><td class="status-blue">8094</td></tr>
+                                                    <tr><td class="sno-col">2</td><td>No. and Size of Classrooms (in Sq Mtr)</td><td>20 (41.4 Sq.mts)</td></tr>
+                                                    <tr><td class="sno-col">3</td><td>Laboratories</td><td>4 Labs (41.4 Sq.mts) + 1 Comp (83 Sq.mts)</td></tr>
+                                                    <tr><td class="sno-col">4</td><td>Internet Facility</td><td class="status-pass">Yes</td></tr>
+                                                    <tr><td class="sno-col">5</td><td>No. of Girls Toilets</td><td class="status-blue">3</td></tr>
+                                                    <tr><td class="sno-col">6</td><td>No. of Boys Toilets</td><td class="status-blue">3</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                          <div class="col-6">
+                            <a href="index.html" class="footer-link">Home</a>
+                            <a href="about-us.html" class="footer-link">About-us</a>
+                            <a href="academics.html" class="footer-link">Academics</a>
+                            <a href="gallery.html" class="footer-link">Gallery</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="admission.html" class="footer-link">Admissions</a>
+                            <a href="information.html" class="footer-link active" style="color:var(--primary-yellow)">Mandatory Disclosure</a>
+                            <a href="contact-us.html" class="footer-link">Contacts</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between flex-column flex-md-row">
+                        <div class="text-center text-md-start mb-3 mb-md-0">
+                            <span style="color:var(--primary-yellow); font-weight:700; display:block; margin-bottom:10px;">We are</span>
+                            <p class="mb-1 text-white-50">Kappagal Road, Bellary, Karnataka</p>
+                            <p class="mb-1 text-white-50">+91 96203 81111</p>
+                            <a href="#" style="color: #777; text-decoration: none; font-size: 12px;">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex justify-content-center justify-content-md-end align-items-start">
+                            <a class="social-circle" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a class="social-circle" href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-up text-white" style="font-size:12px; position:absolute; bottom:-25px; left:-5px;"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

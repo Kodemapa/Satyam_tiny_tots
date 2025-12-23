@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Satyam International School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{ 
+            --primary-blue: #009ceb; 
+            --primary-yellow: #ffdd00; 
+            --primary-purple: #8e44ad; 
+            --primary-orange: #ff6b35; 
+            --primary-green: #2ecc71; 
+            --bright-bg: #fffbf0;
+            --footer-bg: #1f1f1f; 
+        }
+        
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:#333; background-color: #fff; }
+        h1, h2, h3, h4 { font-weight: 800; }
+
+        /* --- NAVBAR (Consistent) --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
+        
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceDot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+        
+        .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Floating Background Shapes */
+        .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out alternate; pointer-events: none; }
+        .shape-circle { width: 60px; height: 60px; border-radius: 50%; border: 5px solid var(--primary-purple); top: 20%; left: 10%; }
+        .shape-square { width: 40px; height: 40px; background: var(--primary-yellow); bottom: 30%; right: 15%; transform: rotate(15deg); }
+        .shape-tri { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 40px solid var(--primary-green); top: 15%; right: 40%; }
+
+        /* --- HEADER SECTION --- */
+        .faq-header {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #eef2f7 0%, var(--bright-bg) 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* --- FAQ CATEGORY FILTERS --- */
+        .faq-filters .btn-filter {
+            font-weight: 700; padding: 12px 30px; border-radius: 50px; margin: 0 5px 10px;
+            border: 2px solid #eee; transition: all 0.3s ease; background: #fff; color: #555;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .btn-filter:hover, .btn-filter.active { color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: transparent; }
+        
+        .filter-admissions.active, .filter-admissions:hover { background: var(--primary-blue); }
+        .filter-academics.active, .filter-academics:hover { background: var(--primary-purple); }
+        .filter-campus.active, .filter-campus:hover { background: var(--primary-orange); }
+        .filter-transport.active, .filter-transport:hover { background: var(--primary-green); }
+
+        /* --- COLORFUL ACCORDION STYLES --- */
+        .accordion-item { border: none; margin-bottom: 15px; border-radius: 15px !important; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .accordion-item:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        
+        .accordion-button { font-weight: 700; font-size: 1.1rem; padding: 20px 25px; color: #444; background: #fff; transition: 0.3s; }
+        .accordion-button:focus { box-shadow: none; }
+        .accordion-button::after { transition: 0.3s; background-size: 1.5rem; }
+        .accordion-body { padding: 25px; background: #fff; color: #666; line-height: 1.7; }
+
+        /* Colorful Active States for Accordion Items */
+        /* Admissions - Blue */
+        .faq-admission .accordion-button:not(.collapsed) { background: var(--primary-blue); color: #fff; box-shadow: 0 5px 15px rgba(0, 156, 235, 0.3); }
+        .faq-admission .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
+        
+        /* Academics - Purple */
+        .faq-academic .accordion-button:not(.collapsed) { background: var(--primary-purple); color: #fff; box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3); }
+        .faq-academic .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
+
+        /* Campus - Orange */
+        .faq-campus .accordion-button:not(.collapsed) { background: var(--primary-orange); color: #fff; box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3); }
+        .faq-campus .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
+
+        /* Transport - Green */
+        .faq-transport .accordion-button:not(.collapsed) { background: var(--primary-green); color: #fff; box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
+        .faq-transport .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
+
+/* Footer Structure */
+        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
+
+
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
+                        <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                            <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="faq-header">
+            <div class="float-shape shape-circle"></div>
+            <div class="float-shape shape-square"></div>
+            <div class="float-shape shape-tri"></div>
+
+            <div class="container position-relative z-2 animate-up">
+                <span style="color: var(--primary-blue); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">GOT QUESTIONS?</span>
+                <h1 style="font-size: 3.5rem; margin: 10px 0 20px;">Frequently Asked Questions</h1>
+                <div style="height: 6px; width: 80px; background: var(--primary-yellow); margin: 0 auto 30px; border-radius: 10px;"></div>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">Find answers to the most common questions about admissions, academics, campus life, and more at Satyam International School.</p>
+            </div>
+        </header>
+
+        <section class="py-5" style="background: #fff;">
+            <div class="container">
+                
+                <div class="faq-filters text-center mb-5 animate-up delay-1">
+                    <button class="btn btn-filter filter-admissions active">Admissions</button>
+                    <button class="btn btn-filter filter-academics">Academics</button>
+                    <button class="btn btn-filter filter-campus">Campus Life</button>
+                    <button class="btn btn-filter filter-transport">Transport & Safety</button>
+                </div>
+
+                <div class="row justify-content-center animate-up delay-2">
+                    <div class="col-lg-9">
+                        <div class="accordion" id="faqAccordion">
+                            
+                            <div class="accordion-item faq-admission">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        <i class="fa-solid fa-file-signature me-3" style="color: var(--primary-blue);"></i> What is the age criteria for admission to Nursery/KG?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        For Nursery, the child should be 3+ years old as of June 1st of the academic year. For LKG, the age criteria is 4+ years. We strictly adhere to the age guidelines set by the educational authorities.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item faq-admission">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                       <i class="fa-solid fa-clipboard-list me-3" style="color: var(--primary-blue);"></i> What documents are required during the admission process?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Essential documents include the child's Birth Certificate, Transfer Certificate (if applicable), previous year's Report Card, passport-size photographs of the child and parents, and address proof. A detailed checklist is provided in the admission kit.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item faq-academic">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        <i class="fa-solid fa-book-open-reader me-3" style="color: var(--primary-purple);"></i> Which curriculum does the school follow?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Satyam International School is affiliated with the Central Board of Secondary Education (CBSE), New Delhi. We follow the NCERT curriculum, enhanced with innovative teaching methodologies focusing on experiential learning.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item faq-academic">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                        <i class="fa-solid fa-users-rectangle me-3" style="color: var(--primary-purple);"></i> What is the teacher-student ratio in classrooms?
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        We maintain an optimal teacher-student ratio of 1:25 for primary classes and 1:30 for senior classes to ensure individual attention and effective learning environments for every student.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item faq-campus">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                        <i class="fa-solid fa-futbol me-3" style="color: var(--primary-orange);"></i> What sports and co-curricular activities are offered?
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        We offer a wide range of activities including basketball, football, skating, cricket, athletics, music, dance, art & craft, robotics, and debate clubs. Activities are integrated into the regular timetable.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item faq-transport">
+                                <h2 class="accordion-header" id="headingSix">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                                        <i class="fa-solid fa-bus-simple me-3" style="color: var(--primary-green);"></i> Is school transport available covering all areas of Ballari?
+                                    </button>
+                                </h2>
+                                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, we have a fleet of GPS-enabled buses covering major routes across Ballari city and surrounding outskirts. Every bus has a trained driver and a lady attendant to ensure safety.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="accordion-item faq-transport">
+                                <h2 class="accordion-header" id="headingSeven">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven">
+                                        <i class="fa-solid fa-shield-heart me-3" style="color: var(--primary-green);"></i> What safety measures are implemented on campus?
+                                    </button>
+                                </h2>
+                                <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The entire campus is under 24/7 CCTV surveillance. We have trained security personnel at all gates, background-verified staff, fire safety compliance, and a dedicated infirmary with a qualified nurse during school hours.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5 animate-up delay-3">
+                    <h4 style="font-weight: 800;">Still have questions?</h4>
+                    <p class="text-muted mb-4">Can't find the answer you're looking for? Please chat to our friendly team.</p>
+                    <a href="contact-us.html" class="btn btn-primary rounded-pill px-5 py-3 fw-bold" style="background: var(--primary-blue); border:none; box-shadow: 0 10px 20px rgba(0, 156, 235, 0.3);">
+                        <i class="fa-solid fa-paper-plane me-2"></i> Get in Touch
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                          <div class="col-6">
+                            <a href="index.html" class="footer-link">Home</a>
+                            <a href="about-us.html" class="footer-link">About-us</a>
+                            <a href="academics.html" class="footer-link">Academics</a>
+                            <a href="gallery.html" class="footer-link">Gallery</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="admission.html" class="footer-link">Admissions</a>
+                            <a href="Mandatory-disclosure.html" class="footer-link">Mandatory Disclosure</a>
+                            <a href="contact-us.html" class="footer-link">Contacts</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title">We are</span>
+                            <p class="mb-1 text-white-50">Kappagal Road, Bellary, Karnataka</p>
+                            <p class="mb-1 text-white-50">+91 96203 81111</p>
+                            <p class="mb-3 text-white-50">info@satyam.com</p>
+                            <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <ul class="large-icon dark social-icons">
+                                <li class="social-circle">
+                                    <a class="facebook" href="" target="_blank">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="social-circle">
+                                    <a class="instagram" href="" target="_blank">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const filterBtns = document.querySelectorAll('.btn-filter');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                 // Note: To actually filter the accordion items dynamically, you would add JS here to hide/show elements based on their class (e.g., show .faq-admission, hide others).
+            });
+        });
+    </script>
+</body>
+</html>

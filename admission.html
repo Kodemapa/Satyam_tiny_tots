@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admission - Satyam Tiny Tots</title>
+    <title>Admission - Satyam International School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -17,169 +17,69 @@
             --primary-green:#8cc63f; 
             --text-dark:#212529; 
             --footer-bg:#1f1f1f; 
+            --bg-light: #f9f9f9;
         }
         
-        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background: #fdfdfd; }
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background: #fff; }
         
         /* Navbar */
         .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; position: relative; }
         .nav-link:hover { color: var(--primary-blue); }
-        
-        /* Playful Nav Underline */
-        .nav-link::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; 
-            background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px;
-        }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px; }
         .nav-link:hover::after { width: 80%; }
-
         .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: pulseDot 2s infinite; }
         .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; border-radius: 12px; }
         .dropdown-item:hover { background-color: #e9ecef; color: var(--primary-blue); border-radius: 5px; }
         
-        /* Footer Structure */
-        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
-        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
-        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
-        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
-        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
-        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
-        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
-        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
-        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
-        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
-
-        /* =========================================
-           ANIMATIONS & KEYFRAMES
-           ========================================= */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes expandWidth {
-            from { width: 0; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-        @keyframes pulseDot {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-        }
-        @keyframes bounceNum {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes expandWidth { from { width: 0; } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(5deg); } }
+        @keyframes pulseDot { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+        @keyframes bounceNum { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-
-        /* Social Icons */
-        .social-icons { list-style: none; display: flex; gap: 14px; padding: 0; margin: 0; }
-        .social-circle a { width: 46px; height: 46px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #000; font-size: 22px; transition: all 0.3s ease; }
-        .social-circle a:hover { background: #ffd800; color: #000; transform: translateY(-2px); }
-        .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
-        .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
 
         /* Header Section */
-        .page-header { 
-            padding: 80px 0 60px 0; 
-            background: #fff; 
-            position: relative; 
-            overflow: hidden; 
-        }
-        
-        /* Floating background shapes */
+        .page-header { padding: 80px 0 60px 0; background: #fff; position: relative; overflow: hidden; }
         .float-shape { position: absolute; opacity: 0.5; z-index: 0; animation: float 6s infinite ease-in-out; }
         .shape-circle { width: 50px; height: 50px; border-radius: 50%; border: 4px solid var(--primary-yellow); top: 10%; right: 5%; }
         .shape-square { width: 30px; height: 30px; background: var(--primary-purple); top: 60%; left: 5%; transform: rotate(15deg); animation-delay: 1s; border-radius: 5px; }
 
         .header-title-wrapper { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; position: relative; z-index: 1; }
-        
-        .header-title { 
-            font-weight: 900; 
-            font-size: clamp(2rem, 5vw, 3.5rem); 
-            line-height: 1.2;
-            margin: 0; 
-        }
-        
+        .header-title { font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; margin: 0; }
         .header-line { height: 8px; background: var(--primary-green); width: 0; flex-grow: 1; animation: expandWidth 1.5s ease-out forwards; border-radius: 4px; }
-        
         .admission-intro p { font-size: 1.05rem; line-height: 1.8; color: #555; margin-bottom: 25px; position: relative; z-index: 1; }
 
-        /* Steps Section */
-        .steps-wrapper { padding: 60px 0; background-color: #f4f4f4; position: relative; }
-        
-        .step-row { 
-            display: flex; 
-            margin-bottom: 60px; 
-            position: relative;
-        }
-        
-        /* Left Column: Number & Arrow Box */
-        .step-visual { 
-            width: 140px; 
-            flex-shrink: 0; 
-            position: relative; 
-            margin-right: 40px;
-            text-align: center;
-        }
-        
-        .step-number {
-            font-size: clamp(3.5rem, 6vw, 5rem);
-            font-weight: 700;
-            line-height: 1;
-            position: absolute;
-            top: -20px;
-            left: 0;
-            z-index: 1;
-            transition: transform 0.3s ease;
-        }
-        /* Playful Bounce on Hover */
-        .step-row:hover .step-number {
-            animation: bounceNum 0.6s ease-in-out;
-        }
-        
-        .step-arrow-box {
-            background-color: #2b2b2b;
+        /* Champions Banner */
+        .champions-section {
+            background: var(--primary-purple);
             color: #fff;
-            width: 70px;
-            padding: 40px 0 15px 0; 
-            margin-left: auto;
+            padding: 80px 0;
             position: relative;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 4px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 40px 0;
         }
+        .champions-bg-shape {
+            position: absolute; top: -50%; right: -10%; width: 600px; height: 600px;
+            background: rgba(255,255,255,0.1); border-radius: 50%; z-index: 0;
+        }
+
+        /* Steps Section */
+        .steps-wrapper { padding: 80px 0; background-color: #f4f4f4; position: relative; }
+        .step-row { display: flex; margin-bottom: 60px; position: relative; }
+        .step-visual { width: 140px; flex-shrink: 0; position: relative; margin-right: 40px; text-align: center; }
+        .step-number { font-size: clamp(3.5rem, 6vw, 5rem); font-weight: 700; line-height: 1; position: absolute; top: -20px; left: 0; z-index: 1; transition: transform 0.3s ease; }
+        .step-row:hover .step-number { animation: bounceNum 0.6s ease-in-out; }
         
-        .step-row:hover .step-arrow-box {
-            transform: translateY(5px);
-            background-color: var(--primary-blue);
-        }
-        
-        .step-arrow-box::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 0; 
-            height: 0; 
-            border-left: 35px solid transparent;
-            border-right: 35px solid transparent;
-            border-top: 20px solid #2b2b2b;
-            transition: border-top-color 0.3s;
-        }
+        .step-arrow-box { background-color: #2b2b2b; color: #fff; width: 70px; padding: 40px 0 15px 0; margin-left: auto; position: relative; text-align: center; font-size: 14px; font-weight: 600; border-radius: 4px; box-shadow: 5px 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .step-row:hover .step-arrow-box { transform: translateY(5px); background-color: var(--primary-blue); }
+        .step-arrow-box::after { content: ''; position: absolute; bottom: -20px; left: 0; width: 0; height: 0; border-left: 35px solid transparent; border-right: 35px solid transparent; border-top: 20px solid #2b2b2b; transition: border-top-color 0.3s; }
         .step-row:hover .step-arrow-box::after { border-top-color: var(--primary-blue); }
 
         .num-green { color: var(--primary-green); }
@@ -187,124 +87,106 @@
         .num-yellow { color: var(--primary-yellow); }
         .num-blue { color: var(--primary-blue); }
 
-        /* Right Column: Content */
         .step-content { padding-top: 10px; max-width: 700px; }
         .step-title { font-weight: 800; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 15px; color: #222; }
         .step-desc { font-size: 1rem; color: #666; line-height: 1.6; }
 
         /* Documents Section */
         .docs-section { padding: 80px 0; background: #fff; }
-        .doc-list { list-style: none; padding: 0; }
-        .doc-list li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            color: #444;
-            opacity: 0; /* Hidden initially for animation */
-            animation: slideInRight 0.5s ease-out forwards;
-        }
-        /* Staggered Animation for List Items */
-        .doc-list li:nth-child(1) { animation-delay: 0.2s; }
-        .doc-list li:nth-child(2) { animation-delay: 0.3s; }
-        .doc-list li:nth-child(3) { animation-delay: 0.4s; }
-        .doc-list li:nth-child(4) { animation-delay: 0.5s; }
-        .doc-list li:nth-child(5) { animation-delay: 0.6s; }
-
-        .doc-list li::before {
-            content: '\f0c8'; 
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0; top: 4px;
-            color: var(--primary-orange);
-            font-size: 12px;
-            transition: transform 0.2s;
-        }
+        .doc-list li { position: relative; padding-left: 30px; margin-bottom: 15px; font-size: 1.05rem; color: #444; }
+        .doc-list li::before { content: '\f0c8'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 4px; color: var(--primary-orange); font-size: 12px; transition: transform 0.2s; }
         .doc-list li:hover::before { transform: scale(1.3) rotate(15deg); color: var(--primary-green); }
 
-        /* Gallery Grid at Bottom */
-        .bottom-gallery { padding-bottom: 80px; }
-        .gallery-img { 
-            width: 100%; 
-            height: 250px; 
-            object-fit: cover; 
-            border-radius: 12px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        /* Enroll Banner */
+        .enroll-banner {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 80px;
         }
-        .gallery-img:hover { transform: scale(1.05) rotate(1deg); }
-
-        /* ============================ */
-        /* MOBILE RESPONSIVE TWEAKS     */
-        /* ============================ */
+        .enroll-img { max-height: 300px; position: absolute; right: 50px; bottom: -50px; z-index: 1; }
         
+        /* -------------------------------------------
+           ENHANCED FORM STYLING
+           ------------------------------------------- */
+        .form-section { background: linear-gradient(180deg, #fdfdfd 0%, #f4f4f4 100%); padding: 80px 0; }
+        
+        .form-card { 
+            background: #fff; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); 
+            padding: 50px 40px; 
+            border-top: 6px solid var(--primary-blue);
+            position: relative;
+        }
+
+        .form-title-decor {
+            font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary-orange); display: block; margin-bottom: 10px;
+        }
+
+        .form-sub-header {
+            font-size: 1.1rem; font-weight: 700; color: var(--primary-purple); margin-top: 10px; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; display: flex; align-items: center; gap: 10px;
+        }
+        
+        /* Floating Labels & Inputs */
+        .form-floating > .form-control, .form-floating > .form-select { 
+            border-radius: 12px; border: 2px solid #f1f1f1; background: #fff; font-weight: 500; height: calc(3.5rem + 2px); 
+        }
+        .form-floating > .form-control:focus, .form-floating > .form-select:focus { 
+            border-color: var(--primary-blue); box-shadow: 0 0 0 4px rgba(0, 156, 235, 0.1); 
+        }
+        .form-floating > label { padding-left: 1.5rem; color: #999; }
+        
+        .input-group-text { background: transparent; border: none; position: absolute; right: 10px; top: 15px; z-index: 4; color: #ccc; }
+
+        /* Submit Button */
+        .btn-submit { 
+            background: var(--primary-orange); color: #fff; font-weight: 800; padding: 16px 50px; border-radius: 50px; border: none; 
+            transition: all 0.3s; display: block; width: 100%; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(240, 90, 40, 0.3);
+        }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(240, 90, 40, 0.4); background: #d94e1f; }
+
+        /* FAQ */
+        .accordion-button { font-weight: 700; background: #f8f9fa; border-radius: 10px !important; margin-bottom: 10px; border: none; box-shadow: none !important; }
+        .accordion-button:not(.collapsed) { background: var(--primary-blue); color: white; }
+        .accordion-item { border: none; margin-bottom: 15px; }
+
+        /* Footer */
+        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-left: 10px; transition: 0.3s; text-decoration: none; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
+
+        /* Responsive */
         @media (max-width: 991px) {
-            .navbar-collapse {
-                background: #fff;
-                padding: 20px;
-                border-radius: 0 0 15px 15px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            }
-            .nav-dot { display: none; }
-            .nav-link::after { display: none; }
+            .step-row { flex-direction: column; text-align: center; align-items: center; }
+            .step-visual { margin-right: 0; margin-bottom: 30px; }
+            .step-arrow-box { margin: 0 auto; }
+            .step-number { left: 50%; transform: translateX(-50%); }
+            .enroll-banner { flex-direction: column; text-align: center; padding: 40px; }
+            .enroll-img { position: relative; right: auto; bottom: auto; margin-top: 30px; max-height: 200px; }
+            .form-card { padding: 30px 20px; }
         }
-
-        @media (max-width: 768px) {
-            /* General Spacing Reduction */
-            .page-header, .steps-wrapper, .docs-section {
-                padding: 50px 0;
-            }
-            
-            /* Header */
-            .header-title-wrapper { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .header-line { width: 50px; flex-grow: 0; }
-            
-            /* Steps: Stack them nicely */
-            .step-row { 
-                flex-direction: column; 
-                text-align: center;
-                align-items: center;
-            }
-            .step-visual { 
-                margin-right: 0; 
-                margin-bottom: 30px; 
-                width: 120px; 
-                /* Center the number grouping */
-                display: flex;
-                justify-content: center;
-            }
-            .step-number {
-                left: 10px; /* Adjust relative to the centered box */
-            }
-            .step-arrow-box {
-                margin: 0; /* Remove auto margins to allow centering */
-            }
-            
-            /* Footer */
-            footer { text-align: center; padding-top: 50px; }
-            .footer-decor-strip { display: none; }
-            .d-flex.justify-content-between {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .d-flex.flex-column.align-items-end {
-                align-items: center !important;
-                flex-direction: row !important;
-                justify-content: center;
-            }
-            .social-circle { margin: 0 5px; }
-        }
-
     </style>
 </head>
 <body>
     
-    
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
+                <img src="images/Satyam_Icon_1.png" alt="Satyam Logo" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon"></span>
@@ -312,20 +194,18 @@
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav align-items-center text-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
-                        <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown">School</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
                             <li><a class="dropdown-item" href="academics.html">Academics</a></li>
-                            <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
                             <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
-                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
-                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
                     <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
-                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="information.html">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="admission.html">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                 </ul>
             </div>
@@ -341,17 +221,31 @@
                 <div class="row">
                     <div class="col-lg-10 mx-auto">
                         <div class="header-title-wrapper animate-up">
-                            <h1 class="header-title">Admission to school</h1>
+                            <h1 class="header-title">Admissions & Verification</h1>
                             <div class="header-line"></div>
                         </div>
 
                         <div class="admission-intro animate-up delay-1">
-                            <p>
-                                Admission to Satyam Tiny Tots is carried out on a first-come-first-serve basis, prioritizing a comfortable interaction process to understand the child's readiness. We believe in an inclusive approach where every child gets an opportunity to shine.
-                            </p>
-                            <p>
-                                Before formal admission, we hold a friendly interaction session. We won't be testing meticulously; we'll just talk. About what they like to do, what fascinates them, about friends, favorite games, and other entertaining things. This ensures the child feels comfortable and excited about their new journey.
-                            </p>
+                            <p><strong>Choosing the right school is one of the most critical decisions you'll make for your child's future.</strong> But what if the trust you place in an institution turns out to be misplaced? You enroll your child in what appears to be a reputable CBSE school, only to discover years later that the school's affiliation has expired or was never valid.</p>
+                            <p>Satyam International School, Ballari solves it by disclosing the documents to parents, where we follow transparency in every aspect.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container animate-up delay-1">
+            <div class="champions-section">
+                <div class="champions-bg-shape"></div>
+                <div class="row align-items-center position-relative z-1">
+                    <div class="col-lg-6 ps-lg-5 text-center text-lg-start mb-4 mb-lg-0">
+                        <span class="badge bg-white text-dark mb-3">HOLISTIC EXCELLENCE</span>
+                        <h2 style="font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">Where Champions<br>Are Made in Every<br>Arena</h2>
+                        <p class="lead opacity-75">We believe true success comes from developing well-rounded individuals. So we've created a balanced approach that gives equal importance to academics, sports, and character-building.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row g-2 p-4">
+                            <div class="col-6 text-end"><img src="images/admission.png"></div>
                         </div>
                     </div>
                 </div>
@@ -360,6 +254,10 @@
 
         <section class="steps-wrapper">
             <div class="container">
+                <div class="text-center mb-5 animate-up">
+                    <h2 style="font-weight: 900; font-size: 2.5rem;">How to Verify CBSE Certification</h2>
+                    <p class="text-muted">Protecting your child's educational future requires due diligence. Here is your guide.</p>
+                </div>
                 
                 <div class="row step-row animate-up delay-1">
                     <div class="col-lg-2 offset-lg-1">
@@ -370,10 +268,8 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="step-content">
-                            <h3 class="step-title">Inquiry & Registration</h3>
-                            <p class="step-desc">
-                                Parents can visit the school office to collect the admission form or register online. A preliminary interaction date will be scheduled. This stage helps us understand the basic details of the child and the family's expectations.
-                            </p>
+                            <h3 class="step-title">Check the School's Affiliation Number</h3>
+                            <p class="step-desc">Every CBSE-affiliated school has a unique affiliation number. This is your first and most important verification step. Look for the complete school name, ensure the affiliation number is active, and verify the address matches the physical location.</p>
                         </div>
                     </div>
                 </div>
@@ -387,99 +283,209 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="step-content">
-                            <h3 class="step-title">Child Interaction & Observation</h3>
-                            <p class="step-desc">
-                                For Kindergarten, we conduct a play-based observation session. Teachers observe the child's social skills, motor skills, and general readiness. There is no formal written test for toddlers. The goal is to ensure the child can settle happily in our environment.
-                            </p>
+                            <h3 class="step-title">Verify Affiliation Status and Validity</h3>
+                            <p class="step-desc">CBSE affiliations aren't permanent; they come with specific validity periods. Check the "Valid Up To" date on the CBSE portal. Confirm the school has affiliation for all classes they operate (Primary, Secondary, Senior Secondary) and check for any pending conditions.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="row step-row animate-up delay-3">
-                    <div class="col-lg-2 offset-lg-1">
-                        <div class="step-visual">
-                            <span class="step-number num-yellow">03</span>
-                            <div class="step-arrow-box">Step</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="step-content">
-                            <h3 class="step-title">Principal's Interaction</h3>
-                            <p class="step-desc">
-                                After the observation, parents are invited for a brief interaction with the Principal. This is a transparent discussion to align the school's philosophy with parental goals and to clarify any queries regarding the curriculum or facilities.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row step-row animate-up delay-4">
-                    <div class="col-lg-2 offset-lg-1">
-                        <div class="step-visual">
-                            <span class="step-number num-blue">04</span>
-                            <div class="step-arrow-box">Step</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="step-content">
-                            <h3 class="step-title">Conclusion of Contract</h3>
-                            <p class="step-desc">
-                                Once admission is granted, the final stage involves submitting the required documents and paying the admission fees. After these formalities, you will receive the welcome kit, uniform details, and the schedule for the academic year.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <section class="docs-section">
+        <section class="form-section" id="admissionForm">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto animate-up">
-                        <h3 style="font-weight: 800; margin-bottom: 30px; font-size: clamp(1.8rem, 4vw, 2.5rem);">List of documents required</h3>
-                        <p class="text-muted mb-4">Please submit the following documents to the administration office to finalize the admission:</p>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <ul class="doc-list">
-                                    <li>Photocopy of the child's Birth Certificate</li>
-                                    <li>Photocopy of Child's Aadhaar Card (if available)</li>
-                                    <li>Immunization / Vaccination Record Copy</li>
-                                    <li>Original Transfer Certificate (for Grade 1 onwards)</li>
-                                    <li>Medical Fitness Certificate from a registered practitioner</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="doc-list">
-                                    <li>Passport size photos of the Child (4 copies)</li>
-                                    <li>Passport size photos of Parents (2 copies each)</li>
-                                    <li>Address Proof (Aadhaar / Passport / Utility Bill)</li>
-                                    <li>Photocopy of Parents' Aadhaar/PAN Card</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="alert alert-light mt-4 border-start border-4 border-warning shadow-sm animate-up delay-3" role="alert">
-                            <strong>Note:</strong> The day and time of interaction is agreed with the parents and is usually scheduled in the first half of the day to ensure the child is fresh and active.
+                <div class="text-center mb-5 animate-up">
+                    <span class="form-title-decor">Start the Journey</span>
+                    <h2 style="font-weight: 900; font-size: 2.5rem;">Admission Enquiry Form</h2>
+                    <div style="height: 4px; width: 60px; background: var(--primary-orange); margin: 10px auto; border-radius:10px;"></div>
+                    <p class="text-muted">Fill in the details below and our admissions team will contact you shortly.</p>
+                </div>
+
+                <div class="row justify-content-center animate-up delay-1">
+                    <div class="col-lg-10 col-xl-9">
+                        <div class="form-card">
+                            <form>
+                                <div class="form-sub-header">
+                                    <i class="fa-solid fa-child-reaching"></i> Student Details
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="studentFirstName" placeholder="First Name" required>
+                                            <label for="studentFirstName">First Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="studentLastName" placeholder="Last Name" required>
+                                            <label for="studentLastName">Last Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="dob" required>
+                                            <label for="dob">Date of Birth*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="gender">
+                                                <option selected disabled>Select</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                            <label for="gender">Gender*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="bloodGroup">
+                                                <option selected disabled>Select</option>
+                                                <option>A+</option><option>A-</option>
+                                                <option>B+</option><option>B-</option>
+                                                <option>O+</option><option>O-</option>
+                                                <option>AB+</option><option>AB-</option>
+                                            </select>
+                                            <label for="bloodGroup">Blood Group</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-sub-header mt-4">
+                                    <i class="fa-solid fa-graduation-cap"></i> Admission Details
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="gradeRequired" required>
+                                                <option selected disabled>Select Grade</option>
+                                                <option>Nursery</option><option>LKG</option><option>UKG</option>
+                                                <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option>
+                                                <option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
+                                                <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
+                                                <option>Grade 10</option>
+                                            </select>
+                                            <label for="gradeRequired">Grade Applying For*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="academicYear">
+                                                <option>2025-2026</option>
+                                                <option>2026-2027</option>
+                                            </select>
+                                            <label for="academicYear">Academic Year*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="prevSchool" placeholder="Previous School Name">
+                                            <label for="prevSchool">Previous School Name (if applicable)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-sub-header mt-4">
+                                    <i class="fa-solid fa-users"></i> Parent / Guardian Details
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="fatherName" placeholder="Father's Name" required>
+                                            <label for="fatherName">Father's Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="motherName" placeholder="Mother's Name" required>
+                                            <label for="motherName">Mother's Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                            <label for="email">Email Address*</label>
+                                            <i class="fa-regular fa-envelope input-group-text"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="tel" class="form-control" id="phone" placeholder="Phone" required>
+                                            <label for="phone">Phone Number*</label>
+                                            <i class="fa-solid fa-phone input-group-text"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="occupation" placeholder="Occupation">
+                                            <label for="occupation">Parent's Occupation</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-sub-header mt-4">
+                                    <i class="fa-solid fa-location-dot"></i> Address Details
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="address" placeholder="Address" required>
+                                            <label for="address">Street Address / Area*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="city" placeholder="City" required>
+                                            <label for="city">City*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="state" placeholder="State" value="Karnataka">
+                                            <label for="state">State</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="zip" placeholder="Zip">
+                                            <label for="zip">Pin Code</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 mt-1">
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Comments" id="comments" style="height: 100px"></textarea>
+                                            <label for="comments">Any specific requirements or queries?</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn-submit">
+                                            Submit Admission Enquiry <i class="fa-solid fa-paper-plane ms-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="bottom-gallery">
-            <div class="container">
-                <div class="row g-4 animate-up delay-4">
-                    <div class="col-md-6">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student in class" class="gallery-img">
-                    </div>
-                    <div class="col-md-6">
-                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Classroom" class="gallery-img">
-                    </div>
+        
+        <section class="container animate-up delay-2">
+            <div class="enroll-banner">
+                <div style="position: relative; z-index: 2; max-width: 600px;">
+                    <h2 style="font-weight: 800; font-size: 2.5rem; margin-bottom: 15px;">Enroll Your Child With Us</h2>
+                    <p class="mb-4 opacity-90">We welcome new students to our school community. If you are interested in enrolling your child, please get in touch with us.</p>
+                    <a href="#admissionForm" class="btn btn-light text-primary fw-bold px-4 py-2 rounded-pill">Enroll Now</a>
+                </div>
+                <div class="d-none d-lg-block">
+                    <i class="fa-solid fa-graduation-cap" style="font-size: 200px; color: rgba(255,255,255,0.2); transform: rotate(-20deg);"></i>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
@@ -509,31 +515,21 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <span class="footer-col-title">We are</span>
+                            <span style="color:var(--primary-yellow); font-weight:700; display:block; margin-bottom:10px;">We are</span>
                             <p class="mb-1 text-white-50">Kappagal Road, Bellary, Karnataka</p>
                             <p class="mb-1 text-white-50">+91 96203 81111</p>
                             <p class="mb-3 text-white-50">info@satyam.com</p>
-                            <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
+                            <a href="#" style="color: #777; text-decoration: none; font-size: 12px;">All rights reserved by Kodemapa</a>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <ul class="large-icon dark social-icons">
-                                <li class="social-circle">
-                                    <a class="facebook" href="" target="_blank">
-                                        <i class="fa-brands fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li class="social-circle">
-                                    <a class="instagram" href="" target="_blank">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="d-flex justify-content-end align-items-start">
+                            <a class="social-circle" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a class="social-circle" href="#"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down text-white" style="font-size:12px; position:absolute; bottom:-25px; left:-5px;"></i></div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
