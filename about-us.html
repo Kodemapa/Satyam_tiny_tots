@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Satyam Tiny Tots</title>
+    <title>Satyam International School - Complete Education Solution</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root{ 
@@ -17,6 +18,13 @@
             --primary-green:#8cc63f; 
             --text-dark:#212529; 
             --footer-bg:#1f1f1f; 
+
+            /* New Pastel Backgrounds */
+            --bg-soft-blue: #f0f8ff;
+            --bg-soft-yellow: #fffef0;
+            --bg-soft-pink: #fff5f5;
+            --bg-soft-green: #f4fcf4;
+            --bg-soft-gray: #f8f9fa;
         }
         
         body{ 
@@ -27,341 +35,165 @@
         }
         
         /* Navbar */
-        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; }
+        .navbar { padding: 15px 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; z-index: 1000; }
         .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; position: relative; }
         .nav-link:hover { color: var(--primary-blue); }
-        /* Playful Nav Hover */
         .nav-link::after {
             content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; 
             background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px;
         }
         .nav-link:hover::after { width: 80%; }
-
         .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
-        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; border-radius: 10px; }
-        .dropdown-item:hover { background-color: #e9ecef; color: var(--primary-blue); border-radius: 5px; }
 
-        /* Footer Decor */
-        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
+        /* Custom Animations Keyframes */
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(5deg); } }
+        @keyframes blobMorph { 0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes pulseBtn { 0% { box-shadow: 0 0 0 0 rgba(0, 156, 235, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(0, 156, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 156, 235, 0); } }
+
+        /* Hero Section */
+        .intro-section { 
+            padding: 140px 0 100px 0; 
+            position: relative; 
+            overflow: hidden; 
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #e0f7fa, #f3e5f5, #e8f5e9, #fffde7);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        .intro-bg-diag { position: absolute; top: 0; left: 0; width: 45%; height: 100%; background: rgba(125, 108, 170, 0.05); clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%); z-index: 0; }
+        
+        .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out; }
+        .shape-circle { width: 60px; height: 60px; border-radius: 50%; border: 4px solid var(--primary-purple); top: 15%; right: 10%; }
+        .shape-square { width: 40px; height: 40px; background: var(--primary-blue); transform: rotate(15deg); bottom: 20%; left: 5%; border-radius: 8px; }
+        .shape-blob { position: absolute; top: 30%; right: -5%; width: 200px; height: 200px; background: rgba(140, 198, 63, 0.15); animation: blobMorph 8s infinite linear; z-index: 0; }
+
+        .tag-pill { display:inline-block; padding: 8px 16px; background: var(--primary-purple); color: #fff; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(125, 108, 170, 0.3); }
+        .intro-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: #222; }
+        .intro-text { font-size: 1.15rem; line-height: 1.8; color: #555; margin-bottom: 30px; }
+        .btn-pulse { animation: pulseBtn 2s infinite; }
+
+        .intro-img-grid img { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .intro-img-grid img:hover { transform: scale(1.05) rotate(-2deg); }
+
+        /* Founder Message */
+        .founder-section { padding: 100px 0; background: #fff; position: relative; }
+        .quote-box { background: var(--bg-soft-blue); padding: 50px; border-radius: 20px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .quote-icon { font-size: 5rem; color: rgba(0, 156, 235, 0.1); position: absolute; top: 20px; left: 20px; }
+        .founder-img { width: 100%; max-width: 400px; border-radius: 20px; box-shadow: 20px 20px 0 var(--primary-yellow); transition: 0.3s; }
+        .founder-img:hover { transform: translate(-10px, -10px); box-shadow: 30px 30px 0 var(--primary-yellow); }
+
+        /* Stats */
+        .stats-section { padding: 80px 0; background-color: var(--bg-soft-blue); }
+        .stat-item { text-align: left; padding: 30px; background: #fff; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: 0.3s; height: 100%; }
+        .stat-item:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .stat-number { font-size: 3rem; font-weight: 900; color: var(--primary-blue); line-height: 1; margin-bottom: 15px; }
+        .stat-label { font-size: 1.2rem; font-weight: 800; color: #333; margin-bottom: 10px; }
+
+        /* Vision & Mission */
+        .vm-section { padding: 100px 0; background: var(--bg-soft-gray); }
+        .vm-card { background: #fff; padding: 50px; border-radius: 20px; height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid transparent; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .vm-card::before { content:''; position: absolute; top:0; left:0; width: 100%; height: 5px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: 0.4s; }
+        .vm-card:hover::before { transform: scaleX(1); }
+        .vm-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .vm-card.vision { color: var(--primary-purple); }
+        .vm-card.mission { color: var(--primary-orange); }
+        .vm-title { font-weight: 900; font-size: 1.8rem; margin-bottom: 25px; color: inherit; }
+        .vm-text { line-height:1.8; color:#555; font-size: 1.05rem; }
+
+        /* Features */
+        .features-section { background-color: var(--bg-soft-yellow); padding: 120px 0; position: relative; }
+        .feature-item { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; }
+        .feature-item:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .feature-icon-wrapper { width: 80px; height: 80px; background: var(--bg-soft-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px; transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); color: var(--primary-blue); }
+        .feature-item:hover .feature-icon-wrapper { background: var(--primary-blue); color: #fff; transform: scale(1.1) rotate(360deg); }
+        .feature-title { font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; }
+
+        /* Leadership Cards */
+        .leadership-section { padding: 120px 0; background: var(--bg-soft-pink); }
+        .leader-card { display: flex; background: #fff; border-radius: 25px; overflow: hidden; margin-bottom: 50px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); transition: 0.3s; }
+        .leader-card:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.1); transform: translateY(-5px); }
+        .leader-img-box { flex: 0 0 45%; position: relative; overflow: hidden; }
+        .leader-img-box img { width: 100%; height: 100%; object-fit: cover; min-height: 400px; transition: 0.5s; }
+        .leader-card:hover .leader-img-box img { transform: scale(1.05); }
+        .leader-content { padding: 60px; flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .leader-content::before { content: '\201C'; font-size: 10rem; position: absolute; top: -20px; left: 30px; color: rgba(0,0,0,0.03); font-family: serif; }
+        .leader-role { font-size: 0.9rem; font-weight: 700; color: var(--primary-purple); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .leader-quote { font-size: 1.15rem; font-style: italic; color: #555; margin-bottom: 25px; line-height: 1.8; z-index: 1; }
+        .leader-name { font-weight: 900; font-size: 1.4rem; z-index: 1; }
+
+        /* Activities Grid */
+        .campus-section { padding: 120px 0; background: var(--bg-soft-green); }
+        .section-title { font-weight: 900; font-size: 3rem; color: #222; margin-bottom: 15px; }
+        
+        .activity-card { border-radius: 20px; overflow: hidden; position: relative; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); height: 100%; background: #fff; }
+        .activity-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .act-img { width: 100%; height: 240px; object-fit: cover; transition: 0.4s; }
+        .activity-card:hover .act-img { transform: scale(1.1); }
+        .act-content { padding: 30px; position: relative; z-index: 2; background: #fff; }
+        .act-badge { position: absolute; top: 20px; right: 20px; padding: 8px 15px; border-radius: 30px; color: #fff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; z-index: 3; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* Badge Colors */
+        .b-chem { background: linear-gradient(45deg, #004aad, #009ceb); } 
+        .b-comp { background: linear-gradient(45deg, #003366, #00509d); } 
+        .b-yoga { background: linear-gradient(45deg, #005f73, #0a9396); } 
+        .b-music { background: linear-gradient(45deg, #7209b7, #b5179e); }
+        .b-guid { background: linear-gradient(45deg, #0077b6, #00b4d8); } 
+        .b-play { background: linear-gradient(45deg, #ae2012, #f05a28); } 
+        .b-ncc { background: linear-gradient(45deg, #386641, #6a994e); } 
+        .b-sport { background: linear-gradient(45deg, #9b2226, #d00000); }
+
+        /* Blog Section */
+        .blog-section { padding: 120px 0; background: #fff; }
+        .blog-card { border: none; background: transparent; transition: 0.3s; }
+        .blog-card:hover { transform: translateY(-5px); }
+        .blog-img { border-radius: 20px; overflow: hidden; height: 220px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .blog-card:hover .blog-img img { transform: scale(1.1) rotate(2deg); }
+        .blog-title { font-weight: 800; font-size: 1.3rem; margin-bottom: 15px; line-height: 1.4; transition: 0.3s; }
+        .blog-card:hover .blog-title { color: var(--primary-blue); }
+
+        /* Newsletter */
+        .newsletter-section { 
+            padding: 80px 0; 
+            /* Vibrant gradient background */
+            background: linear-gradient(45deg, #FF8E53 0%, #FF6B6B 100%);
+            color: #fff;
+        }
+        .news-input { padding: 15px 25px; border-radius: 50px; border: none; width: 350px; margin-right: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .btn-join { background: #fff; color: var(--primary-orange); padding: 15px 40px; border-radius: 50px; font-weight: 800; border: none; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .btn-join:hover { background: var(--text-dark); color: #fff; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+
+         footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; z-index: 10; overflow: hidden; }
         .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
         .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
         .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
         .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
         .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
-        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
-        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); } /* Added spin on hover */
-        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
-        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
 
-        /* =========================================
-           KINDERGARTEN ANIMATIONS
-           ========================================= */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-        @keyframes expandWidth {
-            from { width: 0; }
-            to { width: 80px; }
-        }
-        @keyframes bounceIcon {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-        @keyframes bounceDot {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-        @keyframes gentleSwing {
-            0% { transform: rotate(2deg); }
-            50% { transform: rotate(4deg); }
-            100% { transform: rotate(2deg); }
-        }
-        @keyframes blobMorph {
-            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-        }
-
-        .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-
-        /* Social Icons */
-        .social-icons { list-style: none; display: flex; gap: 14px; padding: 0; margin: 0; }
-        .social-circle a { width: 46px; height: 46px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #000; font-size: 22px; transition: all 0.3s ease; }
-        .social-circle a:hover { background: #ffd800; color: #000; transform: translateY(-2px); }
-        .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
-        .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
-
-        /* Intro Section */
-        .intro-section { 
-            padding: 100px 0 80px 0; 
-            position: relative;
-            overflow: hidden;
-        }
-        .intro-bg-diag {
-            position: absolute;
-            top: 0; left: 0;
-            width: 40%; height: 100%;
-            background: rgba(253, 216, 0, 0.1); 
-            clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);
-            z-index: -1;
-        }
-
-        /* Floating Shapes - Added Playful Blobs */
-        .float-shape { position: absolute; opacity: 0.6; z-index: -1; animation: float 6s infinite ease-in-out; }
-        .shape-circle { 
-            width: 60px; height: 60px; border-radius: 50%; 
-            border: 4px solid var(--primary-purple); top: 15%; right: 10%; 
-            animation-duration: 7s;
-        }
-        .shape-square { 
-            width: 40px; height: 40px; background: var(--primary-blue); 
-            transform: rotate(15deg); bottom: 20%; left: 5%; 
-            animation: float 8s infinite ease-in-out reverse; 
-            border-radius: 8px; /* Soften edges for kids theme */
-        }
-        .shape-blob {
-            position: absolute; top: 40%; right: -5%; width: 150px; height: 150px;
-            background: rgba(140, 198, 63, 0.1);
-            animation: blobMorph 8s infinite linear;
-            z-index: -1;
-        }
-
-        .intro-title { 
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 900; 
-            margin-bottom: 20px; 
-            color: #222; 
-            position: relative;
-        }
-        .title-underline {
-            height: 6px;
-            background: var(--primary-purple);
-            margin-bottom: 30px;
-            animation: expandWidth 1s ease-out forwards;
-            border-radius: 3px;
-        }
-
-        .intro-text { 
-            font-size: 1.1rem; 
-            line-height: 1.8; 
-            color: #555; 
-            margin-bottom: 20px; 
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Playful Image Swing */
-        .intro-img-swing {
-            transform-origin: top center;
-            animation: gentleSwing 4s ease-in-out infinite;
-            border: 8px solid #fff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        /* Features Section (Triangles) */
-        .features-section { 
-            background-color: #f9f9f9; 
-            padding: 100px 0; 
-            position: relative;
-            /* Added background pattern */
-            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        .triangle-item {
-            text-align: center;
-            margin-bottom: 60px; 
-            position: relative;
-            padding-top: 20px;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
-        }
-        .triangle-item:hover { transform: translateY(-10px) scale(1.02); }
-
-        .triangle-shape {
-            width: 0;
-            height: 0;
-            border-left: 90px solid transparent;
-            border-right: 90px solid transparent;
-            border-top: 140px solid #ddd;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-        }
-
-        .triangle-item:hover .triangle-shape { transform: scale(1.05); }
-
-        .triangle-yellow { border-top-color: var(--primary-yellow); }
-        .triangle-green { border-top-color: var(--primary-green); }
-        .triangle-purple { border-top-color: var(--primary-purple); }
-        .triangle-orange { border-top-color: var(--primary-orange); }
-
-        .triangle-icon {
-            position: absolute;
-            top: -115px; 
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-            color: #212529; 
-            z-index: 2;
-            transition: color 0.3s;
-        }
-        
-        .triangle-item:hover .triangle-icon {
-            animation: bounceIcon 1s infinite;
-            color: #000;
-        }
-
-        .triangle-label {
-            margin-top: 25px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: #222;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Mission Text */
-        .mission-text-area { padding-bottom: 80px; background-color: #f9f9f9; }
-        .mission-box {
-            background: #fff;
-            padding: 40px;
-            border-radius: 15px;
-            border-left: 8px solid var(--primary-blue);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        /* Decor for mission box */
-        .mission-box::after {
-            content: ''; position: absolute; top: -50px; right: -50px;
-            width: 100px; height: 100px; background: rgba(0, 156, 235, 0.05);
-            border-radius: 50%;
-        }
-
-        .mission-box:hover { transform: translateY(-5px); }
-        .mission-heading { font-weight: 800; font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-blue); }
-
-        /* Campus Section */
-        .campus-section { padding: 100px 0; background: #fff; }
-        
-        .campus-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
-            border-bottom: 5px solid transparent;
-        }
-        .campus-card:hover {
-            transform: translateY(-10px) rotate(1deg); /* Playful tilt */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-        }
-        .campus-card.b-blue { border-bottom-color: var(--primary-blue); }
-        .campus-card.b-orange { border-bottom-color: var(--primary-orange); }
-        .campus-card.b-green { border-bottom-color: var(--primary-green); }
-
-        .campus-img-wrapper {
-            height: 250px;
-            width: 100%;
-            overflow: hidden;
-        }
-        .campus-img-wrapper img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .campus-card:hover img { transform: scale(1.1); }
-        
-        .campus-caption {
-            padding: 20px;
-            font-weight: 800;
-            color: #333;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 0.95rem;
-        }
-
-        /* ============================ */
-        /* MOBILE RESPONSIVENESS     */
-        /* ============================ */
+        /* Mobile Responsive Adjustments */
         @media (max-width: 991px) {
-            .navbar-collapse {
-                background: #fff;
-                padding: 20px;
-                border-radius: 0 0 15px 15px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            }
-            .nav-dot { display: none; }
-            .nav-link::after { display: none; } /* Remove underline effect on mobile for cleaner look */
-            .navbar-brand img { height: 40px; }
+            .intro-section { padding-top: 100px; text-align: center; }
+            .intro-title { font-size: 2.8rem; }
+            .intro-img-grid { margin-top: 40px; }
+            .intro-img-grid img { height: 300px; }
+            .founder-img { margin-bottom: 30px; max-width: 300px; }
+            .quote-box { padding: 30px; }
+            .leader-card { flex-direction: column; }
+            .leader-card:nth-child(even) { flex-direction: column; } /* Fix reverse on mobile */
+            .leader-img-box img { min-height: 300px; }
+            .leader-content { padding: 40px 30px; }
+            .news-box { flex-direction: column; gap: 20px; }
+            .news-input, .btn-join { width: 100%; }
         }
-
-        @media (max-width: 768px) {
-            /* General Section Spacing */
-            .intro-section, .features-section, .campus-section {
-                padding: 50px 0;
-            }
-            
-            /* Intro */
-            .intro-section { padding-top: 30px; }
-            .intro-bg-diag { width: 80%; opacity: 0.05; }
-            .float-shape { display: none; /* Hide floating shapes on mobile to keep text readable */ }
-            
-            /* Triangles - Critical fix for overlapping icons */
-            .triangle-item {
-                margin-top: 80px;  /* Increased margin so icon has space */
-                margin-bottom: 30px;
-            }
-            /* Reduce triangle size slightly on mobile */
-            .triangle-shape {
-                border-left: 80px solid transparent;
-                border-right: 80px solid transparent;
-                border-top: 120px solid #ddd;
-            }
-            .triangle-icon { top: -100px; font-size: 2.5rem; }
-            
-            /* Mission Box */
-            .mission-text-area { padding-bottom: 40px; }
-            .mission-box { padding: 25px; border-left-width: 5px; }
-            .mission-heading { font-size: 1.5rem; }
-            
-            /* Campus */
-            .campus-img-wrapper { height: 220px; }
-            .campus-section h3 { font-size: 2rem !important; }
-            .text-muted.d-none.d-md-block { display: block !important; margin-top: 5px; font-size: 0.9rem; } /* Show caption on mobile */
-            
-            /* Footer */
-            footer { padding: 40px 0 60px 0; text-align: center; }
-            .footer-decor-strip { display: none; }
-            .footer-top-strip { width: 100%; }
-            .d-flex.justify-content-between {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            .d-flex.flex-column.align-items-end {
-                align-items: center !important;
-                flex-direction: row !important;
-                justify-content: center;
-            }
-            .social-circle { margin: 0 5px; }
-        }
-
     </style>
 </head>
 <body>
 
-   <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
            <a class="navbar-brand" href="#">
                 <img src="images/Satyam_Icon_1.png" alt="Satyam Logo">
@@ -372,6 +204,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav align-items-center text-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
                         <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
@@ -381,7 +214,6 @@
                             <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
                     <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
                     <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
                     <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
@@ -391,138 +223,353 @@
         </div>
     </nav>
 
-    <main>
-        <section class="intro-section">
-            <div class="intro-bg-diag"></div>
-            <div class="float-shape shape-circle"></div>
-            <div class="float-shape shape-square"></div>
-            <div class="float-shape shape-blob"></div>
+    <section class="intro-section">
+        <div class="intro-bg-diag"></div>
+        <div class="float-shape shape-circle" data-aos="fade-down" data-aos-delay="500"></div>
+        <div class="float-shape shape-square" data-aos="fade-up" data-aos-delay="700"></div>
+        <div class="float-shape shape-blob" data-aos="zoom-in" data-aos-delay="900"></div>
 
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-8 animate-up">
-                        <h1 class="intro-title">About the school</h1>
-                        <div class="title-underline"></div>
-                        
-                        <p class="intro-text">
-                            "Satyam Tiny Tots" is a special place where enthusiastic and energetic experienced teachers organize the educational process with the help of educational standards, modern Montessori methods, and project activities. Our core values are friendship, hard work, mutual respect, and love — loyalty to these principles helps not just to exist in this world, but to live and enjoy life.
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <span class="tag-pill">COMPLETE EDUCATION SOLUTION</span>
+                    <h1 class="intro-title">Empowering Young Minds</h1>
+                    <p class="intro-text">
+                        Innovative curriculum consisting of science exploration, technology integration, and collaborative learning designed to foster the leaders of tomorrow.
+                    </p>
+                    <button class="btn btn-primary btn-lg rounded-pill px-5 py-3 btn-pulse" style="background:var(--primary-blue); border:none; font-weight:700;">Discover More</button>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="intro-img-grid">
+                        <img src="images/admission.png" alt="Science Exploration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="founder-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 text-center mb-5 mb-lg-0" data-aos="zoom-in-right">
+                    <img src="images/Founder.png" alt="Lion A Satyanarayana" class="founder-img">
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="quote-box">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <h4 style="color:var(--primary-blue); text-transform:uppercase; font-size:0.9rem; font-weight:800; letter-spacing:2px; margin-bottom:20px;">Message From The Founder</h4>
+                        <p style="font-size:1.25rem; font-style:italic; line-height:1.6; color:#444; position:relative; z-index:2;">
+                            "Education is the cornerstone of a brighter future. At Satyam International School, we dedicate ourselves to nurturing young minds, equipping them with the skills and knowledge needed to thrive in the world."
                         </p>
-                        
-                        <p class="intro-text">
-                            Our goal is to make learning inspiring, stimulating knowledge and opportunities and, of course, exciting, so that all students can develop erudition, skills, and interests, thereby enriching their lives. We regularly bring something new to develop the educational process and school life, providing additional opportunities for our students in the future. We try to ensure that most of our students are passionate about the educational process and are ready for life in the 21st century.
+                        <div class="mt-4">
+                            <h5 style="font-weight:900; color:var(--text-dark); margin-bottom:0; font-size: 1.3rem;">~ Lion A Satyanarayana</h5>
+                            <span style="color:var(--primary-orange); font-weight:600;">Founder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-4" data-aos="flip-up">
+                    <div class="stat-item">
+                        <div class="stat-number">15 Years</div>
+                        <div class="stat-label">Legacy Expertise</div>
+                        <p class="text-muted mb-0">Combination of years of trust with the expertise of highly skilled educators.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4" data-aos="flip-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <div class="stat-number" style="color:var(--primary-orange)">100%</div>
+                        <div class="stat-label">Academic Excellence</div>
+                        <p class="text-muted mb-0">Consistent Academic results throughout the years.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4" data-aos="flip-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <div class="stat-number" style="color:var(--primary-green)">15K+</div>
+                        <div class="stat-label">Students Count</div>
+                        <p class="text-muted mb-0">Dedicated to nurturing learners across all grades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vm-section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="vm-card vision">
+                        <h3 class="vm-title"><i class="fa-regular fa-lightbulb me-2"></i> Our Vision</h3>
+                        <p class="vm-text">
+                            The Vision of Satyam International School is to be a leading educational institution that inspires students to achieve academic and personal excellence, embrace innovation, and contribute positively to society globally.
                         </p>
                     </div>
-                    <div class="col-lg-4 d-none d-lg-block animate-up delay-1">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students Learning" class="img-fluid rounded-4 intro-img-swing">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="vm-card mission">
+                        <h3 class="vm-title"><i class="fa-solid fa-rocket me-2"></i> Our Mission</h3>
+                        <p class="vm-text">
+                            The mission of Satyam School is to provide a high-quality, value-driven, holistic education that fosters lifelong learning, creativity, and critical thinking in students in a safe environment.
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="features-section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    
-                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-1">
-                        <div class="triangle-shape triangle-yellow">
-                            <div class="triangle-icon"><i class="fa-solid fa-handshake"></i></div>
-                        </div>
-                        <h4 class="triangle-label">Individual<br>Approach</h4>
+    <section class="features-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 style="font-weight:900; margin-bottom:15px; font-size: 2.5rem;">Inspiring Tomorrow's Changemakers</h2>
+                <div style="width: 60px; height: 4px; background: var(--primary-yellow); margin: 0 auto 20px;"></div>
+                <p style="max-width:700px; margin:0 auto; color:#666; font-size: 1.1rem;">
+                    We blend cutting-edge technology with holistic education to nurture well-rounded individuals.
+                </p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-item text-center">
+                        <div class="feature-icon-wrapper mx-auto"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <h4 class="feature-title">Digital Classrooms</h4>
+                        <p class="text-muted">State-of-the-art interactive smartboards for engaging learning.</p>
                     </div>
-
-                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-2">
-                        <div class="triangle-shape triangle-green">
-                            <div class="triangle-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
-                        </div>
-                        <h4 class="triangle-label">A Team of<br>Professionals</h4>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-item text-center">
+                        <div class="feature-icon-wrapper mx-auto"><i class="fa-solid fa-robot"></i></div>
+                        <h4 class="feature-title">Robotics & AI</h4>
+                        <p class="text-muted">Comprehensive programs introducing coding and future tech.</p>
                     </div>
-
-                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-3">
-                        <div class="triangle-shape triangle-purple">
-                            <div class="triangle-icon"><i class="fa-regular fa-lightbulb"></i></div>
-                        </div>
-                        <h4 class="triangle-label">Creative<br>Potential</h4>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-item text-center">
+                        <div class="feature-icon-wrapper mx-auto"><i class="fa-solid fa-hands-holding-child"></i></div>
+                        <h4 class="feature-title">Safe Environment</h4>
+                        <p class="text-muted">Student safety and emotional well-being are top priorities.</p>
                     </div>
-
-                    <div class="col-md-6 col-lg-3 triangle-item animate-up delay-3">
-                        <div class="triangle-shape triangle-orange">
-                            <div class="triangle-icon"><i class="fa-solid fa-child-reaching"></i></div>
-                        </div>
-                        <h4 class="triangle-label">Comfortable<br>Environment</h4>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="feature-item text-center">
+                        <div class="feature-icon-wrapper mx-auto"><i class="fa-solid fa-flask"></i></div>
+                        <h4 class="feature-title">STEM Education</h4>
+                        <p class="text-muted">Emphasizing Science, Technology, Engineering, and Math.</p>
                     </div>
-
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="feature-item text-center">
+                        <div class="feature-icon-wrapper mx-auto"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <h4 class="feature-title">Sports & Fitness</h4>
+                        <p class="text-muted">World-class facilities fostering physical health and teamwork.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="feature-item text-center">
+                        <div class="feature-icon-wrapper mx-auto"><i class="fa-solid fa-seedling"></i></div>
+                        <h4 class="feature-title">Holistic Development</h4>
+                        <p class="text-muted">Focus on character building, arts, and life skills.</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="mission-text-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto animate-up">
-                        <div class="mission-box">
-                            <h3 class="mission-heading">Our Mission & Values</h3>
-                            <p class="intro-text" style="font-size: 1rem;">
-                                Our mission is to find an individual approach to each child in accordance with their personal needs, their level of knowledge, cultural characteristics, and the interests of their families. We believe in the Indian philosophy of "Vasudhaiva Kutumbakam" (The World is One Family), instilling a sense of belonging in every child.
-                            </p>
-                            <p class="intro-text" style="font-size: 1rem; margin-bottom: 0;">
-                                We are ready to offer many additional types of work in order to inspire our students to develop their artistic, sports, and social skills. In addition to perfect mastery of the subjects, we strive to raise exemplary citizens of the world, faithful to their principles and values, such as respect, care, and love.
-                            </p>
+    <section class="leadership-section">
+        <div class="container">
+            
+            <div class="leader-card" data-aos="fade-right">
+                <div class="leader-content">
+                    <div class="leader-role">A Word from Our Director</div>
+                    <p class="leader-quote">
+                        "Education is not just about books and exams, it's about developing lifelong learners and responsible global citizens. Our commitment is to holistic education that prepares students for the future. Our approach integrates real-world experiences, ensuring that every student develops character, resilience, and values."
+                    </p>
+                    <div class="leader-name">~ R. Jagadeesh Kumar, Director</div>
+                </div>
+                <div class="leader-img-box">
+                    <img src="images/director.png" alt="Director">
+                </div>
+            </div>
+
+            <div class="leader-card" style="flex-direction: row-reverse;" data-aos="fade-left" data-aos-delay="300">
+                <div class="leader-content">
+                    <div class="leader-role" style="color:var(--primary-orange)">A Note from Our Chairperson</div>
+                    <p class="leader-quote">
+                        "As we navigate an ever changing world, our commitment remains steadfast to provide each student with opportunities to discover their unique strengths. Our faculty mentors, inspires, and guides students toward becoming confident leaders. We are preparing them for life."
+                    </p>
+                    <div class="leader-name">~ Mrs. R. Surekha, Chairperson</div>
+                </div>
+                <div class="leader-img-box">
+                    <img src="images/chairperson.png" alt="Chairperson">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="campus-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Our Passion Drives Innovation</h2>
+                <p class="text-muted" style="font-size: 1.1rem;">Fostering creativity, critical thinking, and physical well-being.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="activity-card">
+                        <div class="act-badge b-chem">Chem Lab</div>
+                        <img src="images/Chem_Lab.png" class="act-img" alt="Chemistry Lab">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">Chemistry Lab</h5>
+                            <p class="text-muted small mb-0">Sparking curiosity through experiments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="activity-card">
+                        <div class="act-badge b-comp">Comp Lab</div>
+                        <img src="images/Comp_Lab.png" class="act-img" alt="Computer Lab">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">Computer Lab</h5>
+                            <p class="text-muted small mb-0">Learning coding and digital skills.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="activity-card">
+                        <div class="act-badge b-yoga">Yoga Sesh</div>
+                        <img src="images/Yoga.png" class="act-img" alt="Active Yoga">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">Active Yoga</h5>
+                            <p class="text-muted small mb-0">Balancing mind, body, and soul.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="activity-card">
+                        <div class="act-badge b-music">Music Lab</div>
+                        <img src="images/Music_Lab.png" class="act-img" alt="Music Lab">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">Music Lab</h5>
+                            <p class="text-muted small mb-0">Exploring creativity through music.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="activity-card">
+                        <div class="act-badge b-guid">Guidance</div>
+                        <img src="images/Guidence.png" class="act-img" alt="Guidance">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">Guidance</h5>
+                            <p class="text-muted small mb-0">Support for academic and personal growth.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="activity-card">
+                        <div class="act-badge b-play">Active Mind</div>
+                        <img src="images/Minds.png" class="act-img" alt="Play Time">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">Play Time</h5>
+                            <p class="text-muted small mb-0">Promoting physical and mental well-being.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="activity-card">
+                        <div class="act-badge b-ncc">NCC Cadets</div>
+                        <img src="images/NCC.png" class="act-img" alt="NCC">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">NCC</h5>
+                            <p class="text-muted small mb-0">Building leadership and discipline.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="activity-card">
+                        <div class="act-badge b-sport">Sports</div>
+                        <img src="images/sports.png" class="act-img" alt="Sports">
+                        <div class="act-content">
+                            <h5 style="font-weight:800;">Sports</h5>
+                            <p class="text-muted small mb-0">Fostering fitness and teamwork.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <div class="text-center mt-5" data-aos="zoom-in">
+                <button class="btn btn-outline-dark rounded-pill px-5 py-3" style="font-weight: 800; border-width: 2px;">Enroll Now <i class="fa-solid fa-arrow-right ms-2"></i></button>
+            </div>
+        </div>
+    </section>
 
-        <section class="campus-section">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-end mb-5 animate-up">
-                    <div>
-                        <h3 style="font-weight: 800; font-size: 2.5rem; color:var(--primary-blue); line-height: 1;">Our Campus</h3>
-                        <div style="height: 4px; width: 50px; background: var(--primary-yellow); margin-top: 10px; border-radius: 2px;"></div>
-                    </div>
-                    <div class="text-muted d-none d-md-block" style="font-weight: 500;">Where learning comes alive</div>
-                </div>
-
-                <div class="row g-4">
-                    <div class="col-md-4 animate-up delay-1">
-                        <div class="campus-card b-blue">
-                            <div class="campus-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Learning Wall">
-                            </div>
-                            <div class="campus-caption">Interactive Learning Spaces</div>
+    <section class="blog-section">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-weight:900; font-size: 2.5rem;" data-aos="fade-down">Academics & Insights</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Exams">
                         </div>
-                    </div>
-
-                    <div class="col-md-4 animate-up delay-2">
-                        <div class="campus-card b-orange">
-                            <div class="campus-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="School Atrium">
-                            </div>
-                            <div class="campus-caption">Safe & Spacious Environment</div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 animate-up delay-3">
-                        <div class="campus-card b-green">
-                            <div class="campus-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cafeteria / Play Area">
-                            </div>
-                            <div class="campus-caption">Nutritious Meals & Dining</div>
-                        </div>
+                        <h4 class="blog-title">Struggling with JEE/NEET Preparation?</h4>
+                        <p class="text-muted">Every year, over 2 million students appear for exams. Learn how our focused approach helps students succeed...</p>
+                        <a href="#" style="text-decoration: none; font-weight: 700; color: var(--primary-blue);">Read More <i class="fa-solid fa-chevron-right font-size: 0.8rem;"></i></a>
                     </div>
                 </div>
-                
-                <div class="text-center mt-5 animate-up delay-3" style="color:var(--primary-orange); font-weight:700;">
-                    <i class="fa-solid fa-arrow-left me-3" style="cursor:pointer; transition: 0.3s;"></i> 
-                    <span class="mx-2">1 / 15</span> 
-                    <i class="fa-solid fa-arrow-right ms-3" style="cursor:pointer; transition: 0.3s;"></i>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sports">
+                        </div>
+                        <h4 class="blog-title">The Life Changing Benefits of Sports</h4>
+                        <p class="text-muted">More than just play. Discover how our sports programs build essential life skills, resilience, and teamwork.</p>
+                        <a href="#" style="text-decoration: none; font-weight: 700; color: var(--primary-blue);">Read More <i class="fa-solid fa-chevron-right font-size: 0.8rem;"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Classroom">
+                        </div>
+                        <h4 class="blog-title">How We Build Tomorrow's Leaders</h4>
+                        <p class="text-muted">As a parent, you see beyond the report card. Our holistic approach nurtures the inner potential of every child.</p>
+                        <a href="#" style="text-decoration: none; font-weight: 700; color: var(--primary-blue);">Read More <i class="fa-solid fa-chevron-right font-size: 0.8rem;"></i></a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="row align-items-center" data-aos="zoom-in">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 style="font-weight:900; margin-bottom:10px;">Don't miss Campus Events and Alerts</h2>
+                    <p class="mb-0" style="opacity: 0.9;">Subscribe to our newsletter for the latest updates.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="news-box d-flex justify-content-lg-end">
+                        <input type="email" placeholder="Your email address" class="news-input">
+                        <button class="btn-join">Subscribe <i class="fa-solid fa-paper-plane ms-2"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-     <footer>
+      <footer data-aos="fade-in" data-aos-duration="1200" data-aos-offset="0">
         <div class="footer-top-strip"></div>
         <div class="footer-decor-strip"></div>
         <div class="container">
@@ -577,5 +624,16 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animate On Scroll
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+            easing: 'ease-in-out', // default easing for AOS animations
+            once: true, // whether animation should happen only once - while scrolling down
+            mirror: false, // whether elements should animate out while scrolling past them
+            offset: 100, // offset (in px) from the original trigger point
+        });
+    </script>
 </body>
 </html>
