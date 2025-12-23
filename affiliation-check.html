@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Affiliation Guide - Satyam International School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{ 
+            --primary-blue: #009ceb; 
+            --primary-yellow: #ffdd00; 
+            --primary-purple: #8e44ad; 
+            --primary-orange: #ff6b35; 
+            --primary-green: #2ecc71; 
+            --bright-bg: #fffbf0;
+            --footer-bg: #1f1f1f; 
+        }
+        
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:#333; background-color: #fff; }
+        h1, h2, h3, h4 { font-weight: 800; }
+
+        /* --- NAVBAR (Consistent) --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
+        
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* --- PAGE HEADER --- */
+        .page-header {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, var(--bright-bg) 0%, #e6f7ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-blob { position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.3; z-index: 0; }
+        .blob-1 { top: -100px; right: -100px; width: 300px; height: 300px; background: var(--primary-blue); }
+        .blob-2 { bottom: -50px; left: -100px; width: 250px; height: 250px; background: var(--primary-yellow); }
+        .header-img-container { position: relative; z-index: 2; animation: float 6s ease-in-out infinite; }
+        .header-img { border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 5px solid #fff; max-width: 100%; }
+
+        /* --- TIMELINE STEPS --- */
+        .timeline-section { padding: 80px 0; background: #fff; }
+        .timeline-item { position: relative; padding-left: 60px; margin-bottom: 50px; }
+        .timeline-item::before {
+            content: ''; position: absolute; top: 0; left: 20px; width: 4px; height: 100%; background: #eee; z-index: 0;
+        }
+        .timeline-item:last-child::before { height: 50px; }
+        .timeline-marker {
+            position: absolute; top: 0; left: 0; width: 45px; height: 45px;
+            border-radius: 50%; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; z-index: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .tm-blue { background: var(--primary-blue); }
+        .tm-purple { background: var(--primary-purple); }
+        .tm-orange { background: var(--primary-orange); }
+        .tm-green { background: var(--primary-green); }
+
+        /* --- ACCORDION (Checklist) --- */
+        .checklist-section { padding: 80px 0; background: #f8f9fa; }
+        .accordion-item { border: none; margin-bottom: 15px; border-radius: 10px !important; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .accordion-button { font-weight: 700; color: #fff !important; box-shadow: none !important; }
+        .accordion-button::after { filter: brightness(0) invert(1); }
+        .accordion-body { background: #fff; padding: 30px; }
+        .accordion-body ul li { margin-bottom: 10px; position: relative; padding-left: 25px; }
+        .accordion-body ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--primary-green); }
+
+        /* Accordion Colors */
+        .ac-blue .accordion-button { background: var(--primary-blue); }
+        .ac-purple .accordion-button { background: var(--primary-purple); }
+        .ac-orange .accordion-button { background: var(--primary-orange); }
+        .ac-green .accordion-button { background: var(--primary-green); }
+
+        /* --- SATYAM COMMITMENT SECTION --- */
+        .commitment-section { padding: 80px 0; background: linear-gradient(45deg, #2b1a4a, var(--primary-blue)); color: #fff; }
+        .highlight-box { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); height: 100%; }
+        .affiliation-number { font-size: 2.5rem; font-weight: 900; color: var(--primary-yellow); display: block; margin: 10px 0; letter-spacing: 2px; }
+
+         /* --- Footer --- */
+        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: 0.3s;}
+        .footer-link:hover { padding-left: 5px; opacity: 0.8; color: var(--primary-yellow); }
+        .footer-col-title { color: #fff; font-weight: 700; margin-bottom: 15px; display: block; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
+                        <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                            <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="information.html">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <div class="header-blob blob-1"></div>
+            <div class="header-blob blob-2"></div>
+            <div class="container position-relative z-2 animate-up">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-5 mb-lg-0">
+                        <span style="color: var(--primary-orange); font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Parent's Essential Guide</span>
+                        <h1 style="font-size: 3rem; margin-top: 10px;">CBSE Certification: The Complete Guide to Verifying Authentic School Affiliation</h1>
+                        <p class="lead mt-4 text-muted">Choosing the right school is one of the most critical decisions you'll make for your child's future. But what if the trust you place in an institution turns out to be misplaced?</p>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="header-img-container">
+                            <img src="images/CBSE-blog.jpg" alt="Stamping Document" class="header-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="py-5 animate-up delay-1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h2 style="color: var(--primary-blue);">Why Verification Matters</h2>
+                        <p>You enroll your child in what appears to be a reputable CBSE school, only to discover years later that the school's affiliation has expired or was never valid. Your child's certificates are worthless, board exam results are invalid, and college admissions are jeopardized.</p>
+                        <p style="font-weight: 600; color: var(--primary-purple);">Satyam International School, Ballari solves it by disclosing the documents to parents, where we follow transparency in every aspect.</p>
+                        
+                        <h3 class="mt-5">Understanding CBSE Certification</h3>
+                        <p>The Central Board of Secondary Education (CBSE) is India's largest educational board, administering education to over 28,000 schools worldwide. CBSE affiliation is not just a stamp of approval it's a comprehensive certification that ensures schools meet rigorous standards of infrastructure, faculty qualifications, educational quality, and administrative procedures.</p>
+                        
+                        <div class="alert alert-warning mt-4" style="border-left: 5px solid var(--primary-yellow);">
+                            <strong>Protecting your child's educational future requires due diligence during school selection. Here's your comprehensive guide to verifying authentic CBSE affiliation.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section animate-up delay-2">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 style="font-size: 2.5rem;">Your 4-Step Verification Guide</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="timeline-item">
+                            <div class="timeline-marker tm-blue">1</div>
+                            <h3 style="color: var(--primary-blue);">Check the School's Affiliation Number</h3>
+                            <p>Every CBSE-affiliated school has a unique affiliation number. This is your first and most important verification step. <br><strong>What to look for:</strong></p>
+                            <ul>
+                                <li>The complete school name matches exactly.</li>
+                                <li>The affiliation number is active and valid.</li>
+                                <li>The address matches the school's physical location.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker tm-purple">2</div>
+                            <h3 style="color: var(--primary-purple);">Verify Affiliation Status and Validity Period</h3>
+                            <p>CBSE affiliations aren't permanent they come in different categories with specific validity periods. <br><strong>How to Verify Validity:</strong></p>
+                            <ul>
+                                <li>Check the "Valid Up To" date on the CBSE portal.</li>
+                                <li>Confirm the school has affiliation for all classes they're operating (Primary, Secondary, Senior Secondary).</li>
+                                <li>Verify there are no pending conditions or show-cause notices.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker tm-orange">3</div>
+                            <h3 style="color: var(--primary-orange);">Examine Mandatory Documents</h3>
+                            <p>CBSE requires affiliated schools to maintain and display specific documents. During your school visit, request to see the essential checklist below.</p>
+                            <a href="#checklistSection" class="btn btn-outline-warning mt-2">View Checklist Below <i class="fa-solid fa-arrow-down"></i></a>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker tm-green">4</div>
+                            <h3 style="color: var(--primary-green);">Physical Infrastructure Verification</h3>
+                            <p>Beyond documents, physically inspect the school premises to ensure compliance with CBSE norms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="checklist-section" id="checklistSection">
+            <div class="container animate-up">
+                <div class="text-center mb-5">
+                    <span class="badge bg-danger mb-2">CRITICAL STEP</span>
+                    <h2>The Essential Document Checklist</h2>
+                    <p class="text-muted">Click on each document to see what you need to check.</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="accordion" id="cbseChecklist">
+                            
+                            <div class="accordion-item ac-blue">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        Document 1: Affiliation Letter
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Official letter from CBSE granting affiliation to the school.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Original letter on CBSE letterhead with official seal</li>
+                                            <li>School's name, affiliation number, and validity period clearly mentioned</li>
+                                            <li>Any specific conditions or restrictions noted</li>
+                                            <li>Signed by authorized CBSE officials</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item ac-purple">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Document 2: Society/Trust Registration Certificate
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Legal registration document of the society/trust running the school.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Valid registration under Societies Registration Act or applicable law</li>
+                                            <li>Names of managing committee members</li>
+                                            <li>Registration number and issuing authority</li>
+                                            <li>No litigation or legal disputes mentioned</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item ac-orange">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        Document 3: No Objection Certificate (NOC)
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Permission from state government/local authority to run the school.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>NOC from appropriate state education department</li>
+                                            <li>Valid and current (not expired)</li>
+                                            <li>Covers all classes the school operates</li>
+                                            <li>Any conditions clearly stated</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item ac-green">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                        Document 4: Building Safety Certificate
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Certification that school building meets safety standards.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Fire safety certificate from local fire department</li>
+                                            <li>Structural stability certificate from licensed engineer</li>
+                                            <li>Valid earthquake/disaster safety compliance</li>
+                                            <li>Regular renewal dates</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item ac-blue">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                        Document 5: Land/Building Ownership Documents
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Proof that school has legal right to use the premises.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Ownership deed or long-term lease agreement (minimum 15 years for new schools)</li>
+                                            <li>Land use permission for educational purposes</li>
+                                            <li>Clear title without disputes</li>
+                                            <li>Adequate land area as per CBSE norms</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item ac-purple">
+                                <h2 class="accordion-header" id="headingSix">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                                        Document 6: Water and Sanitation Certificate
+                                    </button>
+                                </h2>
+                                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Proof of adequate water supply and sanitation facilities.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Safe drinking water availability certificate</li>
+                                            <li>Adequate toilet facilities (separate for boys/girls, staff)</li>
+                                            <li>Proper sanitation and hygiene measures</li>
+                                            <li>Regular maintenance records</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item ac-orange">
+                                <h2 class="accordion-header" id="headingSeven">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven">
+                                        Document 7: Faculty Qualification Documents
+                                    </button>
+                                </h2>
+                                <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Proof that teachers meet CBSE-mandated qualifications.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>All teachers have required educational qualifications (B.Ed/M.Ed for secondary)</li>
+                                            <li>Subject specialization matches teaching assignments</li>
+                                            <li>Updated training certificates (CBSE conducts mandatory teacher training)</li>
+                                            <li>Adequate teacher-student ratio maintained</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item ac-green">
+                                <h2 class="accordion-header" id="headingEight">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight">
+                                        Document 8: Financial Statements and Fee Structure
+                                    </button>
+                                </h2>
+                                <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Transparent disclosure of school finances and fee structure.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Approved fee structure displayed publicly</li>
+                                            <li>Annual financial statements available for review</li>
+                                            <li>Fee categories clearly defined</li>
+                                            <li>No hidden or unexplained charges</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div class="accordion-item ac-blue">
+                                <h2 class="accordion-header" id="headingNine">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine">
+                                        Document 9: School Recognition Certificate
+                                    </button>
+                                </h2>
+                                <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Recognition from state education department.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Valid recognition for all classes operated</li>
+                                            <li>No violations or penalties recorded</li>
+                                            <li>Compliance with Right to Education (RTE) Act</li>
+                                            <li>Recognition renewal dates</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div class="accordion-item ac-purple">
+                                <h2 class="accordion-header" id="headingTen">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen">
+                                        Document 10: Lab and Library Certificates
+                                    </button>
+                                </h2>
+                                <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#cbseChecklist">
+                                    <div class="accordion-body">
+                                        <p>Verification of adequate educational facilities.</p>
+                                        <strong>What to Check:</strong>
+                                        <ul>
+                                            <li>Science labs (Physics, Chemistry, Biology) meet CBSE standards</li>
+                                            <li>Computer labs with adequate systems and internet</li>
+                                            <li>Library with minimum required books per CBSE norms</li>
+                                            <li>Regular maintenance and updating records</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="commitment-section animate-up">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 style="font-size: 2.5rem;">How Our School Ensures CBSE Compliance</h2>
+                    <p class="lead text-white-50">Complete Transparency & Unwavering Standards</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="highlight-box">
+                            <h3><i class="fa-solid fa-certificate me-2" style="color: var(--primary-yellow);"></i> Official Affiliation</h3>
+                            <p>At Satyam International School, Ballari, we understand that trust must be earned through transparency and consistent compliance with CBSE standards. Our school is proudly affiliated with the Central Board of Secondary Education (CBSE), holding the official:</p>
+                            <span class="affiliation-number">CBSE Affiliation Number 830478</span>
+                            <p>We are authorized to offer Senior Secondary education (Classes 1–12) and are also recognized as a CBSE Examination Center, enabling us to conduct board examinations securely and conveniently on our own campus.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="highlight-box" style="background: rgba(0,0,0,0.2);">
+                            <h3><i class="fa-solid fa-building-shield me-2" style="color: var(--primary-green);"></i> Beyond Compliance</h3>
+                            <p>Transparency and accountability form the foundation of our institutional values. All mandatory documents and disclosures required by CBSE are clearly displayed at the school reception for public viewing, while digital copies are readily accessible on our official website.</p>
+                            <ul>
+                                <li><strong>Infrastructure:</strong> State-of-the-art laboratories and smart classrooms designed to exceed CBSE norms.</li>
+                                <li><strong>Library:</strong> Well-stocked library housing over 15,000 books and digital resources.</li>
+                                <li><strong>Safety:</strong> Comprehensive safety and security systems across campus.</li>
+                                <li><strong>Faculty:</strong> All teachers fully meet CBSE qualification requirements and participate in continuous professional development.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 text-center animate-up delay-2" style="background: var(--bright-bg);">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h3 style="color: var(--primary-orange); font-size: 2rem;">Don't leave your child's future to chance.</h3>
+                        <p class="lead">Before you sign that admission form, complete your verification checklist.</p>
+                        <p class="mb-4">Parents are always welcome to visit and inspect our facilities, reinforcing our open-door policy.</p>
+                        <a href="contact-us.html" class="btn btn-primary btn-lg rounded-pill px-5 fw-bold" style="background: var(--primary-blue); border:none;">Schedule a Campus Visit Today</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                          <div class="col-6">
+                            <a href="index.html" class="footer-link">Home</a>
+                            <a href="about-us.html" class="footer-link">About-us</a>
+                            <a href="academics.html" class="footer-link">Academics</a>
+                            <a href="gallery.html" class="footer-link">Gallery</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="admission.html" class="footer-link">Admissions</a>
+                            <a href="Mandatory-disclosure.html" class="footer-link">Mandatory Disclosure</a>
+                            <a href="contact-us.html" class="footer-link">Contacts</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title">We are</span>
+                            <p class="mb-1 text-white-50">Kappagal Road, Bellary, Karnataka</p>
+                            <p class="mb-1 text-white-50">+91 96203 81111</p>
+                            <p class="mb-3 text-white-50">info@satyam.com</p>
+                            <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <ul class="large-icon dark social-icons">
+                                <li class="social-circle">
+                                    <a class="facebook" href="" target="_blank">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="social-circle">
+                                    <a class="instagram" href="" target="_blank">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Satyam International School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{ 
+            --primary-blue: #009ceb; 
+            --primary-yellow: #ffdd00; 
+            --primary-purple: #8e44ad; 
+            --primary-orange: #ff6b35; 
+            --primary-green: #2ecc71; 
+            --bright-bg: #fffbf0;
+            --footer-bg: #1f1f1f; 
+        }
+        
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:#333; background-color: #fff; }
+        h1, h2, h3, h4 { font-weight: 800; }
+
+        /* --- NAVBAR (Consistent) --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
+        
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceDot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+        
+        .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* Floating Background Shapes (Consistent with other pages) */
+        .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out alternate; pointer-events: none; }
+        .shape-circle { width: 60px; height: 60px; border-radius: 50%; border: 5px solid var(--primary-purple); top: 20%; left: 10%; }
+        .shape-square { width: 40px; height: 40px; background: var(--primary-yellow); bottom: 30%; right: 15%; transform: rotate(15deg); }
+        .shape-tri { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 40px solid var(--primary-green); top: 15%; right: 40%; }
+
+        /* --- HEADER SECTION --- */
+        .gallery-header {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--bright-bg) 0%, #eef2f7 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* --- GALLERY FILTERS --- */
+        .gallery-filters .btn-filter {
+            font-weight: 700;
+            padding: 10px 25px;
+            border-radius: 50px;
+            margin: 0 5px 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: #555;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Colorful active/hover states for filters */
+        .btn-filter.active, .btn-filter:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: transparent; }
+        .filter-all.active, .filter-all:hover { background: var(--primary-blue); }
+        .filter-campus.active, .filter-campus:hover { background: var(--primary-purple); }
+        .filter-sports.active, .filter-sports:hover { background: var(--primary-green); }
+        .filter-events.active, .filter-events:hover { background: var(--primary-orange); }
+        .filter-academics.active, .filter-academics:hover { background: var(--primary-yellow); color: #333; }
+
+        /* --- GALLERY GRID ITEMS --- */
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 300px; /* Fixed height for consistency */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            cursor: pointer;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        /* Vibrant Overlay */
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Colorful gradient overlay */
+            background: linear-gradient(45deg, rgba(142, 68, 173, 0.8), rgba(255, 107, 53, 0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Hover Effects */
+        .gallery-item:hover .gallery-img { transform: scale(1.15); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; backdrop-filter: blur(2px); }
+        
+        .overlay-icon { font-size: 2rem; margin-bottom: 15px; transform: translateY(20px); transition: 0.4s ease; }
+        .gallery-item:hover .overlay-icon { transform: translateY(0); }
+        
+        .overlay-text { font-weight: 700; font-size: 1.2rem; transform: translateY(20px); transition: 0.4s ease 0.1s; opacity: 0; }
+        .gallery-item:hover .overlay-text { transform: translateY(0); opacity: 1; }
+
+/* --- Footer --- */
+        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: 0.3s;}
+        .footer-link:hover { padding-left: 5px; opacity: 0.8; color: var(--primary-yellow); }
+        .footer-col-title { color: #fff; font-weight: 700; margin-bottom: 15px; display: block; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
+
+
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav align-items-center text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
+                        <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                            <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="information.html">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="gallery-header">
+            <div class="float-shape shape-circle"></div>
+            <div class="float-shape shape-square"></div>
+            <div class="float-shape shape-tri"></div>
+
+            <div class="container position-relative z-2 animate-up">
+                <span style="color: var(--primary-purple); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">LIFE AT SATYAM</span>
+                <h1 style="font-size: 3.5rem; margin: 10px 0 20px;">Our Photo Gallery</h1>
+                <div style="height: 6px; width: 80px; background: var(--primary-orange); margin: 0 auto 30px; border-radius: 10px;"></div>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">Explore moments of joy, learning, discovery, and achievement captured across our campus. Witness the vibrant energy that defines the Satyam experience.</p>
+            </div>
+        </header>
+
+        <section class="py-5" style="background: #fff;">
+            <div class="container">
+                
+                <div class="gallery-filters d-flex flex-wrap justify-content-center mb-5 animate-up delay-1">
+                    <button class="btn btn-filter filter-all active">All Moments</button>
+                    <button class="btn btn-filter filter-campus">Campus Life</button>
+                    <button class="btn btn-filter filter-sports">Sports & Action</button>
+                    <button class="btn btn-filter filter-events">Events & Celebrations</button>
+                    <button class="btn btn-filter filter-academics">Academics</button>
+                </div>
+
+                <div class="row g-5">
+                    
+                    <div class="col-md-6 col-lg-4 animate-up delay-1">
+                        <div class="gallery-item">
+                            <img src="images/Puzzles.png" alt="Students Studying" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-2">
+                        <div class="gallery-item">
+                            <img src="images/sports copy.png" alt="Basketball Match" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-3">
+                        <div class="gallery-item">
+                            <img src="images/Yoga_class.webp" alt="Science Activity" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-2">
+                        <div class="gallery-item">
+                            <img src="images/voting.webp" alt="Morning Assembly" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-3">
+                        <div class="gallery-item">
+                             <img src="images/chariot.webp" alt="Annual Day Performance" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/skating_roll.webp" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/ncc.jpeg" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/Art.jpg" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/craft.webp" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                     <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/Karate.webp" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/anatomy.webp" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/Planting.webp" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/Painting.webp" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/rangoli.webp" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-4">
+                        <div class="gallery-item">
+                            <img src="images/drawing.jpg" alt="Student Skating" class="gallery-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                          <div class="col-6">
+                            <a href="index.html" class="footer-link">Home</a>
+                            <a href="about-us.html" class="footer-link">About-us</a>
+                            <a href="academics.html" class="footer-link">Academics</a>
+                            <a href="gallery.html" class="footer-link">Gallery</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="admission.html" class="footer-link">Admissions</a>
+                            <a href="Mandatory-disclosure.html" class="footer-link">Mandatory Disclosure</a>
+                            <a href="contact-us.html" class="footer-link">Contacts</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title">We are</span>
+                            <p class="mb-1 text-white-50">Kappagal Road, Bellary, Karnataka</p>
+                            <p class="mb-1 text-white-50">+91 96203 81111</p>
+                            <p class="mb-3 text-white-50">info@satyam.com</p>
+                            <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <ul class="large-icon dark social-icons">
+                                <li class="social-circle">
+                                    <a class="facebook" href="" target="_blank">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="social-circle">
+                                    <a class="instagram" href="" target="_blank">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const filterBtns = document.querySelectorAll('.btn-filter');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
