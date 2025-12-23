@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics - Satyam International School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{ 
+            --primary-blue:#009ceb; 
+            --primary-yellow:#fdd800; 
+            --primary-purple:#7d6caa; 
+            --primary-orange:#f05a28; 
+            --primary-green:#8cc63f; 
+            --text-dark:#212529; 
+            --footer-bg:#1f1f1f; 
+        }
+        
+        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background-color: #fff; }
+        
+        /* Navbar (Identical to reference) */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; position: relative; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; 
+            background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px;
+        }
+        .nav-link:hover::after { width: 80%; }
+        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
+        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; border-radius: 12px; }
+        .dropdown-item:hover { background-color: #e9ecef; color: var(--primary-blue); border-radius: 5px; }
+        
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } }
+        @keyframes expandWidth { from { width: 0; } to { width: 80px; } }
+        @keyframes bounceDot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        @keyframes jelly { 0%, 100% { transform: scale(1, 1); } 25% { transform: scale(0.9, 1.1); } 50% { transform: scale(1.1, 0.9); } 75% { transform: scale(0.95, 1.05); } }
+
+        .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Hero Header */
+        .academic-hero { position: relative; padding: 100px 0 80px 0; background: #fff; overflow: hidden; }
+        .hero-bg-diag {
+            position: absolute; top: 0; left: 0; width: 60%; height: 100%;
+            background: var(--primary-blue); clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+            z-index: 0; opacity: 0.1;
+        }
+        .page-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; position: relative; z-index: 1; }
+        .title-underline { height: 8px; background: var(--primary-orange); animation: expandWidth 1s ease-out forwards; border-radius: 4px; }
+        
+        /* Floating Shapes */
+        .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out alternate; }
+        .shape-square { width: 50px; height: 50px; border: 4px solid var(--primary-yellow); top: 15%; right: 15%; transform: rotate(15deg); }
+        .shape-circle { width: 40px; height: 40px; background: var(--primary-purple); border-radius: 50%; bottom: 20%; left: 10%; opacity: 0.2; }
+
+        /* Feature Cards Grid */
+        .feature-card {
+            background: #fff; border-radius: 15px; padding: 30px 25px; height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid transparent;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .feature-card .icon-box {
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin-bottom: 20px; transition: 0.4s;
+        }
+        .feature-card:hover .icon-box { animation: jelly 0.6s ease-in-out; }
+        
+        /* Card Colors */
+        .fc-blue { border-top-color: var(--primary-blue); }
+        .fc-blue .icon-box { background: rgba(0, 156, 235, 0.1); color: var(--primary-blue); }
+        
+        .fc-purple { border-top-color: var(--primary-purple); }
+        .fc-purple .icon-box { background: rgba(125, 108, 170, 0.1); color: var(--primary-purple); }
+        
+        .fc-orange { border-top-color: var(--primary-orange); }
+        .fc-orange .icon-box { background: rgba(240, 90, 40, 0.1); color: var(--primary-orange); }
+        
+        .fc-green { border-top-color: var(--primary-green); }
+        .fc-green .icon-box { background: rgba(140, 198, 63, 0.1); color: var(--primary-green); }
+
+        .fc-yellow { border-top-color: var(--primary-yellow); }
+        .fc-yellow .icon-box { background: rgba(253, 216, 0, 0.1); color: #dcb000; }
+
+        /* Quote Section */
+        .quote-box {
+            background: #2c2c44; color: white; border-radius: 20px; padding: 40px;
+            position: relative; overflow: hidden;
+        }
+        .quote-icon { position: absolute; top: 20px; left: 20px; font-size: 80px; color: rgba(255,255,255,0.1); font-family: serif; }
+        .chairperson-name { color: var(--primary-yellow); font-weight: 700; margin-top: 15px; display: block; }
+        
+        /* Zig Zag Section */
+        .content-section { padding: 80px 0; }
+        .content-img-wrapper { position: relative; z-index: 1; }
+        .content-img { border-radius: 20px; width: 100%; box-shadow: 20px 20px 0px var(--primary-blue); transition: 0.3s; }
+        .content-row:hover .content-img { transform: scale(1.02); box-shadow: 15px 15px 0px var(--primary-yellow); }
+        .content-row:nth-child(even) .content-img { box-shadow: -20px 20px 0px var(--primary-purple); }
+        .content-row:nth-child(even):hover .content-img { box-shadow: -15px 15px 0px var(--primary-green); }
+        
+        .section-badge { 
+            display: inline-block; padding: 5px 15px; border-radius: 20px; 
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 15px; color: #fff;
+        }
+
+        /* Footer (Identical to reference) */
+        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
+        
+        /* Mobile Tweaks */
+        @media (max-width: 991px) {
+            .navbar-collapse { background: #fff; padding: 20px; border-radius: 0 0 15px 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+            .nav-dot, .nav-link::after { display: none; }
+            .content-row { flex-direction: column !important; margin-bottom: 50px; }
+            .content-img { margin-bottom: 25px; box-shadow: 10px 10px 0px var(--primary-blue) !important; }
+            .quote-box { margin-top: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+           <a class="navbar-brand" href="#">
+                <img src="images/Satyam_Icon_1.png" alt="Satyam Logo" height="50">
+           </a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+               <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+               <ul class="navbar-nav align-items-center text-center">
+                   <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
+                       <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                           <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
+                           <li><a class="dropdown-item" href="activities.html">Activities</a></li>
+                           <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                       </ul>
+                   </li>
+                   <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
+                   <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
+                   <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                   <li class="nav-item"><a class="nav-link" href="information.html">Information</a></li>
+                   <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacts</a></li>
+               </ul>
+           </div>
+       </div>
+   </nav>
+
+    <main>
+        <section class="academic-hero">
+            <div class="hero-bg-diag"></div>
+            <div class="float-shape shape-square"></div>
+            <div class="float-shape shape-circle"></div>
+
+            <div class="container position-relative">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 animate-up">
+                        <span style="color: var(--primary-purple); font-weight: 700; letter-spacing: 1px;">THE SATYAM WAY</span>
+                        <h1 class="page-title">Academic <br>Excellence</h1>
+                        <div class="title-underline mb-4"></div>
+                        <p class="lead" style="font-weight: 500; color: #555;">
+                            We follow the CBSE curriculum, offering students access to a structured, progressive learning framework recognized throughout India.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="quote-box shadow-lg">
+                            <div class="quote-icon">“</div>
+                            <p class="position-relative" style="z-index: 2; font-size: 1.1rem; line-height: 1.8;">
+                                Our CBSE affiliation reflects our dedication to holistic education that balances academic rigor with co-curricular excellence.
+                            </p>
+                            <span class="chairperson-name">— Smt. R. Surekha</span>
+                            <small class="text-white-50">Chair Person</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container py-5">
+            <div class="text-center mb-5 animate-up">
+                <h2 style="font-weight: 900; font-size: 2.5rem;">Why Choose Satyam?</h2>
+                <p class="text-muted">A comprehensive educational experience</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 animate-up delay-1">
+                    <div class="feature-card fc-blue">
+                        <div class="icon-box"><i class="fa-solid fa-certificate"></i></div>
+                        <h5 style="font-weight: 800;">Recognized CBSE Affiliation</h5>
+                        <p class="small text-muted mb-0">Government approved curriculum providing structured learning pathways and recognition across India, ensuring your child's credentials are respected nationwide.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-2">
+                    <div class="feature-card fc-purple">
+                        <div class="icon-box"><i class="fa-solid fa-computer"></i></div>
+                        <h5 style="font-weight: 800;">LEAD Digital Classrooms</h5>
+                        <p class="small text-muted mb-0">Partnership with LEAD School bringing world-class digital infrastructure, interactive smart classrooms, and engaging digital textbooks.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-3">
+                    <div class="feature-card fc-orange">
+                        <div class="icon-box"><i class="fa-solid fa-flask"></i></div>
+                        <h5 style="font-weight: 800;">Future-Ready STEM Focus</h5>
+                        <p class="small text-muted mb-0">Innovative Science, Technology, Engineering, and Mathematics curriculum with state-of-the-art laboratories and coding classes.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-1">
+                    <div class="feature-card fc-green">
+                        <div class="icon-box"><i class="fa-solid fa-trophy"></i></div>
+                        <h5 style="font-weight: 800;">Holistic Development</h5>
+                        <p class="small text-muted mb-0">Wide-ranging activities including athletics, cricket, basketball, dance, and instrumental music for complete growth.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-2">
+                    <div class="feature-card fc-yellow">
+                        <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <h5 style="font-weight: 800;">Expert Faculty Team</h5>
+                        <p class="small text-muted mb-0">Dedicated teachers with years of classroom experience, specialized subject knowledge, and modern teaching certifications.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-up delay-3">
+                    <div class="feature-card fc-blue">
+                        <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
+                        <h5 style="font-weight: 800;">Accessible Quality</h5>
+                        <p class="small text-muted mb-0">Affordable fee structure without compromising educational quality, with transparent cost breakdowns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" style="background-color: #fcfcfc;">
+            <div class="container">
+                
+                <div class="row content-row align-items-center mb-5 animate-up">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="content-img-wrapper">
+                            <img src="images/satyam-1.jpeg" alt="Sports and NCC" class="content-img">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ps-lg-5">
+                        <span class="section-badge" style="background: var(--primary-purple);">NCC & SPORTS</span>
+                        <h3 style="font-weight: 800; font-size: 2rem; margin-bottom: 15px;">Holistic Excellence</h3>
+                        <p class="text-muted">We believe true success comes from developing well-rounded individuals. We’ve created a balanced approach that gives equal importance to academics, sports, and character-building.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i> Integrated approach ensuring students thrive in all dimensions.</li>
+                            <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i> Development of confidence, teamwork, and responsibility through NCC.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row content-row align-items-center flex-lg-row-reverse animate-up delay-2">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="content-img-wrapper">
+                            <img src="images/satyam-3 copy.jpeg" alt="Students Learning" class="content-img">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pe-lg-5">
+                        <span class="section-badge" style="background: var(--primary-orange);">LEADERSHIP</span>
+                        <h3 style="font-weight: 800; font-size: 2rem; margin-bottom: 15px;">Transforming Students Into Leaders</h3>
+                        <p class="text-muted">Evidence consistently demonstrates that students engaged in co-curricular activities achieve higher academic success rates. Real transformation occurs when students discover their potential beyond academics.</p>
+                        <p class="text-muted">These activities build character, instill discipline, and teach the graceful handling of both victory and defeat.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top-strip"></div>
+        <div class="footer-decor-strip"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="row text-center text-md-start">
+                        <div class="col-6">
+                            <a href="index.html" class="footer-link">Home</a>
+                            <a href="#" class="footer-link">School</a>
+                            <a href="about-us.html" class="footer-link">About-us</a>
+                            <a href="activities.html" class="footer-link">Activities</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="admission.html" class="footer-link">Admissions</a>
+                            <a href="information.html" class="footer-link">Information</a>
+                            <a href="contact-us.html" class="footer-link">Contacts</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 d-none d-lg-block"></div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="footer-col-title" style="color:var(--primary-yellow); font-weight:700;">We are</span>
+                            <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
+                            <p class="mb-1 text-white-50">+91 9876543210</p>
+                            <p class="mb-3 text-white-50">satyam@gmail.com</p>
+                            <a href="#" style="color: #777; text-decoration: none; font-size: 12px;">All rights reserved by Kodemapa</a>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <ul class="large-icon dark social-icons list-unstyled d-flex">
+                                <li class="social-circle">
+                                    <a class="facebook" href="" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                </li>
+                                <li class="social-circle">
+                                    <a class="instagram" href="" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
