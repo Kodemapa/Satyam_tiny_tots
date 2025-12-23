@@ -3,18 +3,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Testimonials - Satyam Tiny Tots</title>
+    <title>Testimonials - Satyam International School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root{ 
+            /* Original Colors */
             --primary-blue:#009ceb; 
             --primary-yellow:#fdd800; 
             --primary-purple:#7d6caa; 
             --primary-orange:#f05a28; 
             --primary-green:#8cc63f; 
+            
+            /* New Colors for Variety */
+            --primary-teal: #20c997;
+            --primary-pink: #e83e8c;
+            --primary-red: #dc3545;
+            --primary-indigo: #6610f2;
+            
             --text-dark:#212529; 
             --footer-bg:#1f1f1f; 
         }
@@ -44,87 +52,40 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes expandWidth { from { width: 0; } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; transform: scale(1.02); } 100% { opacity: 0.8; } }
 
         .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
 
-        /* Remove default list behavior */
-            .social-icons {
-                list-style: none;
-                display: flex;              /* makes them inline */
-                gap: 14px;                  /* spacing between icons */
-                padding: 0;
-                margin: 0;
-            }
-
-            /* Each icon circle */
-            .social-circle a {
-                width: 46px;
-                height: 46px;
-                border-radius: 50%;
-                background: #ffffff;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                color: #000;
-                font-size: 22px;            /* ICON SIZE */
-                transition: all 0.3s ease;
-            }
-
-            /* Hover effect (optional but recommended) */
-            .social-circle a:hover {
-                background: #ffd800;
-                color: #000;
-                transform: translateY(-2px);
-            }
-
-            /* Optional brand colors */
-            .social-circle a.facebook:hover {
-                background: #1877f2;
-                color: #fff;
-            }
-
-            .social-circle a.instagram:hover {
-                background: #e1306c;
-                color: #fff;
-            }
+        .social-icons { list-style: none; display: flex; gap: 14px; padding: 0; margin: 0; }
+        .social-circle a { width: 46px; height: 46px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #000; font-size: 22px; transition: all 0.3s ease; }
+        .social-circle a:hover { background: #ffd800; color: #000; transform: translateY(-2px); }
+        .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
+        .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
 
         /* --- Page Header --- */
-        .page-header { padding: 80px 0 60px 0; background: #fff; position: relative; }
-        .header-title-wrapper { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+        .page-header { padding: 90px 0 70px 0; background: linear-gradient(to bottom, #fff, #f8f9fa); position: relative; }
+        .header-title-wrapper { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; text-align: center; }
         
         .header-title { 
             font-weight: 900; 
-            /* Fluid Typography */
             font-size: clamp(2rem, 5vw, 3rem); 
             line-height: 1.2;
             margin: 0; color: #222; 
         }
-        
-        .header-line { height: 6px; background: var(--primary-blue); width: 0; flex-grow: 1; animation: expandWidth 1.5s ease-out forwards; border-radius: 4px; }
-        .intro-text { font-size: 1.1rem; line-height: 1.8; color: #555; max-width: 900px; }
 
-        /* Optimized Quick Links (Pills) */
-        .quick-links { margin-bottom: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
-        .quick-link-item { 
-            color: var(--primary-blue); 
-            background: rgba(0, 156, 235, 0.1);
-            font-weight: 700; 
-            text-decoration: none; 
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.9rem; 
-            transition: 0.3s;
+        .header-subtitle {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            animation: pulse 3s infinite ease-in-out;
         }
-        .quick-link-item:hover { 
-            background: var(--primary-blue); 
-            color: #fff; 
-            transform: translateY(-2px);
-        }
+        
+        .header-line { height: 6px; background: var(--primary-blue); width: 80px; margin-top: 20px; border-radius: 4px; }
+        .intro-text { font-size: 1.1rem; line-height: 1.8; color: #555; max-width: 900px; text-align: center; }
 
         /* --- Testimonial Cards --- */
         .review-section { padding: 60px 0; background-color: #f9f9f9; position: relative; }
@@ -140,23 +101,46 @@
         .review-card {
             background: #fff;
             padding: 40px 30px;
-            border-radius: 8px; /* Slight rounded corners look cleaner */
-            border-left: 5px solid var(--primary-yellow);
+            border-radius: 12px; 
+            border-left: 5px solid var(--primary-blue); /* Default */
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             height: 100%;
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
             position: relative;
         }
-        .review-card:hover { transform: translateY(-5px); }
+        
+        .review-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
         .review-icon { 
             font-size: 2rem; color: #eee; 
             position: absolute; top: 20px; right: 20px; 
+            transition: 0.6s ease;
         }
+        
+        .review-card:hover .review-icon {
+            transform: rotate(360deg) scale(1.2);
+            color: inherit; /* Takes the color of the text */
+            opacity: 0.2;
+        }
+
         .review-text { font-size: 1rem; color: #555; font-style: italic; line-height: 1.7; margin-bottom: 20px; }
         .reviewer-info { display: flex; align-items: center; gap: 15px; }
-        .reviewer-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #ddd; }
+        .reviewer-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #eee; }
         .reviewer-name { font-weight: 800; font-size: 1rem; margin: 0; color: #333; }
-        .reviewer-role { font-size: 0.85rem; color: var(--primary-blue); font-weight: 600; }
+        .reviewer-role { font-size: 0.85rem; color: #777; font-weight: 600; }
+
+        /* Specific Card Colors */
+        .card-blue { border-left-color: var(--primary-blue); }
+        .card-yellow { border-left-color: var(--primary-yellow); }
+        .card-purple { border-left-color: var(--primary-purple); }
+        .card-orange { border-left-color: var(--primary-orange); }
+        .card-green { border-left-color: var(--primary-green); }
+        .card-teal { border-left-color: var(--primary-teal); }
+        .card-pink { border-left-color: var(--primary-pink); }
+        .card-red { border-left-color: var(--primary-red); }
 
         /* --- Participation Section --- */
         .participation-section { padding: 80px 0; background: #fff; }
@@ -198,46 +182,25 @@
         }
 
         @media (max-width: 768px) {
-            /* Adjust spacing */
             .page-header, .review-section, .participation-section { padding: 40px 0; }
-            
-            /* Header */
-            .header-title-wrapper { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .header-line { width: 50px; flex-grow: 0; }
-            .intro-text { margin-bottom: 20px; }
-            
-            /* Decor */
+            .header-title-wrapper { flex-direction: column; align-items: center; gap: 10px; }
             .decor-ring { display: none; }
-            
-            /* Images */
             .participation-img-box { height: 200px; }
-            
-            /* Footer */
             footer { text-align: center; padding-top: 50px; }
             .footer-decor-strip { display: none; }
-            .d-flex.justify-content-between {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .d-flex.flex-column.align-items-end {
-                align-items: center !important;
-                flex-direction: row !important;
-                justify-content: center;
-                gap: 10px;
-            }
-            .social-circle { margin: 0 5px; }
+            .d-flex.justify-content-between { flex-direction: column; gap: 20px; }
+            .d-flex.justify-content-end { justify-content: center !important; }
         }
 
     </style>
 </head>
 <body>
     
-  
    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
            <a class="navbar-brand" href="#">
-                <img src="images/Satyam_Icon_1.png" alt="Satyam Logo">
-            </a>
+                <img src="images/Satyam_Icon_1.png" alt="Satyam Logo" height="50">
+           </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -270,19 +233,13 @@
                 <div class="row">
                     <div class="col-lg-10 mx-auto animate-up">
                         <div class="header-title-wrapper">
-                            <h1 class="header-title">Parents' Voice</h1>
+                            <h1 class="header-title">Discover what makes Satyam International School more than just a school</h1>
                             <div class="header-line"></div>
+                            <div class="header-subtitle">Tales of Transformation</div>
                         </div>
 
-                        <div class="intro-text mb-4">
-                            Parents are an important part of the "teacher-student-parent" triad, and we pay a lot of attention to the development of the parent community. We believe that transparent communication creates the best environment for our 'Tiny Tots'.
-                        </div>
-
-                        <div class="quick-links">
-                            <a href="#" class="quick-link-item">School Menu</a>
-                            <a href="#" class="quick-link-item">Knowledge Base</a>
-                            <a href="#" class="quick-link-item">Telegram Channel</a>
-                            <a href="#" class="quick-link-item">Principal's Letters</a>
+                        <div class="intro-text mx-auto mb-4">
+                            Parents are an important part of the "teacher-student-parent" triad, and we pay a lot of attention to the development of the parent community. We believe that transparent communication creates the best environment for our children.
                         </div>
                     </div>
                 </div>
@@ -295,64 +252,120 @@
                 <div class="row g-4">
                     
                     <div class="col-md-6 animate-up delay-1">
-                        <div class="review-card">
+                        <div class="review-card card-blue">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "Satyam Tiny Tots has been a second home for my daughter, Ananya. The way the teachers (didis) handle the children with patience is commendable. We have seen a massive improvement in her social skills and confidence."
+                                "We have seen remarkable growth in our child academically, emotionally, and socially. The teachers pay attention to every child’s needs and ensure they feel supported and motivated."
                             </p>
                             <div class="reviewer-info">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
                                 <div>
-                                    <h5 class="reviewer-name">Mrs. Priya Sharma</h5>
-                                    <span class="reviewer-role">Mother of Ananya (LKG)</span>
+                                    <h5 class="reviewer-name">Kishore</h5>
+                                    <span class="reviewer-role">Parent</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6 animate-up delay-2">
-                        <div class="review-card" style="border-left-color: var(--primary-green);">
+                        <div class="review-card card-yellow">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "What I love most is the balance between modern education and our Indian sanskars. Festivals like Diwali and Independence Day are celebrated with such enthusiasm. It keeps the children rooted in our culture."
+                                "The teachers are really supportive and approachable. They understand the strengths of each child and help them in those areas."
                             </p>
                             <div class="reviewer-info">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
                                 <div>
-                                    <h5 class="reviewer-name">Mr. Rajesh Gupta</h5>
-                                    <span class="reviewer-role">Father of Vihaan (UKG)</span>
+                                    <h5 class="reviewer-name">Ram Krishna</h5>
+                                    <span class="reviewer-role">Parent</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6 animate-up delay-1">
-                        <div class="review-card" style="border-left-color: var(--primary-purple);">
+                        <div class="review-card card-purple">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The safety and hygiene standards at Satyam are top-notch. As working parents, we are stress-free knowing our son is in safe hands. The WhatsApp updates regarding meals and activities are very reassuring."
+                                "The variety of activities offered by this school has helped my child discover new interests and talents. Whether it’s sports, arts, or science, the school encourages every child to explore and shine beyond academics."
                             </p>
                             <div class="reviewer-info">
-                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
                                 <div>
-                                    <h5 class="reviewer-name">Mrs. Sneha Patil</h5>
-                                    <span class="reviewer-role">Mother of Arjun (Nursery)</span>
+                                    <h5 class="reviewer-name">Kathyayini</h5>
+                                    <span class="reviewer-role">Parent</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6 animate-up delay-2">
-                        <div class="review-card" style="border-left-color: var(--primary-orange);">
+                        <div class="review-card card-orange">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The project-based learning method is fantastic. My son explains concepts of science and nature to us at home! The teachers truly put in effort to make learning fun and not just about rote memorization."
+                                "The school’s communication with parents is excellent. We are always kept informed about our child’s progress, events, and classroom activities. It truly makes us feel involved and connected to their learning journey."
                             </p>
                             <div class="reviewer-info">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Parent" class="reviewer-img">
                                 <div>
-                                    <h5 class="reviewer-name">Mr. Amit Verma</h5>
-                                    <span class="reviewer-role">Father of Kabir (Grade 1)</span>
+                                    <h5 class="reviewer-name">Sahil Gothwaal</h5>
+                                    <span class="reviewer-role">Parent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 animate-up delay-1">
+                        <div class="review-card card-green">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "This School's approach towards making students to learn about technology and many other skills is really incredible."
+                            </p>
+                            <div class="reviewer-info">
+                                <div>
+                                    <h5 class="reviewer-name">Rahul Pandey</h5>
+                                    <span class="reviewer-role">Parent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-md-6 animate-up delay-2">
+                        <div class="review-card card-teal">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "The teachers are warm, patient, and highly skilled. Their dedication is clearly visible in the way children grow and perform."
+                            </p>
+                            <div class="reviewer-info">
+                                <div>
+                                    <h5 class="reviewer-name">Madhu Kumar</h5>
+                                    <span class="reviewer-role">Parent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 animate-up delay-1">
+                        <div class="review-card card-pink">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "The school has created a positive and engaging learning environment. Our child feels valued, supported, and excited to learn every day."
+                            </p>
+                            <div class="reviewer-info">
+                                <div>
+                                    <h5 class="reviewer-name">Sudha Basuthkar</h5>
+                                    <span class="reviewer-role">Parent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 animate-up delay-2">
+                        <div class="review-card card-red">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "We love how the school encourages creativity and independent thinking. The activities and projects truly bring learning to life."
+                            </p>
+                            <div class="reviewer-info">
+                                <div>
+                                    <h5 class="reviewer-name">Sachin</h5>
+                                    <span class="reviewer-role">Parent</span>
                                 </div>
                             </div>
                         </div>
@@ -372,13 +385,6 @@
                             <h4 class="feature-title">WhatsApp & Telegram Updates</h4>
                             <p class="feature-text">
                                 For the convenience of parents, we have active WhatsApp groups and a <a href="#" class="text-highlight-link">Telegram channel</a>. We share daily updates, photos of classroom activities, and urgent notices instantly. This ensures you never miss out on your child's milestones.
-                            </p>
-                        </div>
-
-                        <div class="feature-block">
-                            <h4 class="feature-title">Principal's Coffee Mornings</h4>
-                            <p class="feature-text">
-                                Another way of honest and open communication is the <a href="#" class="text-highlight-link">"Coffee with Principal"</a> initiative. Once a month, parents are invited to an open discussion on relevant topics—nutrition, screen time, and child psychology.
                             </p>
                         </div>
 
@@ -415,13 +421,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
-                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
+                    <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo" height="60"></a>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="row text-center text-md-start">
                         <div class="col-6">
                             <a href="index.html" class="footer-link">Home</a>
-                            <a href="abouut-us.html" class="footer-link">School</a>
+                            <a href="about-us.html" class="footer-link">School</a>
                             <a href="about-us.html" class="footer-link">About-us</a>
                             <a href="activities.html" class="footer-link">Activities</a>
                         </div>
@@ -436,11 +442,11 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <span class="footer-col-title">We are</span>
+                            <span class="footer-col-title d-block text-white fw-bold mb-2">We are</span>
                             <p class="mb-1 text-white-50">Moka road, Gandhi Nagar</p>
                             <p class="mb-1 text-white-50">+91 9876543210</p>
                             <p class="mb-3 text-white-50">satyam@gmail.com</p>
-                            <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
+                            <a href="#" class="magwai-link text-white-50 text-decoration-none small">All rights reserved by Kodemapa</a>
                         </div>
                         <div class="d-flex justify-content-end">
                             <ul class="large-icon dark social-icons">
@@ -462,7 +468,6 @@
         </div>
         <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
