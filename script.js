@@ -102,3 +102,23 @@ if (typeof Swiper !== 'undefined') {
   })();
 
 })();
+// Generic animate-up observer to add `in-view` when elements scroll into view
+(function(){
+  const els = document.querySelectorAll('.animate-up');
+  if(!els.length) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        // if there is a testimonial card inside, gently start the author float a moment later
+        const card = entry.target.querySelector('.testimonial-card');
+        if (card) {
+          const author = card.querySelector('.testimonial-author');
+          if (author) setTimeout(() => author.classList.add('lazy-float'), 500);
+        }
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18 });
+  els.forEach(e => obs.observe(e));
+})();

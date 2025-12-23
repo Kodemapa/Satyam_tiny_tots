@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiny Tots</title>
+    <title>Satyam International School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -321,7 +321,11 @@
             font-weight: 900; 
             font-size: clamp(3rem, 5vw, 4.5rem); 
             line-height: 1.1; color: #222; 
-            margin-bottom: 40px; position: relative;
+            margin-bottom: 20px; position: relative;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem; font-weight: 600; color: #555; margin-bottom: 30px;
+            border-left: 4px solid var(--primary-orange); padding-left: 15px;
         }
         .yellow-dash {
             display: inline-block; width: 35px; height: 6px; 
@@ -343,6 +347,82 @@
         }
         .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
         .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
+
+                /* =========================================
+        INFRASTRUCTURE SECTION (New)
+        ========================================= */
+        .infrastructure-section {
+            padding: 100px 0;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .infra-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .infra-header h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            color: #212529;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .infra-header p {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .infra-card {
+            border: none;
+            background: transparent;
+            margin-bottom: 30px;
+        }
+
+        .infra-img-wrapper {
+            height: 240px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .infra-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .infra-card:hover .infra-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .infra-title {
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .infra-text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Specific text colors from the image */
+        .text-infra-pink { color: #e91e63; }
+        .text-infra-green { color: #8cc63f; }
+        .text-infra-purple { color: #7d6caa; }
 
         /* Hero Decorations */
         .hero-decor-triangle-orange {
@@ -571,7 +651,7 @@
         
         .value-bg-number { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            font-size: 11rem; font-weight: 900; z-index: -1; line-height: 0; 
+            font-size: 8rem; font-weight: 900; z-index: -1; line-height: 0; 
             font-family: 'Montserrat', sans-serif; letter-spacing: -5px;
             animation: floatNumbers 8s ease-in-out infinite alternate;
         }
@@ -634,7 +714,7 @@
         }
         .mission-left-col { position: relative; z-index: 5; padding-right: 20px; }
         .mission-title-wrap { position: relative; display: inline-block; margin-bottom: 20px; }
-        .mission-title { font-weight: 800; font-size: 3.5rem; color: #222; line-height: 1.1; margin: 0; }
+        .mission-title { font-weight: 800; font-size: 3rem; color: #222; line-height: 1.1; margin: 0; }
         .mission-dot-orange {
             position: absolute; top: -5px; right: -25px; width: 20px; height: 20px;
             background-color: #f39200; border-radius: 50%; animation: breathe 4s infinite;
@@ -693,86 +773,129 @@
         .canvas-footer-text { margin-top: 10px; text-transform: uppercase; color: #777; font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; }
 
         /* =========================================
-           COMPLEX SECTION
+           TESTIMONIALS SECTION (New)
            ========================================= */
-        .complex-section {
-            padding: 100px 0;
-            background: #fff;
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatSlow { 0% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-24px) translateX(-24px); } 100% { transform: translateY(0) translateX(0); } }
+        @keyframes quotePulse { 0% { transform: rotate(-6deg) translateY(0) scale(1); } 50% { transform: rotate(-6deg) translateY(-4px) scale(1.02); } 100% { transform: rotate(-6deg) translateY(0) scale(1); } }
+
+        .testimonials-section {
+            padding: 80px 0;
+            background: linear-gradient(90deg, rgba(90, 59, 176, 0.14), rgba(0,156,235,0.09));
+            background-size: 200% 200%;
+            animation: bgShift 10s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            left: -6%; top: -12%; width: 64%; height: 160%;
+            background: radial-gradient(circle at 10% 20%, rgba(97, 69, 176, 0.1), transparent 20%), radial-gradient(circle at 90% 80%, rgba(0,156,235,0.07), transparent 20%);
+            transform: rotate(-8deg);
+            z-index: 0; pointer-events: none;
+        }
+        .testimonials-section::after {
+            content: '';
+            position: absolute;
+            right: -8%; top: 12%; width: 360px; height: 360px;
+            background: radial-gradient(circle, rgba(125,108,170,0.14), rgba(125,108,170,0.03));
+            filter: blur(48px);
+            z-index: 0; pointer-events: none; transform-origin: center;
+            animation: floatSlow 10s ease-in-out infinite;
+        }
+        .testimonials-section .container { position: relative; z-index: 1; }
 
-        .complex-header-title {
+        .testimonial-card {
+            position: relative; z-index: 2;
+            background: linear-gradient(180deg,#fff,#fbfbff);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 14px 38px rgba(0,0,0,0.07);
+            height: 100%;
+            transition: transform .55s cubic-bezier(.16,.95,.24,1), box-shadow .55s, opacity .5s;
+            border-left: 5px solid var(--primary-purple);
+            opacity: 0; transform: translateY(28px) scale(.98);
+        }
+        .testimonial-card::before { content: ''; position: absolute; inset: 8px; border-radius: 10px; background: linear-gradient(90deg, rgba(125,108,170,0.06), rgba(0,156,235,0.02)); filter: blur(16px); z-index: -1; opacity: .85; pointer-events: none; }
+        /* Reveal when the parent column receives .in-view (staggered by delay classes) */
+        .animate-up.in-view .testimonial-card { opacity: 1; transform: translateY(0) scale(1); }
+        .animate-up.delay-1.in-view .testimonial-card { transition-delay: 0.08s; }
+        .animate-up.delay-2.in-view .testimonial-card { transition-delay: 0.22s; }
+        .animate-up.delay-3.in-view .testimonial-card { transition-delay: 0.36s; }
+
+        .testimonial-card:hover { transform: translateY(-12px) scale(1.035); box-shadow: 0 26px 70px rgba(0,0,0,0.18); }
+        .testimonial-card.purple { border-left-color: var(--primary-purple); background: linear-gradient(180deg, rgba(125,108,170,0.06), #fff); }
+        .testimonial-card.green { border-left-color: var(--primary-green); background: linear-gradient(180deg, rgba(140,198,63,0.06), #fff); }
+        .testimonial-card.blue { border-left-color: var(--primary-blue); background: linear-gradient(180deg, rgba(0,156,235,0.06), #fff); }
+        .quote-icon { color: rgba(0,0,0,0.06); font-size: 5rem; position: absolute; top: 6px; left: 16px; z-index: 0; transform: rotate(-8deg) translateY(6px) scale(0.98); opacity: 0.08; transition: transform .7s cubic-bezier(.2,.9,.2,1), opacity .7s; }
+        .animate-up.in-view .quote-icon { transform: rotate(-6deg) translateY(0) scale(1); opacity: 0.10; animation: quotePulse 6s ease-in-out infinite; }
+        .testimonial-card:hover .quote-icon { transform: rotate(-6deg) translateY(-8px) scale(1.04); color: rgba(0,0,0,0.08); }
+        .testimonial-text { position: relative; z-index: 1; font-style: italic; color: #444; margin-bottom: 18px; }
+        .testimonial-author { position: relative; z-index: 1; font-weight: 800; color: #222; margin-top: 6px; }
+        .testimonial-role { font-size: 0.85rem; color: #777; }
+
+        /* Respect users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .testimonials-section, .testimonials-section::before, .testimonials-section::after,
+            .testimonial-card, .quote-icon { animation: none !important; transition: none !important; }
+        }
+
+        /* =========================================
+           INFRASTRUCTURE ENHANCEMENTS
+           ========================================= */
+        .infra-img-wrapper::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.04)); transition: opacity .5s; border-radius: 20px; }
+        .infra-img-wrapper { transition: transform .7s cubic-bezier(.2,.9,.2,1), box-shadow .5s; }
+        .infra-img-wrapper img { transition: transform .9s cubic-bezier(.22,.9,.24,1), filter .5s; }
+        .infra-card:hover .infra-img-wrapper { transform: translateY(-6px) rotate(-0.3deg); box-shadow: 0 30px 70px rgba(0,0,0,0.10); }
+        .infra-card:hover .infra-img-wrapper img { transform: scale(1.08); filter: saturate(1.06) contrast(1.03); }
+
+        .infra-title { position: relative; }
+        .infra-title::after { content: ''; position: absolute; left: 0; bottom: -10px; height: 4px; width: 60px; border-radius: 4px; background: var(--primary-purple); opacity: .95; transition: transform .4s; transform-origin: left center; }
+        .text-infra-pink::after { background: linear-gradient(90deg,#ff6b9a,#ff3d7a); }
+        .text-infra-green::after { background: linear-gradient(90deg,#a6e36e,#6dbb2f); }
+        .text-infra-purple::after { background: linear-gradient(90deg,#7d6caa,#5f4f9a); }
+
+        .infra-card { opacity: 0; transform: translateY(12px) scale(.995); }
+        .animate-up.in-view .infra-card { opacity: 1; transform: translateY(0) scale(1); transition: opacity .6s, transform .6s; }
+
+        /* Small author float */
+        @keyframes floatY { 0% { transform: translateY(0); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0); } }
+        .testimonial-author.lazy-float { animation: floatY 4s ease-in-out infinite; }
+
+        /* =========================================
+           CTA SECTION (Modified Complex)
+           ========================================= */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--primary-purple);
+            position: relative;
+            overflow: hidden;
+            color: #fff;
             text-align: center;
+        }
+
+        .cta-header-title {
             font-weight: 800;
             font-size: 3rem;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
         }
-        .complex-header-dot {
-            width: 15px; height: 15px;
-            background-color: #f39200;
-            border-radius: 50%;
-            position: absolute;
-            top: -10px; left: 50%;
-            transform: translateX(-50%);
-            animation: breathe 2s infinite;
+        .cta-btn {
+            background-color: var(--primary-blue);
+            color: #fff; padding: 15px 40px; border-radius: 5px; font-weight: 700; text-decoration: none;
+            display: inline-block; margin-top: 20px; transition: 0.3s;
+        }
+        .cta-btn:hover { background-color: #007bb5; transform: scale(1.05); color: #fff; }
+
+        .cta-decor-line {
+            width: 100px; height: 5px; background: rgba(255,255,255,0.2); margin: 0 auto 30px;
         }
 
-        .orange-header-line {
-            position: absolute; top: 180px; left: 0; width: 45%; height: 4px;
-            background-color: #f39200; z-index: 1;
-        }
-
-        .complex-img-wrapper {
-            position: relative; z-index: 5; padding-right: 20px; margin-bottom: 30px;
-        }
-        .complex-main-img {
-            width: 100%; height: auto; border-radius: 2px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .complex-main-img:hover { transform: scale(1.02); }
-
-        .green-triangle-outline {
-             position: absolute; bottom: -40px; left: 0px; width: 120px; height: 120px;
-             border-bottom: 1px solid #8cc63f; border-left: 1px solid #8cc63f; z-index: -1;
-        }
-        .green-triangle-outline::after {
-            content: ''; position: absolute; width: 170px; height: 1px;
-            background: #8cc63f; transform: rotate(-45deg); transform-origin: bottom left;
-            bottom: -1px; left: -1px;
-        }
-
-        .complex-content-right { padding-left: 30px; position: relative; }
-        .complex-subtitle { color: #888; font-size: 0.85rem; margin-bottom: 10px; }
-        .complex-active-title { color: #009ceb; font-weight: 800; font-size: 1.4rem; margin-bottom: 25px; }
-
-        .complex-list-group { display: flex; flex-direction: column; gap: 20px; margin-bottom: 50px; }
-        .complex-list-item {
-            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-            color: #212529; font-weight: 700; font-size: 1.1rem; transition: color 0.3s;
-        }
-        .complex-list-item:hover { color: #009ceb; }
-
-        .list-dot { width: 12px; height: 12px; background-color: #eee; border-radius: 50%; transition: all 0.3s; }
-        .complex-list-item:hover .list-dot { background-color: #7d6caa; transform: scale(1.4); } /* Scale increased */
-
-        .btn-all-projects-wrapper { display: flex; align-items: center; position: relative; z-index: 5; }
-        .btn-all-projects {
-            background-color: #009ceb; color: #fff; padding: 12px 25px; font-weight: 700; font-size: 0.8rem;
-            text-transform: uppercase; border: none; text-decoration: none; transition: background 0.3s;
-        }
-        .btn-all-projects:hover { background-color: #0082c5; color: #fff; }
-        .btn-dash-yellow { width: 25px; height: 5px; background: #fdd800; display: inline-block; margin-left: -5px; z-index: 6; }
-
-        .complex-decor-circle-green {
-            position: absolute; bottom: 0; right: 150px; width: 50px; height: 50px;
-            background-color: #bed62f; border-radius: 50%; z-index: 1; animation: breathe 5s infinite;
-        }
 
         /* --- Footer --- */
         footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; }
@@ -822,9 +945,6 @@
 
             /* Complex Section */
             .orange-header-line { width: 80%; top: 160px; }
-            .complex-img-wrapper { margin-bottom: 50px; }
-            .complex-content-right { padding-left: 0; }
-            .green-triangle-outline, .complex-decor-circle-green { display: none; }
         }
 
         /* Mobile (max-width: 767px) */
@@ -854,7 +974,7 @@
             .hero-decor-triangle-orange { top: 6px; left: 82%; transform: rotate(-30deg) scale(0.8); display: block; }
             .hero-decor-plus { top: 4%; left: 8%; width: 22px; height: 22px; display: block; animation-duration: 12s; }
             .hero-dots-pattern { top: 40%; left: 72%; width: 36px; height: 36px; opacity: 0.22; display: block; }
-            .hero-blur-circle { top: -8px; left: 15%; width: 120px; height: 120px; filter: blur(22px); opacity: 0.22; display: block; }
+            
             .nav-arrows { display: none; }
 
             /* Mobile-friendly pseudo element adjustments */
@@ -869,7 +989,7 @@
             /* Values */
             .values-section { padding-top: 60px; }
             .values-desc { max-width: 100%; text-align: center; padding: 0 15px; }
-            .value-bg-number { font-size: 6rem; letter-spacing: -2px; }
+            .value-bg-number { font-size: 5rem; letter-spacing: -2px; }
             .value-item { margin-top: 20px; padding: 10px; }
             .value-label { margin-top: 30px; }
 
@@ -881,18 +1001,11 @@
             .mission-tagline { text-align: center; }
             .btn-wrapper { justify-content: center; }
 
-            /* Mobile mission stacking: show canvas first, then text + small image */
+            /* Mobile mission stacking */
             .mission-right-col { order: 1; }
             .mission-left-col { order: 2; }
             .mission-small-img { position: relative; width: 100%; max-width: 360px; margin: 18px auto 12px auto; display: block; box-shadow:0 10px 30px rgba(0,0,0,0.08); transition: transform .45s ease, box-shadow .45s ease; }
             .mission-small-img:hover{ transform:translateY(-6px) scale(1.01); }
-
-            /* entrance animation helpers for mobile */
-            .mission-section .mission-title, .mission-section .mission-text, .mission-section .mission-small-img, .mission-section .grey-canvas{ opacity:0; transform:translateY(12px); transition: all .55s cubic-bezier(.2,.9,.2,1); }
-            .mission-section.in-view .mission-title{ opacity:1; transform:none; transition-delay:0.04s; }
-            .mission-section.in-view .mission-text{ opacity:1; transform:none; transition-delay:0.12s; }
-            .mission-section.in-view .grey-canvas{ opacity:1; transform:none; transition-delay:0.18s; }
-            .mission-section.in-view .mission-small-img{ opacity:1; transform:none; transition-delay:0.22s; }
 
             /* The Big "20" on mobile */
             .grey-canvas { height: 280px; padding: 20px 0; }
@@ -904,15 +1017,10 @@
             .diamond-box { will-change: transform; }
             .diamond-box { animation: mobileFloat 9s ease-in-out infinite; }
             .hero-title { animation: titleFloat 7s ease-in-out infinite; }
-            .composition-area::before { transition: transform 0.6s ease, opacity 0.6s; }
 
-            /* Complex Section */
-            .complex-section { padding: 50px 0; }
-            .complex-header-title { font-size: 2rem; width: 100%; margin-bottom: 30px; }
-            .orange-header-line { display: none; }
-            .complex-img-wrapper { padding-right: 0; }
-            .complex-list-item { font-size: 0.95rem; }
-
+            /* CTA Section */
+            .cta-header-title { font-size: 2rem; width: 100%; margin-bottom: 20px; }
+            
             /* Footer */
             .footer-decor-strip { display: none; }
             .footer-top-strip { width: 100%; }
@@ -924,13 +1032,12 @@
             .col-lg-4 .d-flex.justify-content-end { justify-content: center !important; margin-top: 20px; }
         }
     </style>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-           <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#">
                 <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -967,7 +1074,6 @@
                     <div class="hero-orange-dot"></div>
                     <div class="hero-decor-plus"></div>
                     <div class="hero-dots-pattern"></div>
-                    <div class="hero-blur-circle"></div>
                     <div class="hero-small-blue-ring"></div>
                     <div class="hero-faint-square"></div>
 
@@ -975,18 +1081,23 @@
                         <div class="purple-double-dash">
                         </div>
                         <h1 class="hero-title">
-                            The School <br> of Your <br> Time
+                            Building <br> Leaders <br> Of Tomorrow
                         </h1>
                     </div>
                     <div class="mb-5 animate-up delay-1">
+                        <p class="hero-subtitle">
+                           Top CBSE School in Ballari | Equipping the Next Generation.<br>
+                           <span style="font-weight:400; font-size: 1rem;">Experience the best CBSE syllabus and world-class facilities in the heart of Bellary.</span>
+                        </p>
                         <div class="yellow-dash"></div>
+                         <a href="#" class="btn-learn-more ms-3" style="background-color: var(--primary-blue);">Get Admission Today</a>
                     </div>
                 </div>
 
                 <div class="col-lg-7">
                     <div class="composition-area">
                         <div class="yellow-triangle-large">
-                             <div class="red-bookmark-flag">Tiny<br>tots</div>
+                             <div class="red-bookmark-flag">Satyam<br>School</div>
                         </div>
                         <div class="purple-strip-diag"></div>
                         <div class="diamond-box">
@@ -1009,34 +1120,35 @@
             <div class="row">
                 <div class="col-lg-5 pe-lg-5 d-flex flex-column justify-content-center yellow-panel animate-up">
                     <div class="values-header">
-                        <h2>It is important<br>to us</h2>
+                        <h2>15 Years of<br>Legacy</h2>
+                        <p style="color:white; font-weight:600;">Combination of years of trust with the expertise of highly skilled educators.</p>
                     </div>
                 </div>
 
                 <div class="col-lg-7 ps-lg-5">
                     <p class="values-desc animate-up delay-1">
-                        So that each student develops intellectually, aesthetically and physically, so that everyone finds their way in life and acquires the necessary skills that are relevant in the modern world.
+                        Dedicated to nurturing learners across all grades with consistent academic results throughout the years.
                     </p>
                     <div class="row mt-5 justify-content-center">
-                        <div class="col-md-6 animate-up delay-2">
+                        <div class="col-md-4 animate-up delay-2">
                             <div class="value-item on-purple">
-                                <div class="value-icon-box" style="color: #67ce88;"><i class="fa-solid fa-brain"></i></div>
-                                <div class="value-bg-number">01</div>
-                                <div class="value-label">Intelligence</div>
+                                <div class="value-icon-box" style="color: #67ce88;"><i class="fa-solid fa-landmark"></i></div>
+                                <div class="value-bg-number" style="font-size: 4rem;">15</div>
+                                <div class="value-label">Years Legacy</div>
                             </div>
                         </div> 
-                        <div class="col-md-6 animate-up delay-2">
+                        <div class="col-md-4 animate-up delay-2">
                             <div class="value-item on-purple">
-                                <div class="value-icon-box" style="color: #fdd800;"><i class="fa-solid fa-pencil"></i></div>
-                                <div class="value-bg-number">02</div>
-                                <div class="value-label">Creativity</div>
+                                <div class="value-icon-box" style="color: #fdd800;"><i class="fa-solid fa-star"></i></div>
+                                <div class="value-bg-number" style="font-size: 4rem;">100%</div>
+                                <div class="value-label">Academic Excellence</div>
                             </div>
-                        </div>   
-                        <div class="col-md-6 animate-up delay-2">
+                        </div>    
+                        <div class="col-md-4 animate-up delay-2">
                             <div class="value-item on-purple">
-                                <div class="value-icon-box" style="color: #8cc63f;"><i class="fa-solid fa-leaf"></i></div>
-                                <div class="value-bg-number">03</div>
-                                <div class="value-label">Health</div>
+                                <div class="value-icon-box" style="color: #8cc63f;"><i class="fa-solid fa-users"></i></div>
+                                <div class="value-bg-number" style="font-size: 4rem;">15K</div>
+                                <div class="value-label">Student Count</div>
                             </div>
                         </div>
                     </div>
@@ -1051,8 +1163,8 @@
 
         <div class="container">
             <div class="programs-header animate-up">
-                <h2>Tiny Tots — Bellary</h2>
-                <p class="programs-intro">At our Bellary center we provide a rich early years curriculum that combines play-based learning with hands-on labs and sensory-rich activities — including <strong>Kreedo Labs</strong>, senses &amp; feeling games, music &amp; movement, art &amp; craft and guided outdoor play to foster curiosity, social skills and healthy development.</p>
+                <h2>Classroom Of Tomorrow</h2>
+                <p class="programs-intro">From interactive smart boards to immersive e-learning modules, we ensure students master the technology skills needed for the future.</p>
             </div>
 
             <div class="row g-4 programs-grid">
@@ -1060,11 +1172,11 @@
                     <div class="program-card">
                         <div class="program-card-content">
                             <div class="program-icon-wrapper">
-                                <div class="program-icon ic-kreedo"><i class="fa-solid fa-flask"></i></div>
+                                <div class="program-icon ic-kreedo"><i class="fa-solid fa-chalkboard-user"></i></div>
                             </div>
-                            <div class="program-title">Kreedo Labs</div>
-                            <div class="program-desc">A child-friendly STEM lab where kids explore simple experiments, build things, and learn cause &amp; effect through guided play and discovery.</div>
-                            <div class="program-meta">Hands-on, safe &amp; supervised • Age 3+</div>
+                            <div class="program-title">Smart Digital Classrooms</div>
+                            <div class="program-desc">Our digital learning ecosystem makes complex topics visual and engaging, ensuring students master the technology skills needed for the future.</div>
+                            <div class="program-meta">Interactive • Engaging</div>
                         </div>
                     </div>
                 </div>
@@ -1073,11 +1185,11 @@
                     <div class="program-card">
                         <div class="program-card-content">
                             <div class="program-icon-wrapper">
-                                <div class="program-icon ic-senses"><i class="fa-solid fa-hand-sparkles"></i></div>
+                                <div class="program-icon ic-senses"><i class="fa-solid fa-brain"></i></div>
                             </div>
-                            <div class="program-title">Senses &amp; Feeling Games</div>
-                            <div class="program-desc">Sensory stations and tactile games help children learn through touch, sound, smell and movement — great for sensory integration and emotional vocabulary.</div>
-                            <div class="program-meta">Small groups • Creative play</div>
+                            <div class="program-title">Deep Conceptual Learning</div>
+                            <div class="program-desc">We build a strong academic foundation that prepares students not just for exams, but for real world application.</div>
+                            <div class="program-meta">Foundation • Application</div>
                         </div>
                     </div>
                 </div>
@@ -1086,11 +1198,11 @@
                     <div class="program-card">
                         <div class="program-card-content">
                             <div class="program-icon-wrapper">
-                                <div class="program-icon ic-music"><i class="fa-solid fa-music"></i></div>
+                                <div class="program-icon ic-music"><i class="fa-solid fa-robot"></i></div>
                             </div>
-                            <div class="program-title">Music &amp; Movement</div>
-                            <div class="program-desc">Rhythm, songs and movement activities build coordination, listening skills and joyful group participation.</div>
-                            <div class="program-meta">Daily sessions • Social learning</div>
+                            <div class="program-title">Future Ready Robotics & STEM</div>
+                            <div class="program-desc">Our dedicated Robotics and STEM labs allow students to turn ideas into reality through coding and design thinking.</div>
+                            <div class="program-meta">Coding • Design Thinking</div>
                         </div>
                     </div>
                 </div>
@@ -1099,11 +1211,11 @@
                     <div class="program-card">
                         <div class="program-card-content">
                             <div class="program-icon-wrapper">
-                                <div class="program-icon ic-art"><i class="fa-solid fa-paint-brush"></i></div>
+                                <div class="program-icon ic-art"><i class="fa-solid fa-building"></i></div>
                             </div>
-                            <div class="program-title">Art &amp; Craft</div>
-                            <div class="program-desc">Open-ended art, collage and craft projects help build fine motor skills and encourage creative expression.</div>
-                            <div class="program-meta">Materials provided • Guided activities</div>
+                            <div class="program-title">Campus Built for Future</div>
+                            <div class="program-desc">Our school building offers a bright, spacious, and safe environment where students feel inspired to learn every day.</div>
+                            <div class="program-meta">Spacious • Safe</div>
                         </div>
                     </div>
                 </div>
@@ -1112,11 +1224,11 @@
                     <div class="program-card">
                         <div class="program-card-content">
                             <div class="program-icon-wrapper">
-                                <div class="program-icon ic-outdoor"><i class="fa-solid fa-child-reaching"></i></div>
+                                <div class="program-icon ic-outdoor"><i class="fa-solid fa-laptop-code"></i></div>
                             </div>
-                            <div class="program-title">Outdoor &amp; Play</div>
-                            <div class="program-desc">Structured outdoor play and free movement sessions for gross motor development, team games and exploration.</div>
-                            <div class="program-meta">Safe outdoor spaces • Supervised</div>
+                            <div class="program-title">Empowering Students</div>
+                            <div class="program-desc">Our computer-integrated classrooms help students nurture curiosity, creativity, and a strong foundation in technology.</div>
+                            <div class="program-meta">Curiosity • Technology</div>
                         </div>
                     </div>
                 </div>
@@ -1125,11 +1237,11 @@
                     <div class="program-card">
                         <div class="program-card-content">
                             <div class="program-icon-wrapper">
-                                <div class="program-icon ic-lang"><i class="fa-solid fa-book-open-reader"></i></div>
+                                <div class="program-icon ic-lang"><i class="fa-solid fa-tree"></i></div>
                             </div>
-                            <div class="program-title">Language &amp; Story Circle</div>
-                            <div class="program-desc">Storytelling, circle time and guided language activities build vocabulary, listening and early literacy skills.</div>
-                            <div class="program-meta">Daily story time • Parent updates</div>
+                            <div class="program-title">Environment That Inspires</div>
+                            <div class="program-desc">Our spacious and well planned infrastructure provides students a calm, distraction free atmosphere.</div>
+                            <div class="program-meta">Calm • Focused</div>
                         </div>
                     </div>
                 </div>
@@ -1144,98 +1256,150 @@
             <div class="row">
                 <div class="col-lg-5 mission-left-col animate-up">
                     <div class="mission-title-wrap">
-                        <h2 class="mission-title">Our Mission</h2>
+                        <h2 class="mission-title">Unleash Your Inner Genius</h2>
                         <div class="mission-dot-orange"></div>
                     </div>
                     <p class="mission-text">
-                        We will create a unique environment in which it is comfortable for all participants in the educational process to live and work - children, teachers, and parents.
+                       <strong>Building skills beyond class.</strong> Step into a space where passions play and learning feels joyful. From lab coats to keyboards, our students learn by doing, discovering new skills every day.
                     </p>
-                    <div class="mission-tagline">We are a generation. The school of your time.</div>
+                    <div class="mission-tagline">The Foundation that brings your kid's dream to life</div>
+                    
+                    <ul class="list-unstyled mb-4" style="color:#555;">
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Fun computer lab activities that build digital confidence</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Environment that nurtures creativity while building confidence</li>
+                    </ul>
+
                     <div class="btn-wrapper">
                         <a href="#" class="btn-learn-more">Learn More</a>
                         <span class="yellow-dash-btn"></span>
                     </div>
                     <div class="decor-red-triangle"></div>
-                    <img src="images/image.png" alt="Students" class="mission-small-img">
+                    <img src="images/chariot.webp" alt="Students" class="mission-small-img">
                 </div>
                 <div class="col-lg-7 mission-right-col animate-up delay-1">
-                    <div class="grey-canvas">
-                        <div class="graphic-20-container">
-                            <span class="text-20">20</span>
-                            <div class="play-btn-circle">
-                                <i class="fa-solid fa-play"></i>
-                            </div>
+                    <div class="grey-canvas position-relative overflow-hidden">
+                        
+                        <div class="background-holder position-absolute top-0 start-0 w-100 h-100">
+                            <img src="images/Karate.webp" alt="Background" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.2;"> 
                         </div>
-                        <div class="canvas-footer-text">SCHOOL OF YOUR TIME</div>
+                        <div class="position-relative z-1 d-flex flex-column align-items-center justify-content-center w-100 h-100">
+                            <div class="graphic-20-container">
+                                <span class="text-20">#1</span>
+                                
+                                <div class="play-btn-circle">
+                                    <a href="https://www.youtube.com/watch?v=huA4cggeCBA" class="glightbox d-flex align-items-center justify-content-center w-100 h-100 text-decoration-none text-white">
+                                        <i class="fa-solid fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="canvas-footer-text">Expert guidance to make big dreams real</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="complex-section">
-        <div class="orange-header-line"></div>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="programs-header animate-up">
+                <h2>The Trusted Pathway to a Brighter Future</h2>
+                <p class="programs-intro">Quality learning with years of expertise. See what parents have to say.</p>
+            </div>
+            
+            <div class="row g-4">
+                 <div class="col-md-4 animate-up delay-1">
+                    <div class="testimonial-card purple">
+                         <i class="fa-solid fa-quote-left quote-icon"></i>
+                         <p class="testimonial-text">"The school has created a positive and engaging learning environment. Our child feels valued, supported, and excited to learn every day."</p>
+                         <div class="testimonial-author lazy-float">Sudha Basuthkar</div>
+                         <div class="testimonial-role">Parent of Grade 5 student</div>
+                    </div>
+                </div>
+                
+                 <div class="col-md-4 animate-up delay-2">
+                    <div class="testimonial-card green">
+                         <i class="fa-solid fa-quote-left quote-icon"></i>
+                         <p class="testimonial-text">"We love how the school encourages creativity and independent thinking. The activities and projects truly bring learning to life."</p>
+                         <div class="testimonial-author lazy-float">Sachin</div>
+                         <div class="testimonial-role">Parent of Grade 9 student</div>
+                    </div>
+                </div>
+
+                 <div class="col-md-4 animate-up delay-3">
+                    <div class="testimonial-card blue">
+                         <i class="fa-solid fa-quote-left quote-icon"></i>
+                         <p class="testimonial-text">"We have seen remarkable growth in our child academically, emotionally, and socially. The teachers pay attention to every child's needs."</p>
+                         <div class="testimonial-author lazy-float">Kishore</div>
+                         <div class="testimonial-role">Parent of Grade 8 student</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="infrastructure-section">
+        <div class="container">
+            <div class="infra-header animate-up">
+                <h2>Our Infrastructure</h2>
+                <p>Advanced infrastructure that improves learning experiences across academics, sports, and creativity.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 animate-up delay-1">
+                    <div class="infra-card">
+                        <div class="infra-img-wrapper">
+                            <img src="images/Elite_Block_Building.png" alt="Campus Building">
+                        </div>
+                        <h5 class="infra-title text-infra-pink">Campus Built For Future</h5>
+                        <p class="infra-text">
+                            Our school building offers a bright, spacious, and safe environment where students feel inspired to learn every day.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 animate-up delay-2">
+                    <div class="infra-card">
+                        <div class="infra-img-wrapper">
+                            <img src="images/satyam-3.jpeg" alt="Technology in Class">
+                        </div>
+                        <h5 class="infra-title text-infra-green">Empowering Students Through Technology</h5>
+                        <p class="infra-text">
+                            Our computer-integrated classrooms help students to nurtures curiosity, creativity, and a strong foundation in technology.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 animate-up delay-3">
+                    <div class="infra-card">
+                        <div class="infra-img-wrapper">
+                            <img src="images/Campus.png" alt="Aerial View">
+                        </div>
+                        <h5 class="infra-title text-infra-purple">Environment That Inspires Learning</h5>
+                        <p class="infra-text">
+                            Our spacious and well planned infrastruture provides students offers students a calm, distraction free atmosphere.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
         <div class="blob-shape" style="top: 10%; left: -50px; width: 200px; height: 200px; opacity: 0.1;"></div>
         <div class="blob-shape" style="bottom: 10%; right: -50px; width: 300px; height: 300px; background: rgba(0, 156, 235, 0.1); opacity: 0.1; animation-delay: 2s;"></div>
         
         <div class="container">
-            <div class="complex-header-title animate-up">
-                <div class="complex-header-dot"></div>
-                Educational complex
-                <span class="header-bubbles" aria-hidden="true">
-                  <span class="bubble b1"></span>
-                  <span class="bubble b2"></span>
-                  <span class="bubble b3"></span>
-                </span>
+            <div class="cta-header-title animate-up">
+                You are just a click away <br> from your child's success
             </div>
+            <div class="cta-decor-line"></div>
+            
+            <p class="animate-up delay-1" style="font-size: 1.2rem;">
+                <i class="fa-solid fa-check me-2"></i> Your child’s future begins with one right choice. Make it today.
+            </p>
 
-            <div class="row">
-                <div class="col-lg-6 animate-up delay-1">
-                    <div class="complex-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tiny Tots" class="complex-main-img">
-                        
-                        <div class="green-triangle-outline"></div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 animate-up delay-2">
-                    <div class="complex-content-right">
-                        
-                        <div class="complex-active-title">Tiny Tots Wing</div>
-                        <div class="complex-subtitle">School Projects</div>
-
-                        <div class="complex-list-group">
-                            <div class="complex-list-item">
-                                Tiny Tots (Playgroup)
-                                <div class="list-dot"></div>
-                            </div>
-                            <div class="complex-list-item">
-                                Junior Kg & Senior Kg
-                                <div class="list-dot"></div>
-                            </div>
-                            <div class="complex-list-item">
-                                Smart Kids Activity Club
-                                <div class="list-dot"></div>
-                            </div>
-                            <div class="complex-list-item">
-                                Daycare & Creche Services
-                                <div class="list-dot"></div>
-                            </div>
-                            <div class="complex-list-item">
-                                Primary Foundation Course
-                                <div class="list-dot"></div>
-                            </div>
-                        </div>
-
-                        <div class="btn-all-projects-wrapper">
-                            <a href="#" class="btn-all-projects">ALL PROJECTS</a>
-                            <span class="btn-dash-yellow"></span>
-                        </div>
-
-                        <div class="complex-decor-circle-green"></div>
-
-                    </div>
-                </div>
-            </div>
+            <a href="#" class="cta-btn animate-up delay-2">Know about us</a>
         </div>
     </section>
     
