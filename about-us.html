@@ -150,15 +150,35 @@
         .b-ncc { background: linear-gradient(45deg, #386641, #6a994e); } 
         .b-sport { background: linear-gradient(45deg, #9b2226, #d00000); }
 
-        /* Blog Section */
-        .blog-section { padding: 120px 0; background: #fff; }
-        .blog-card { border: none; background: transparent; transition: 0.3s; }
-        .blog-card:hover { transform: translateY(-5px); }
-        .blog-img { border-radius: 20px; overflow: hidden; height: 220px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .blog-card:hover .blog-img img { transform: scale(1.1) rotate(2deg); }
-        .blog-title { font-weight: 800; font-size: 1.3rem; margin-bottom: 15px; line-height: 1.4; transition: 0.3s; }
-        .blog-card:hover .blog-title { color: var(--primary-blue); }
+        /* --- BLOG SECTION (Updated) --- */
+        .blog-section { padding: 80px 0; background: #fff; }
+        
+        .blog-card {
+            background: #fff; border-radius: 15px; overflow: hidden; height: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.4s;
+            border: 1px solid #eee;
+            position: relative;
+            top: 0;
+        }
+        .blog-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        /* Colorful top borders for cards */
+        .b-card-1 { border-top: 6px solid var(--primary-orange); }
+        .b-card-2 { border-top: 6px solid var(--primary-green); }
+        .b-card-3 { border-top: 6px solid var(--primary-purple); }
+
+        .blog-img { width: 100%; height: 220px; object-fit: cover; transition: 0.5s; }
+        .blog-card:hover .blog-img { transform: scale(1.1); }
+        
+        .blog-body { padding: 30px 25px; }
+        .blog-title { font-weight: 800; font-size: 1.25rem; margin-bottom: 15px; line-height: 1.4; }
+        
+        .read-more-link { 
+            font-weight: 800; text-decoration: none; transition: 0.3s; 
+            display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; font-size: 0.85rem;
+        }
+        .read-more-link:hover { gap: 15px; letter-spacing: 1px; }
+
 
         /* Newsletter */
         .newsletter-section { 
@@ -213,7 +233,7 @@
                 <ul class="navbar-nav align-items-center text-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="about-us.html" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         About us
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
@@ -237,7 +257,6 @@
                             <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
                     <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
                     <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
@@ -538,42 +557,65 @@
     </section>
 
     <section class="blog-section">
-        <div class="container">
-            <h2 class="text-center mb-5" style="font-weight:900; font-size: 2.5rem;" data-aos="fade-down">Academics & Insights</h2>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="blog-card">
-                        <div class="blog-img">
-                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Exams">
-                        </div>
-                        <h4 class="blog-title">Struggling with JEE/NEET Preparation?</h4>
-                        <p class="text-muted">Every year, over 2 million students appear for exams. Learn how our focused approach helps students succeed...</p>
-                        <a href="#" style="text-decoration: none; font-weight: 700; color: var(--primary-blue);">Read More <i class="fa-solid fa-chevron-right font-size: 0.8rem;"></i></a>
-                    </div>
+            <div class="container">
+                <div class="text-center mb-5 animate-up">
+                    <span style="color: var(--primary-purple); font-weight: 700; letter-spacing: 2px;">LATEST UPDATES</span>
+                    <h2 style="font-weight: 900; font-size: 2.5rem;">Insights for Growth</h2>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="blog-card">
-                        <div class="blog-img">
-                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sports">
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4 animate-up delay-1">
+                        <div class="blog-card b-card-1">
+                            <div style="overflow:hidden;">
+                                <a href="blog-1.html">
+                                    <img src="images/satyam-3.jpeg" alt="JEE Prep" class="blog-img">
+                                </a>
+                            </div>
+                            <div class="blog-body">
+                                <h4 class="blog-title">
+                                    <a href="blog-1.html" style="text-decoration: none; color: inherit;">
+                                        Struggling with JEE/NEET Preparation? Here's Why Most Students Fall Behind
+                                    </a>
+                                </h4>
+                                <p class="small text-muted mb-4">Every year, over 2 million students appear for JEE and NEET exams, but less than 2% make it to their dream colleges.</p>
+                            </div>
                         </div>
-                        <h4 class="blog-title">The Life Changing Benefits of Sports</h4>
-                        <p class="text-muted">More than just play. Discover how our sports programs build essential life skills, resilience, and teamwork.</p>
-                        <a href="#" style="text-decoration: none; font-weight: 700; color: var(--primary-blue);">Read More <i class="fa-solid fa-chevron-right font-size: 0.8rem;"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="blog-card">
-                        <div class="blog-img">
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Classroom">
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-2">
+                        <div class="blog-card b-card-2">
+                            <div style="overflow:hidden;">
+                                <a href="blog-2.html">
+                                <img src="images/satyam-1.jpeg" alt="Sports" class="blog-img">
+                                </a>
+                            </div>
+                            <div class="blog-body">
+                                <h4 class="blog-title">
+                                    <a href="blog-2.html" style="text-decoration: none; color: inherit;">
+                                    More Than Just Play and the Life Changing Benefits of Sports
+                                </a></h4>
+                                <p class="small text-muted mb-4">Many parents today face the challenge of watching their children excel academically yet struggle with essential life skills.</p>
+                            </div>
                         </div>
-                        <h4 class="blog-title">How We Build Tomorrow's Leaders</h4>
-                        <p class="text-muted">As a parent, you see beyond the report card. Our holistic approach nurtures the inner potential of every child.</p>
-                        <a href="#" style="text-decoration: none; font-weight: 700; color: var(--primary-blue);">Read More <i class="fa-solid fa-chevron-right font-size: 0.8rem;"></i></a>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 animate-up delay-3">
+                        <div class="blog-card b-card-3">
+                            <div style="overflow:hidden;">
+                                <a href="blog-3.html">
+                                <img src="images/satyam-4.jpeg" alt="Personality" class="blog-img">
+                                </a>
+                            </div>
+                            <div class="blog-body">
+                                <h4 class="blog-title">
+                                    <a href="blog-3.html" style="text-decoration: none; color: inherit;">How Our School Builds Tomorrow's Leaders: A Guide to Personality Development</a></h4>
+                                <p class="small text-muted mb-4">As a parent, you see beyond the report card. You notice the subtle signs that reveal your child's inner world.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <section class="newsletter-section">
         <div class="container">
