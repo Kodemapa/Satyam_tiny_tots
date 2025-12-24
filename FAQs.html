@@ -1,51 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQs - Satyam International School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
     <style>
-        :root{ 
-            --primary-blue: #009ceb; 
-            --primary-yellow: #ffdd00; 
-            --primary-purple: #8e44ad; 
-            --primary-orange: #ff6b35; 
-            --primary-green: #2ecc71; 
+        :root {
+            --primary-blue: #009ceb;
+            --primary-yellow: #ffdd00;
+            --primary-purple: #8e44ad;
+            --primary-orange: #ff6b35;
+            --primary-green: #2ecc71;
             --bright-bg: #fffbf0;
-            --footer-bg: #1f1f1f; 
+            --footer-bg: #1f1f1f;
         }
-        
-        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:#333; background-color: #fff; }
-        h1, h2, h3, h4 { font-weight: 800; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            color: #333;
+            background-color: #fff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 800;
+        }
 
         /* --- NAVBAR (Consistent) --- */
-        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
-        .nav-link:hover { color: var(--primary-blue); }
-        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
-        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
-        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
-        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
-        
+        .navbar {
+            padding: 15px 0;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-link {
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            margin: 0 8px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-orange);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            animation: bounceDot 2s infinite;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .dropdown-item {
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--bright-bg);
+            color: var(--primary-purple);
+            transform: translateX(5px);
+        }
+
         /* --- ANIMATIONS --- */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes bounceDot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
-        
-        .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceDot {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* NEW KEYFRAMES FOR ACCORDION */
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-up {
+            animation: fadeUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
 
         /* Floating Background Shapes */
-        .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out alternate; pointer-events: none; }
-        .shape-circle { width: 60px; height: 60px; border-radius: 50%; border: 5px solid var(--primary-purple); top: 20%; left: 10%; }
-        .shape-square { width: 40px; height: 40px; background: var(--primary-yellow); bottom: 30%; right: 15%; transform: rotate(15deg); }
-        .shape-tri { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 40px solid var(--primary-green); top: 15%; right: 40%; }
+        .float-shape {
+            position: absolute;
+            opacity: 0.6;
+            z-index: 0;
+            animation: float 6s infinite ease-in-out alternate;
+            pointer-events: none;
+        }
+
+        .shape-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-purple);
+            top: 20%;
+            left: 10%;
+        }
+
+        .shape-square {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-yellow);
+            bottom: 30%;
+            right: 15%;
+            transform: rotate(15deg);
+        }
+
+        .shape-tri {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 40px solid var(--primary-green);
+            top: 15%;
+            right: 40%;
+        }
 
         /* --- HEADER SECTION --- */
         .faq-header {
@@ -56,63 +197,356 @@
             text-align: center;
         }
 
-        /* --- FAQ CATEGORY FILTERS --- */
-        .faq-filters .btn-filter {
-            font-weight: 700; padding: 12px 30px; border-radius: 50px; margin: 0 5px 10px;
-            border: 2px solid #eee; transition: all 0.3s ease; background: #fff; color: #555;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        /* --- FAQ FILTER BUTTONS --- */
+        .faq-filters .category-btn {
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 50px;
+            margin: 0 5px 10px;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: #555;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
         }
-        .btn-filter:hover, .btn-filter.active { color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: transparent; }
-        
-        .filter-admissions.active, .filter-admissions:hover { background: var(--primary-blue); }
-        .filter-academics.active, .filter-academics:hover { background: var(--primary-purple); }
-        .filter-campus.active, .filter-campus:hover { background: var(--primary-orange); }
-        .filter-transport.active, .filter-transport:hover { background: var(--primary-green); }
 
-        /* --- COLORFUL ACCORDION STYLES --- */
-        .accordion-item { border: none; margin-bottom: 15px; border-radius: 15px !important; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
-        .accordion-item:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-        
-        .accordion-button { font-weight: 700; font-size: 1.1rem; padding: 20px 25px; color: #444; background: #fff; transition: 0.3s; }
-        .accordion-button:focus { box-shadow: none; }
-        .accordion-button::after { transition: 0.3s; background-size: 1.5rem; }
-        .accordion-body { padding: 25px; background: #fff; color: #666; line-height: 1.7; }
+        .category-btn:hover,
+        .category-btn.active {
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: transparent;
+        }
 
-        /* Colorful Active States for Accordion Items */
-        /* Admissions - Blue */
-        .faq-admission .accordion-button:not(.collapsed) { background: var(--primary-blue); color: #fff; box-shadow: 0 5px 15px rgba(0, 156, 235, 0.3); }
-        .faq-admission .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
-        
-        /* Academics - Purple */
-        .faq-academic .accordion-button:not(.collapsed) { background: var(--primary-purple); color: #fff; box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3); }
-        .faq-academic .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
+        /* Category specific active colors */
+        .category-btn[data-category="academic"].active,
+        .category-btn[data-category="academic"]:hover {
+            background: var(--primary-blue);
+        }
 
-        /* Campus - Orange */
-        .faq-campus .accordion-button:not(.collapsed) { background: var(--primary-orange); color: #fff; box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3); }
-        .faq-campus .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
+        .category-btn[data-category="development"].active,
+        .category-btn[data-category="development"]:hover {
+            background: var(--primary-purple);
+        }
 
-        /* Transport - Green */
-        .faq-transport .accordion-button:not(.collapsed) { background: var(--primary-green); color: #fff; box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
-        .faq-transport .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); transform: rotate(180deg); }
+        .category-btn[data-category="admission"].active,
+        .category-btn[data-category="admission"]:hover {
+            background: var(--primary-orange);
+        }
 
-/* Footer Structure */
-        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
-        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
-        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
-        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
-        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
-        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
-        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
-        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
-        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
-        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
+        .category-btn[data-category="cocurricular"].active,
+        .category-btn[data-category="cocurricular"]:hover {
+            background: var(--primary-green);
+        }
+
+        .category-btn[data-category="teaching"].active,
+        .category-btn[data-category="teaching"]:hover {
+            background: var(--primary-blue);
+        }
+
+        .category-btn[data-category="safety"].active,
+        .category-btn[data-category="safety"]:hover {
+            background: #e74c3c;
+        }
 
 
+        /* Toggle Button */
+        #toggle-all-btn {
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 50px;
+            margin-left: 15px;
+            border: 2px solid #eee;
+            background: #fff;
+            color: #333;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #toggle-all-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+        }
+
+        /* --- CONTAINER BOX --- */
+        .faq-grid-box {
+            background: #fff;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .faq-grid-box {
+                padding: 25px;
+                border-radius: 20px;
+            }
+        }
+
+        /* --- ACCORDION STYLES --- */
+        .faq-category {
+            display: none;
+        }
+
+        /* GRID LAYOUT IMPLEMENTATION */
+        .faq-category.active {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* Responsive Grid */
+        @media (max-width: 992px) {
+            .faq-category.active {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faq-category.active {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .faq-accordion {
+            background: #fff;
+            border-radius: 20px;
+            margin-bottom: 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+            transition: 0.3s;
+            opacity: 0;
+            height: fit-content;
+        }
+
+        .faq-accordion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Question Header */
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: #fff;
+            border: none;
+            padding: 25px 30px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            min-height: 100px;
+        }
+
+        /* Circle icon wrapper for chevron to match image style option */
+        .chevron-wrapper {
+            background: #f0f4f8;
+            min-width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        /* Content Body */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+            background: #fff;
+            padding: 0 30px;
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Active State */
+        .faq-accordion.active .faq-answer {
+            max-height: 500px;
+            padding: 0 30px 30px;
+            border-top: none;
+        }
+
+        /* Chevron Rotation & Color */
+        .faq-accordion .chevron {
+            transition: transform 0.3s;
+            font-size: 12px;
+            color: var(--primary-blue);
+        }
+
+        .faq-accordion.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        /* NEW COLOR MAPPING */
+        #academic .faq-accordion.active .faq-question,
+        #development .faq-accordion.active .faq-question,
+        #admission .faq-accordion.active .faq-question,
+        #cocurricular .faq-accordion.active .faq-question,
+        #teaching .faq-accordion.active .faq-question,
+        #safety .faq-accordion.active .faq-question {
+            background: #fff;
+            color: #444;
+        }
+
+        #academic .faq-accordion.active .chevron-wrapper {
+            background: var(--primary-blue);
+        }
+
+        #academic .faq-accordion .chevron {
+            color: var(--primary-blue);
+        }
+
+        #development .faq-accordion.active .chevron-wrapper {
+            background: var(--primary-purple);
+        }
+
+        #development .faq-accordion .chevron {
+            color: var(--primary-purple);
+        }
+
+        #admission .faq-accordion.active .chevron-wrapper {
+            background: var(--primary-orange);
+        }
+
+        #admission .faq-accordion .chevron {
+            color: var(--primary-orange);
+        }
+
+        #cocurricular .faq-accordion.active .chevron-wrapper {
+            background: var(--primary-green);
+        }
+
+        #cocurricular .faq-accordion .chevron {
+            color: var(--primary-green);
+        }
+
+        #teaching .faq-accordion.active .chevron-wrapper {
+            background: var(--primary-blue);
+        }
+
+        #teaching .faq-accordion .chevron {
+            color: var(--primary-blue);
+        }
+
+        #safety .faq-accordion.active .chevron-wrapper {
+            background: #e74c3c;
+        }
+
+        #safety .faq-accordion .chevron {
+            color: #e74c3c;
+        }
+
+        /* Footer Structure */
+        footer {
+            background: var(--footer-bg);
+            color: #fff;
+            padding: 70px 0 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-top-strip {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 8px;
+            background: var(--primary-yellow);
+        }
+
+        .footer-decor-strip {
+            position: absolute;
+            top: -20px;
+            right: 15%;
+            width: 15px;
+            height: 100px;
+            background: var(--primary-purple);
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+
+        .footer-triangle-btn {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 40px solid var(--primary-purple);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .footer-triangle-btn:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .footer-triangle-btn i {
+            position: absolute;
+            bottom: -35px;
+            left: -6px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .social-circle {
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            margin-bottom: 10px;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: 0.3s;
+        }
+
+        .social-circle:hover {
+            background: var(--primary-blue);
+            color: #fff;
+            transform: translateY(-3px) rotate(360deg);
+        }
+
+        .footer-link {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+            padding-left: 5px;
+            color: var(--primary-yellow);
+        }
     </style>
 </head>
+
 <body>
 
-   <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
@@ -125,7 +559,8 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">School</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">School</a>
                         <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
                             <li><a class="dropdown-item" href="academics.html">Academics</a></li>
                             <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
@@ -136,7 +571,8 @@
                     </li>
                     <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
                     <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                 </ul>
             </div>
@@ -150,130 +586,476 @@
             <div class="float-shape shape-tri"></div>
 
             <div class="container position-relative z-2 animate-up">
-                <span style="color: var(--primary-blue); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">GOT QUESTIONS?</span>
+                <span
+                    style="color: var(--primary-blue); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">GOT
+                    QUESTIONS?</span>
                 <h1 style="font-size: 3.5rem; margin: 10px 0 20px;">Frequently Asked Questions</h1>
-                <div style="height: 6px; width: 80px; background: var(--primary-yellow); margin: 0 auto 30px; border-radius: 10px;"></div>
-                <p class="lead text-muted mx-auto" style="max-width: 700px;">Find answers to the most common questions about admissions, academics, campus life, and more at Satyam International School.</p>
+                <div
+                    style="height: 6px; width: 80px; background: var(--primary-yellow); margin: 0 auto 30px; border-radius: 10px;">
+                </div>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">Find answers to the most common questions
+                    about admissions, academics, campus life, and more at Satyam International School.</p>
             </div>
         </header>
 
-        <section class="py-5" style="background: #fff;">
+        <section class="py-5" style="background: #f6f9fc;">
             <div class="container">
-                
-                <div class="faq-filters text-center mb-5 animate-up delay-1">
-                    <button class="btn btn-filter filter-admissions active">Admissions</button>
-                    <button class="btn btn-filter filter-academics">Academics</button>
-                    <button class="btn btn-filter filter-campus">Campus Life</button>
-                    <button class="btn btn-filter filter-transport">Transport & Safety</button>
-                </div>
 
-                <div class="row justify-content-center animate-up delay-2">
-                    <div class="col-lg-9">
-                        <div class="accordion" id="faqAccordion">
-                            
-                            <div class="accordion-item faq-admission">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                        <i class="fa-solid fa-file-signature me-3" style="color: var(--primary-blue);"></i> What is the age criteria for admission to Nursery/KG?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        For Nursery, the child should be 3+ years old as of June 1st of the academic year. For LKG, the age criteria is 4+ years. We strictly adhere to the age guidelines set by the educational authorities.
-                                    </div>
-                                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-11 col-xl-10">
+                        <div class="faq-grid-box animate-up delay-1">
+
+                            <!-- 1. FILTERS & TOGGLE BUTTON -->
+                            <div
+                                class="faq-filters text-center mb-5 d-flex justify-content-center flex-wrap align-items-center">
+                                <button class="category-btn active" data-category="academic">Academic
+                                    Curriculum</button>
+                                <button class="category-btn" data-category="development">Development Activities</button>
+                                <button class="category-btn" data-category="admission">Process of Admission</button>
+                                <button class="category-btn" data-category="cocurricular">Co-Curricular
+                                    Activities</button>
+                                <button class="category-btn" data-category="teaching">Methods of Teaching</button>
+                                <button class="category-btn" data-category="safety">Safety & Care</button>
+
+                                <button id="toggle-all-btn">
+                                    <span class="toggle-icon">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" />
+                                        </svg>
+                                    </span>
+                                    <span id="toggle-text">Expand All</span>
+                                </button>
                             </div>
 
-                            <div class="accordion-item faq-admission">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                                       <i class="fa-solid fa-clipboard-list me-3" style="color: var(--primary-blue);"></i> What documents are required during the admission process?
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Essential documents include the child's Birth Certificate, Transfer Certificate (if applicable), previous year's Report Card, passport-size photographs of the child and parents, and address proof. A detailed checklist is provided in the admission kit.
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- 2. CATEGORY GRIDS -->
+                            <div class="faq-grids-container">
 
-                            <div class="accordion-item faq-academic">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                                        <i class="fa-solid fa-book-open-reader me-3" style="color: var(--primary-purple);"></i> Which curriculum does the school follow?
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Satyam International School is affiliated with the Central Board of Secondary Education (CBSE), New Delhi. We follow the NCERT curriculum, enhanced with innovative teaching methodologies focusing on experiential learning.
+                                <!-- 1. ACADEMIC CURRICULUM -->
+                                <div id="academic" class="faq-category active">
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-graduation-cap me-3"
+                                                    style="color: var(--primary-blue);"></i> What curriculum does Tiny
+                                                Toddlers follow?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Tiny Toddlers follows a play-based early learning curriculum that focuses
+                                                on basic literacy, numeracy, and social skills in a fun and engaging
+                                                way.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-book-open me-3"
+                                                    style="color: var(--primary-blue);"></i> What subjects are taught at
+                                                Tiny Toddlers?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Children are introduced to alphabets, numbers, colors, shapes, rhymes,
+                                                storytelling, drawing, and basic environmental awareness.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-shapes me-3"
+                                                    style="color: var(--primary-blue);"></i> How do you make learning
+                                                fun for toddlers?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>We use songs, stories, games, activities, toys, and visual aids so
+                                                children enjoy learning without pressure.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-pencil me-3"
+                                                    style="color: var(--primary-blue);"></i> Do children have
+                                                homework?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>No. We do not give formal homework. Learning happens through classroom
+                                                activities and playful interaction.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-chart-line me-3"
+                                                    style="color: var(--primary-blue);"></i> How do you track my child’s
+                                                progress?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Teachers regularly observe children and share feedback with parents
+                                                through meetings and activity updates.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="accordion-item faq-academic">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                                        <i class="fa-solid fa-users-rectangle me-3" style="color: var(--primary-purple);"></i> What is the teacher-student ratio in classrooms?
-                                    </button>
-                                </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        We maintain an optimal teacher-student ratio of 1:25 for primary classes and 1:30 for senior classes to ensure individual attention and effective learning environments for every student.
+                                <!-- 2. DEVELOPMENT ACTIVITIES -->
+                                <div id="development" class="faq-category">
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-child-reaching me-3"
+                                                    style="color: var(--primary-purple);"></i> What development
+                                                activities are included?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>We focus on motor skills, communication, emotional development,
+                                                creativity, and self-confidence through structured activities.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-users me-3"
+                                                    style="color: var(--primary-purple);"></i> Do you focus on social
+                                                skills?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Children learn sharing, cooperation, kindness, and teamwork through
+                                                group play and guided interaction.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-hands-holding-child me-3"
+                                                    style="color: var(--primary-purple);"></i> How do you help shy
+                                                children?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Our teachers gently encourage participation and create a safe environment
+                                                where children feel comfortable expressing themselves.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-masks-theater me-3"
+                                                    style="color: var(--primary-purple);"></i> Are personality
+                                                development activities included?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Activities like storytelling, role play, show-and-tell, and group
+                                                interaction help build confidence.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-cake-candles me-3"
+                                                    style="color: var(--primary-purple);"></i> Do you conduct special
+                                                celebration days?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. We celebrate festivals, theme days, birthdays, and special events to
+                                                enhance social and cultural awareness.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="accordion-item faq-campus">
-                                <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
-                                        <i class="fa-solid fa-futbol me-3" style="color: var(--primary-orange);"></i> What sports and co-curricular activities are offered?
-                                    </button>
-                                </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        We offer a wide range of activities including basketball, football, skating, cricket, athletics, music, dance, art & craft, robotics, and debate clubs. Activities are integrated into the regular timetable.
+                                <!-- 3. PROCESS OF ADMISSION -->
+                                <div id="admission" class="faq-category">
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-file-signature me-3"
+                                                    style="color: var(--primary-orange);"></i> What is the admission
+                                                process at Tiny Toddlers?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Parents can fill out an admission form, submit required documents, and
+                                                attend a brief interaction session.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-calendar-check me-3"
+                                                    style="color: var(--primary-orange);"></i> What age group is
+                                                eligible for admission?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Admissions are open for children aged 2 to 5 years, depending on the
+                                                program (Playgroup, Nursery, LKG, UKG).</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-id-card me-3"
+                                                    style="color: var(--primary-orange);"></i> What documents are
+                                                required for admission?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Birth certificate, passport-size photographs, parent ID proof, and
+                                                medical details are required.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-calendar-days me-3"
+                                                    style="color: var(--primary-orange);"></i> When does the academic
+                                                year start?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>The academic year usually starts in June.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-school me-3"
+                                                    style="color: var(--primary-orange);"></i> Can parents visit the
+                                                school before admission?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Parents are welcome to visit the campus and meet teachers by prior
+                                                appointment.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="accordion-item faq-transport">
-                                <h2 class="accordion-header" id="headingSix">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
-                                        <i class="fa-solid fa-bus-simple me-3" style="color: var(--primary-green);"></i> Is school transport available covering all areas of Ballari?
-                                    </button>
-                                </h2>
-                                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Yes, we have a fleet of GPS-enabled buses covering major routes across Ballari city and surrounding outskirts. Every bus has a trained driver and a lady attendant to ensure safety.
+                                <!-- 4. CO-CURRICULAR ACTIVITIES -->
+                                <div id="cocurricular" class="faq-category">
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-music me-3"
+                                                    style="color: var(--primary-green);"></i> What co-curricular
+                                                activities are offered?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Activities include art & craft, music, dance, storytelling, rhymes, and
+                                                free play sessions.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-person-running me-3"
+                                                    style="color: var(--primary-green);"></i> Do children participate in
+                                                outdoor activities?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Outdoor play is an important part of our daily routine to promote
+                                                physical fitness.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-icons me-3"
+                                                    style="color: var(--primary-green);"></i> Are cultural activities
+                                                included?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Children participate in festivals, annual day celebrations, and
+                                                cultural programs.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-palette me-3"
+                                                    style="color: var(--primary-green);"></i> Do you conduct drawing and
+                                                coloring activities?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. These activities help improve creativity and fine motor skills.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-people-group me-3"
+                                                    style="color: var(--primary-green);"></i> Are group activities
+                                                encouraged?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Group activities help children learn teamwork and social
+                                                interaction.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                             <div class="accordion-item faq-transport">
-                                <h2 class="accordion-header" id="headingSeven">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven">
-                                        <i class="fa-solid fa-shield-heart me-3" style="color: var(--primary-green);"></i> What safety measures are implemented on campus?
-                                    </button>
-                                </h2>
-                                <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        The entire campus is under 24/7 CCTV surveillance. We have trained security personnel at all gates, background-verified staff, fire safety compliance, and a dedicated infirmary with a qualified nurse during school hours.
-                                    </div>
-                                </div>
-                            </div>
 
+                                <!-- 5. METHODS OF TEACHING -->
+                                <div id="teaching" class="faq-category">
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-chalkboard-user me-3"
+                                                    style="color: var(--primary-blue);"></i> What teaching methods are
+                                                used at Tiny Toddlers?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>We use play-based learning, storytelling, hands-on activities, and visual
+                                                teaching aids.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-user-graduate me-3"
+                                                    style="color: var(--primary-blue);"></i> Are teachers trained to
+                                                handle toddlers?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. All teachers are trained in early childhood education and child
+                                                psychology.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-hand-holding-heart me-3"
+                                                    style="color: var(--primary-blue);"></i> How do teachers manage
+                                                classroom discipline?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>We use positive reinforcement and gentle guidance instead of strict
+                                                discipline.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-eye me-3"
+                                                    style="color: var(--primary-blue);"></i> Is individual attention
+                                                given to each child?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Our low student-teacher ratio ensures personal attention for every
+                                                child.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-comments me-3"
+                                                    style="color: var(--primary-blue);"></i> How do teachers communicate
+                                                with parents?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Parents receive regular updates through meetings, messages, and activity
+                                                reports.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6. SAFETY & CARE -->
+                                <div id="safety" class="faq-category">
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-shield-halved me-3" style="color: #e74c3c;"></i>
+                                                Is the school environment safe for toddlers?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. The campus is child-safe with CCTV surveillance and secure entry
+                                                systems.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-pump-medical me-3" style="color: #e74c3c;"></i>
+                                                How do you ensure hygiene and cleanliness?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Classrooms, washrooms, toys, and play areas are cleaned and sanitized
+                                                regularly.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-suitcase-medical me-3"
+                                                    style="color: #e74c3c;"></i> Are teachers trained in first
+                                                aid?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Staff members are trained in basic first aid and emergency response.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-user-nurse me-3" style="color: #e74c3c;"></i>
+                                                What if my child feels unwell at school?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Parents are immediately informed, and proper care is taken until they
+                                                arrive.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <button class="faq-question">
+                                            <span><i class="fa-solid fa-user-shield me-3" style="color: #e74c3c;"></i>
+                                                Is supervision provided at all times?</span>
+                                            <span class="chevron-wrapper"><i
+                                                    class="fa-solid fa-chevron-down chevron"></i></span>
+                                        </button>
+                                        <div class="faq-answer">
+                                            <p>Yes. Children are supervised throughout the school hours.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="text-center mt-5 animate-up delay-3">
-                    <h4 style="font-weight: 800;">Still have questions?</h4>
-                    <p class="text-muted mb-4">Can't find the answer you're looking for? Please chat to our friendly team.</p>
-                    <a href="contact-us.html" class="btn btn-primary rounded-pill px-5 py-3 fw-bold" style="background: var(--primary-blue); border:none; box-shadow: 0 10px 20px rgba(0, 156, 235, 0.3);">
-                        <i class="fa-solid fa-paper-plane me-2"></i> Get in Touch
-                    </a>
-                </div>
+                    <div class="text-center mt-5 animate-up delay-3">
+                        <h4 style="font-weight: 800;">Still have questions?</h4>
+                        <p class="text-muted mb-4">Can't find the answer you're looking for? Please chat to our
+                            friendly
+                            team.</p>
+                        <a href="contact-us.html" class="btn btn-primary rounded-pill px-5 py-3 fw-bold"
+                            style="background: var(--primary-blue); border:none; box-shadow: 0 10px 20px rgba(0, 156, 235, 0.3);">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Get in Touch
+                        </a>
+                    </div>
 
+                </div>
+            </div>
             </div>
         </section>
 
@@ -289,7 +1071,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="row text-center text-md-start">
-                          <div class="col-6">
+                        <div class="col-6">
                             <a href="index.html" class="footer-link">Home</a>
                             <a href="about-us.html" class="footer-link">About-us</a>
                             <a href="academics.html" class="footer-link">Academics</a>
@@ -312,39 +1094,147 @@
                             <p class="mb-1 text-white-50">+91 96203 81111</p>
                             <p class="mb-3 text-white-50">info@satyam.com</p>
                             <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
-                            
-                        <div class="d-flex justify-content-end">
-                            <ul class="large-icon dark social-icons">
-                                <li class="social-circle">
-                                    <a class="facebook" href="#" onclick="location.reload(); return false;" aria-label="Facebook">
-                                        <i class="fa-brands fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li class="social-circle">
-                                    <a class="instagram" href="#" onclick="location.reload(); return false;" aria-label="Instagram">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
+
+                            <div class="d-flex justify-content-end">
+                                <ul class="large-icon dark social-icons">
+                                    <li class="social-circle">
+                                        <a class="facebook" href="#" onclick="location.reload(); return false;"
+                                            aria-label="Facebook">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li class="social-circle">
+                                        <a class="instagram" href="#" onclick="location.reload(); return false;"
+                                            aria-label="Instagram">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="footer-triangle-btn"><i class="fa-solid fa-arrow-down"></i></div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
-        const filterBtns = document.querySelectorAll('.btn-filter');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                 // Note: To actually filter the accordion items dynamically, you would add JS here to hide/show elements based on their class (e.g., show .faq-admission, hide others).
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // 1. SELECT DOM ELEMENTS
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const faqCategories = document.querySelectorAll('.faq-category');
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const toggleBtn = document.getElementById('toggle-all-btn');
+            const toggleText = document.getElementById('toggle-text');
+            const toggleIcon = document.querySelector('.toggle-icon');
+
+            // Helper for state
+            let isExpanded = false;
+
+            function updateToggleState(expanded) {
+                isExpanded = expanded;
+                if (isExpanded) {
+                    toggleText.textContent = "Collapse All";
+                    toggleIcon.innerHTML = '<svg width="12" height="2" viewBox="0 0 12 2" fill="none"><path d="M1 1H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+                    toggleBtn.style.background = "#eff6ff";
+                } else {
+                    toggleText.textContent = "Expand All";
+                    toggleIcon.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+                    toggleBtn.style.background = "white";
+                }
+            }
+
+            // ANIMATION HELPER (Staggered Entrance)
+            function triggerEntryAnimation(categoryElement) {
+                const cards = categoryElement.querySelectorAll('.faq-accordion');
+                cards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+
+                    // Reset animation
+                    card.style.animation = 'none';
+                    card.offsetHeight; // trigger reflow
+
+                    // Staggered delay
+                    setTimeout(() => {
+                        card.style.animation = `slideUpFade 0.5s ease forwards ${index * 0.1}s`;
+                    }, 50);
+                });
+            }
+
+            // 2. FILTER FUNCTIONALITY
+            categoryButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update Active Button
+                    categoryButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // Show/Hide Categories
+                    const categoryId = btn.getAttribute('data-category');
+
+                    faqCategories.forEach(cat => {
+                        cat.classList.remove('active');
+                        if (cat.id === categoryId) {
+                            cat.classList.add('active');
+                            triggerEntryAnimation(cat); // Trigger animation on switch
+                        }
+                    });
+
+                    // Reset Toggle Button
+                    updateToggleState(false);
+                    // Collapse all items in the new category
+                    document.querySelectorAll('.faq-accordion.active').forEach(acc => acc.classList.remove('active'));
+                });
             });
+
+            // 3. ACCORDION FUNCTIONALITY (Individual)
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const accordion = question.parentElement;
+                    const isActive = accordion.classList.contains('active');
+
+                    // If you want "One at a time" behavior, uncomment below:
+                    // if (!isActive) {
+                    //    const currentCategory = accordion.parentElement;
+                    //    currentCategory.querySelectorAll('.faq-accordion').forEach(a => a.classList.remove('active'));
+                    // }
+
+                    // Toggle Current
+                    accordion.classList.toggle('active');
+
+                    // Update Toggle Button State (Optional: logic could be complex to verify if ALL are open)
+                });
+            });
+
+            // 4. "EXPAND ALL" FUNCTIONALITY
+            toggleBtn.addEventListener('click', () => {
+                const activeCategory = document.querySelector('.faq-category.active');
+                if (!activeCategory) return;
+
+                const accordions = activeCategory.querySelectorAll('.faq-accordion');
+
+                if (isExpanded) {
+                    // Collapse All
+                    accordions.forEach(acc => acc.classList.remove('active'));
+                    updateToggleState(false);
+                } else {
+                    // Expand All
+                    accordions.forEach(acc => acc.classList.add('active'));
+                    updateToggleState(true);
+                }
+            });
+
+            // Initial Animation Trigger for default active category
+            setTimeout(() => {
+                const activeCat = document.querySelector('.faq-category.active');
+                if (activeCat) triggerEntryAnimation(activeCat);
+            }, 300);
+
         });
     </script>
 </body>
+
 </html>
