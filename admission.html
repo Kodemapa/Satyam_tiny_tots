@@ -134,6 +134,14 @@
             font-size: 1.1rem; font-weight: 700; color: var(--primary-purple); margin-top: 10px; margin-bottom: 20px;
             padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; display: flex; align-items: center; gap: 10px;
         }
+
+        /* Make the dropdown menu display on hover */
+@media (min-width: 992px) { /* Applies only to desktop/large screens */
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; 
+    }
+}
         
         /* Floating Labels & Inputs */
         .form-floating > .form-control, .form-floating > .form-select { 
@@ -193,21 +201,37 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav align-items-center text-center">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown">School</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="about-us.html">About the school</a></li>
-                            <li><a class="dropdown-item" href="academics.html">Academics</a></li>
-                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.html">About us</a></li>
-                    <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
-                    <li class="nav-item"><a class="nav-link active" href="admission.html">Admissions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                </ul>
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        About us
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                        <li><a class="dropdown-item" href="about-us.html#intro-section">About Us</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#founder-section">Vision & Mission</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#stats-section">Key Achievements</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#vm-section">Founder's Message</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#features-section">Our Approach</a></li>
+                        <li><a class="dropdown-item" href="about-us.htmlleadership-section">Facilities</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#campus-section">Chairperson's Note</a></li>
+                        <li><a class="dropdown-item" href="about-us.htmlblog-section">Director's Word</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Academics</a>
+                    <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                        <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                        <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
+                        <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
+                        <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                        <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item d-none d-lg-block"><span class="nav-dot"></span></li>
+                <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+            </ul>
             </div>
         </div>
     </nav>
