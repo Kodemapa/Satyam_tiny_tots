@@ -5,6 +5,17 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+:root {
+  --primary-blue: #009ceb;
+  --primary-yellow: #fdd800;
+  --primary-purple: #7d6caa;
+  --primary-orange: #f05a28;
+  --primary-green: #8cc63f;
+  --text-dark: #212529;
+  --footer-bg: #1f1f1f;
+  --hero-purple-deco: #b2a4d4;
+}
+
 /* Global defaults to keep typography consistent with contact-us page */
 body {
   font-family: 'Montserrat', sans-serif;
@@ -13,20 +24,197 @@ body {
   line-height: 1.5;
 }
 
+/* Privacy page full-screen background and layout */
+.privacy-page{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #f6f8fb 0%, #ffffff 100%);
+}
+.privacy-page{ position: relative; }
+.privacy-page main{
+  flex: 1; /* let main expand to fill available space so footer sits at bottom */
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* Pastel decorative variables (used on contact page) */
+:root {
+  --pastel-mint: #d7f6ea;
+  --pastel-blue: #d6e9ff;
+  --pastel-turq: #d2fbf4;
+  --pastel-lavender: #efe6ff;
+  --pastel-peach: #fff0e6;
+}
+
+/* Content card so decorations sit behind the text */
+.content-card{
+  position: relative;
+  z-index: 5;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 34px 28px;
+  box-shadow: 0 18px 40px rgba(12,20,40,0.06);
+  border: 1px solid rgba(10,20,40,0.04);
+}
+
+/* Floating shapes and blobs similar to contact page */
+.float-shape { position: absolute; opacity: 0.35; z-index: 0; animation: float 6s infinite ease-in-out; pointer-events: none; }
+.shape-circle { width: 88px; height: 88px; background: var(--pastel-mint); border-radius: 50%; top: 8%; left: 6%; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
+.shape-square { width: 46px; height: 46px; background: var(--pastel-peach); top: 78%; right: 6%; border-radius: 12px; animation-delay: 1s; box-shadow: 0 8px 18px rgba(0,0,0,0.04); }
+
+.decor-large-yellow { position: absolute; width: 300px; height: 300px; left: -80px; bottom: -60px; background: var(--pastel-peach); border-radius: 50%; z-index: 0; box-shadow: 0 14px 36px rgba(0,0,0,0.04); pointer-events: none; }
+.decor-small-blue { position: absolute; width: 140px; height: 140px; right: -30px; top: -40px; background: var(--pastel-blue); border-radius: 50%; z-index: 0; box-shadow: 0 10px 28px rgba(0,0,0,0.03); pointer-events: none; }
+.decor-beige-blob { position: absolute; width: 260px; height: 200px; left: 10%; top: 40px; background: #f7ecd6; border-radius: 48% 52% 55% 45% / 48% 46% 54% 52%; z-index: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.03); pointer-events: none; }
+.decor-dot-cluster { position: absolute; width: 8px; height: 8px; background: #ffd963; border-radius: 50%; left: 70px; top: 40px; box-shadow: 18px 8px 0 0 #ffd963, 36px 16px 0 0 #ffd963; opacity: 0.9; z-index: 0; pointer-events: none; }
+.decor-large-turq { position: absolute; width: 220px; height: 220px; left: 18%; top: -80px; background: var(--pastel-turq); border-radius: 50%; z-index: 0; filter: blur(0.6px); box-shadow: 0 12px 28px rgba(0,0,0,0.03); pointer-events: none; opacity: 0.95; }
+.decor-top-right-semi { position: absolute; width: 220px; height: 110px; right: -40px; top: -30px; background: var(--pastel-lavender); border-radius: 110px 110px 0 0; z-index: 0; opacity: 0.9; pointer-events: none; box-shadow: 0 10px 24px rgba(0,0,0,0.03); }
+.decor-lavender-cluster { position: absolute; width: 10px; height: 10px; background: var(--pastel-lavender); left: 36%; top: 20px; border-radius: 50%; box-shadow: 18px 6px 0 0 var(--pastel-lavender), 36px 12px 0 0 var(--pastel-lavender), 54px 18px 0 0 var(--pastel-lavender); z-index: 0; opacity: 0.95; pointer-events: none; }
+.decor-pill { position: absolute; width: 160px; height: 48px; right: 6%; bottom: 30%; background: var(--pastel-peach); border-radius: 28px; z-index: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.03); pointer-events: none; opacity: 0.95; }
+
+/* simple hexagon shapes (reference image look) */
+.hexagon { width: 120px; height: 104px; background: var(--pastel-blue); clip-path: polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0% 50%); position: absolute; z-index: 0; box-shadow: 0 12px 30px rgba(0,0,0,0.04); pointer-events: none; opacity: 0.95; }
+.hex-1 { left: 8%; top: 12%; transform: rotate(0deg); }
+.hex-2 { left: 22%; top: 30%; background: var(--pastel-peach); transform: rotate(8deg); }
+.hex-3 { right: 10%; top: 18%; background: var(--pastel-lavender); transform: rotate(-6deg); }
+
+/* Page decorations container covers full viewport */
+.page-decorations{ position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.page-decorations .hexagon{ opacity: 0.9; }
+.page-decorations .hex-1{ left: 6%; top: 6%; }
+.page-decorations .hex-2{ left: 18%; top: 28%; }
+.page-decorations .hex-3{ right: 8%; top: 12%; }
+
+/* Contacts: organic background + floating bubbles */
+.contacts-section::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 8% 20%, rgba(183,235,245,0.45) 0%, rgba(183,235,245,0.45) 12%, transparent 28%),
+    radial-gradient(circle at 92% 12%, rgba(230,210,255,0.35) 0%, rgba(230,210,255,0.35) 14%, transparent 34%),
+    radial-gradient(circle at 20% 78%, rgba(255,240,225,0.30) 0%, rgba(255,240,225,0.30) 18%, transparent 42%),
+    radial-gradient(circle at 72% 70%, rgba(215,245,234,0.28) 0%, rgba(215,245,234,0.28) 20%, transparent 48%);
+  background-repeat: no-repeat;
+}
+
+.floating-bubbles { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.floating-bubbles .bubble { position: absolute; border-radius: 50%; filter: blur(0.6px); opacity: 0.96; box-shadow: 0 10px 30px rgba(15,20,30,0.04); transform: translate3d(0,0,0); }
+.floating-bubbles .b1{ width:120px;height:120px; left:6%; top:8%; background:#d6f0ff; animation: floatSmall 9s ease-in-out infinite; }
+.floating-bubbles .b2{ width:86px;height:86px; left:22%; top:6%; background:#fff0e6; animation: floatSmall 7.5s ease-in-out infinite 0.4s; }
+.floating-bubbles .b3{ width:54px;height:54px; left:34%; top:26%; background:#ffd6e0; animation: floatSmall 6.2s ease-in-out infinite 0.8s; }
+.floating-bubbles .b4{ width:140px;height:140px; right:10%; top:10%; background:#d7f6ea; animation: floatSmall 10s ease-in-out infinite 0.2s; }
+.floating-bubbles .b5{ width:48px;height:48px; right:18%; top:28%; background:#efe6ff; animation: floatSmall 6.8s ease-in-out infinite 1s; }
+.floating-bubbles .b6{ width:36px;height:36px; left:12%; bottom:18%; background:#ffd963; animation: floatSmall 5.4s ease-in-out infinite 0.6s; }
+.floating-bubbles .b7{ width:68px;height:68px; left:42%; bottom:12%; background:#ffb3c7; animation: floatSmall 8.6s ease-in-out infinite 0.4s; }
+.floating-bubbles .b8{ width:110px;height:110px; right:6%; bottom:8%; background:#a7ddff; animation: floatSmall 11s ease-in-out infinite 0.2s; opacity:0.94; }
+.floating-bubbles .b9{ width:26px;height:26px; left:62%; top:16%; background:#fbe6d6; animation: floatSmall 6.1s ease-in-out infinite 0.9s; }
+.floating-bubbles .b10{ width:40px;height:40px; left:78%; top:64%; background:#d6e9ff; animation: floatSmall 7.2s ease-in-out infinite 0.5s; }
+
+@keyframes floatSmall{
+  0%{ transform: translateY(0) translateX(0) scale(1); }
+  50%{ transform: translateY(-28px) translateX(6px) scale(1.02); }
+  100%{ transform: translateY(10px) translateX(-6px) scale(0.98); }
+}
+
+@media (max-width: 991px){
+  .contacts-section::before, .floating-bubbles { display: none !important; }
+}
+
+/* Floating balls (colorful circles) */
+.floating-balls { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.floating-ball {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.95;
+  filter: blur(0.4px);
+  box-shadow: 0 10px 30px rgba(15,20,30,0.06);
+  animation: floatBall 6s ease-in-out infinite alternate;
+}
+
+/* sizes, colors and positions */
+.floating-ball.b1{ width:72px; height:72px; left:8%; top:12%; background: #ffd6e0; animation-duration:7s; }
+.floating-ball.b2{ width:54px; height:54px; left:20%; top:6%; background: #d6e9ff; animation-duration:6.2s; animation-delay:0.4s; }
+.floating-ball.b3{ width:40px; height:40px; left:34%; top:22%; background:#fff0e6; animation-duration:5.6s; animation-delay:0.8s; }
+.floating-ball.b4{ width:96px; height:96px; right:12%; top:8%; background:#d7f6ea; animation-duration:8s; animation-delay:0.2s; opacity:0.9; }
+.floating-ball.b5{ width:48px; height:48px; right:20%; top:26%; background:#efe6ff; animation-duration:6.6s; animation-delay:1s; }
+.floating-ball.b6{ width:30px; height:30px; left:12%; bottom:20%; background:#ffd963; animation-duration:5.2s; animation-delay:0.6s; opacity:0.95; }
+.floating-ball.b7{ width:62px; height:62px; left:42%; bottom:12%; background:#ffb3c7; animation-duration:7.2s; animation-delay:0.4s; }
+.floating-ball.b8{ width:110px; height:110px; right:6%; bottom:8%; background:#a7ddff; animation-duration:9s; animation-delay:0.2s; opacity:0.94; }
+
+@keyframes floatBall{
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-28px) translateX(6px) scale(1.02); }
+  100% { transform: translateY(8px) translateX(-6px) scale(0.98); }
+}
+
+/* Card float animation: subtle lift and settle to match floating balls' motion */
+@keyframes floatCard {
+  0% { transform: translateY(0) translateZ(0) scale(1); }
+  50% { transform: translateY(-12px) translateZ(0) scale(1.005); }
+  100% { transform: translateY(0) translateZ(0) scale(1); }
+}
+
+/* Apply to contact cards - gentle, staggered timings */
+.form-card {
+  animation: floatCard 7.2s ease-in-out infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+.map-card {
+  animation: floatCard 8.6s ease-in-out infinite 0.35s;
+  will-change: transform;
+  transform-origin: center;
+}
+
+/* Also add a subtle float to the privacy content card when used on that page */
+.content-card {
+  animation: floatCard 9s ease-in-out infinite 0.2s;
+  will-change: transform;
+}
+
+@media (max-width: 991px){
+  .floating-balls, .floating-ball { display: none !important; }
+}
+
+/* Disable heavier card animations on smaller screens for performance and layout stability */
+@media (max-width: 991px) {
+  .form-card, .map-card, .content-card { animation: none !important; transform: none !important; }
+}
+
+@media (max-width: 991px) {
+  .decor-large-yellow, .decor-small-blue, .decor-beige-blob, .decor-dot-cluster, .decor-large-turq, .decor-top-right-semi, .decor-lavender-cluster, .decor-pill, .hexagon { display: none !important; }
+  .content-card{ padding: 20px; border-radius: 10px; }
+}
+
 .wrap {
-  max-width: 1300px;
-  margin: auto;
-}
+      width: 380px; height: 380px;
+      border: 8px solid var(--primary-purple); /* purple border as requested */
+      overflow: hidden;
+      background: #fff;
+      position: relative;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06); /* soft shadow */
+      transition: transform 0.28s ease, border-color 0.28s ease;
+      border-radius: 20px; /* softer, less-sharp corners */
 
-/* Heading weight normalization */
-h1 { font-weight: 900; line-height: 1.05; }
-h2 { font-weight: 800; }
-h3 { font-weight: 700; }
+    .map-box:hover { transform: translateY(-6px); border-color: var(--primary-purple); }
 
-/* HEADER */
-.header {
-  padding: 25px 40px;
-}
+    /* iframe positioned to fully fill the rounded container so edges respect border-radius */
+    .map-box iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+      border-radius: inherit; /* ensure map corners follow container radius */
+    }
+.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px; background: var(--primary-yellow); transition: 0.3s; }
+.nav-link:hover::after { width: 100%; }
+.nav-dot { width: 20px; height: 20px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 10px; animation: breathe 3s ease-in-out infinite; }
+.navbar .dropdown-menu { min-width: 260px; background: #f5f5f5; border: none; box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding: 18px 12px; border-radius: 12px; }
+.navbar .dropdown-item { color: #222; font-weight: 700; padding: 10px 14px; border-radius: 5px; transition: 0.2s; }
+.navbar .dropdown-item:hover { background: #eaeaea; color: var(--primary-blue); padding-left: 20px; }
 
 .header__row {
   display: flex;
@@ -368,3 +556,48 @@ h3 { font-weight: 700; }
 @media (prefers-reduced-motion:reduce){
   .complex-main-img,.green-triangle-outline,.list-dot,.btn-dash-yellow,.complex-decor-circle-green{ animation:none!important; transition:none!important; }
 }
+
+/* Footer privacy button - consistent across pages */
+.footer-privacy{ display:flex; justify-content:flex-end; align-items:center; margin-top:8px; }
+.privacy-btn{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.06);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight:700;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 20px rgba(12,20,40,0.12);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.privacy-btn:hover{ transform: translateY(-3px); background: rgba(255,255,255,0.09); box-shadow: 0 14px 30px rgba(12,20,40,0.14); }
+@media (max-width: 767px){
+  .footer-privacy{ justify-content:center; }
+  .privacy-btn{ padding:8px 12px; font-size:0.95rem; }
+}
+
+  /* --- Footer styles (copied from index.html to keep footer consistent) --- */
+  footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; }
+  .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; animation: floatY 4s ease-in-out infinite; }
+  .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+  .footer-logo img { max-width: 120px; margin-bottom: 20px; }
+  .footer-col-title { color: #fff; font-weight: 700; margin-bottom: 15px; display: block; text-decoration: none; }
+  .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: opacity 0.3s; }
+  .footer-link:hover { opacity: 0.8; padding-left: 5px; color: var(--primary-yellow); }
+  .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; transition: transform 0.3s, background 0.3s, color 0.3s; }
+  .social-circle:hover { transform: translateY(-5px); background: var(--primary-blue); color: #fff; }
+  .magwai-link { color: var(--primary-blue); text-decoration: none; margin-top: 20px; display: block; }
+  .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
+  .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+  .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+
+  @media (max-width: 991px) {
+    .footer-decor-strip { display: none; }
+    .footer-top-strip { width: 100%; }
+    .d-flex.justify-content-between { flex-direction: column; text-align: center; }
+    .d-flex.flex-column.align-items-end { align-items: center !important; margin-top: 20px; flex-direction: row !important; justify-content: center; gap: 10px; }
+    .large-icon { justify-content: center; }
+    .col-lg-4 .d-flex.justify-content-end { justify-content: center !important; margin-top: 20px; }
+  }
+
