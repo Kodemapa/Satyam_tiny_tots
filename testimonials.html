@@ -20,6 +20,7 @@
             --primary-teal: #00d2d3;
             --primary-pink: #ff9ff3;
             
+            --footer-bg: #1f1f1f; 
             --text-dark: #2f3542; 
             --text-light: #57606f;
         }
@@ -28,197 +29,201 @@
             font-family: 'Montserrat', sans-serif; 
             overflow-x: hidden; 
             color: var(--text-dark); 
-            /* Added a subtle colorful pattern background instead of plain white */
-            background-color: #f8f9fa;
-            background-image: radial-gradient(rgba(0, 156, 235, 0.1) 1px, transparent 1px), radial-gradient(rgba(255, 71, 87, 0.1) 1px, #f8f9fa 1px);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
+            background-color: #fff;
         }
-
-        
-        /* --- NAVBAR (Consistent) --- */
-        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
-        .nav-link:hover { color: var(--primary-blue); }
-        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
-        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
-        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
-        @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
         /* --- Animations --- */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(10deg); } }
-        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes bgShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         .animate-up { animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
 
-        /* --- Page Header --- */
+        /* --- NAVBAR --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: #f8f9fa; color: var(--primary-purple); transform: translateX(5px); }
+        @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
+
+        /* --- PAGE HEADER (Split Layout) --- */
         .page-header { 
-            padding: 120px 0 100px 0; 
-            /* Stronger Animated Gradient */
-            background: linear-gradient(-45deg, #ffeae6, #e6e9ff, #e6fffd, #ffffe6);
-            background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
+            padding: 80px 0; 
+            /* Soft Gradient similar to guides */
+            background: linear-gradient(90deg, #f7e019 0%, #ffbc51 100%);
             position: relative; 
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02) inset;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
         }
 
-        /* Louder floating shapes */
-        .shape { position: absolute; opacity: 0.15; z-index: 0; animation: float 7s infinite ease-in-out; mix-blend-mode: multiply; }
-        .shape-1 { top: 5%; left: 2%; color: var(--primary-red); font-size: 5rem; }
-        .shape-2 { bottom: 15%; right: 5%; color: var(--primary-purple); font-size: 7rem; animation-delay: 1.5s; }
-        .shape-3 { top: 30%; right: 20%; color: var(--primary-orange); font-size: 4rem; animation-delay: 3s; }
-        .shape-4 { bottom: 5%; left: 10%; color: var(--primary-teal); font-size: 6rem; animation-delay: 4.5s; }
+        .header-content-left {
+            padding-right: 30px;
+            z-index: 2;
+            position: relative;
+        }
 
-        .header-title-wrapper { position: relative; z-index: 1; text-align: center; }
+        .header-badge {
+            display: inline-block;
+            background-color: var(--primary-orange);
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(255, 127, 80, 0.3);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
         
         .header-title { 
             font-weight: 900; 
-            font-size: clamp(2.5rem, 6vw, 4rem); 
+            font-size: clamp(2.5rem, 5vw, 3.5rem); 
             line-height: 1.1;
-            margin: 0 0 20px 0; 
-            /* Multi-color gradient text */
-            background: linear-gradient(to right, var(--primary-purple) 20%, var(--primary-red) 50%, var(--primary-orange) 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+            margin-bottom: 25px;
+            color: #222;
         }
 
-        .header-subtitle {
-            font-size: 1.2rem; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
-            display: inline-block; background: linear-gradient(45deg, var(--primary-orange), var(--primary-red));
-            padding: 8px 20px; border-radius: 30px; margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(255, 127, 80, 0.3);
+        .intro-text { 
+            font-size: 1.15rem; 
+            line-height: 1.8; 
+            color: #555; 
+            font-weight: 500; 
+            margin-bottom: 30px;
         }
-        
-        .intro-text { font-size: 1.2rem; line-height: 1.8; color: var(--text-dark); max-width: 850px; text-align: center; position: relative; z-index: 1; font-weight: 500; }
-        /* Highlighting keywords in the intro */
-        .highlight-text { position: relative; z-index: 1; display: inline-block; }
-        .highlight-text::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 100%; height: 8px; z-index: -1; opacity: 0.4; border-radius: 4px; }
-        .hl-purple::after { background: var(--primary-purple); }
-        .hl-orange::after { background: var(--primary-orange); }
-        .hl-blue::after { background: var(--primary-blue); }
 
-        /* --- Testimonial Cards (Major Overhaul) --- */
-        .review-section { padding: 90px 0; position: relative; }
-        
+        /* Header Image with Border & Tilt */
+        .header-img-wrapper {
+            position: relative;
+            z-index: 2;
+            transform: rotate(2deg);
+            transition: transform 0.5s ease;
+        }
+        .header-img-wrapper:hover { transform: rotate(0deg) scale(1.02); }
+
+        .header-main-img {
+            width: 100%;
+            border-radius: 20px;
+            border: 8px solid #ffffff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            object-fit: cover;
+            max-height: 500px;
+        }
+
+        /* --- TESTIMONIALS SECTION (Dark Purple Style) --- */
+        .testimonials-section { 
+            padding: 100px 0; 
+            /* Deep Purple Gradient from Reference Image */
+            background: linear-gradient(135deg, #ac26ff 0%, #bc6fff 100%);
+            position: relative;
+            color: #fff;
+        }
+
+        /* Decorative Elements */
+        .section-decor-title {
+            color: var(--primary-yellow);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .review-card {
             background: #fff;
-            padding: 45px 35px;
-            border-radius: 25px; 
-            /* Thick top colored border */
-            border-top: 8px solid transparent; 
-            /* Neutral base shadow */
-            box-shadow: 0 15px 35px rgba(100,100,111,0.1);
+            padding: 35px 30px;
+            border-radius: 15px; 
             height: 100%;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1;
+            color: #333;
+            /* Side border accent */
+            border-left: 6px solid transparent;
         }
         
-        /* Subtle gradient tint on hover for the whole card background */
-        .review-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0) 60%, currentColor);
-            opacity: 0; transition: opacity 0.4s ease; z-index: -1;
-        }
-        .review-card:hover::before { opacity: 0.08; }
+        .review-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
-        .review-card:hover { transform: translateY(-15px) scale(1.02); }
-
-        /* Gradient Icons */
         .review-icon { 
-            font-size: 4rem; position: absolute; top: 25px; right: 25px; 
-            opacity: 0.2; transition: 0.6s ease;
-            background: linear-gradient(to bottom right, currentColor, #ddd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2rem; 
+            opacity: 0.2; 
+            position: absolute; top: 20px; right: 20px;
         }
-        .review-card:hover .review-icon { transform: rotate(-15deg) scale(1.3); opacity: 0.4; }
 
-        .review-text { font-size: 1.1rem; color: #444; font-weight: 500; font-style: italic; line-height: 1.7; margin-bottom: 30px; position: relative; }
+        .review-text { font-size: 1rem; color: #555; font-style: italic; line-height: 1.6; margin-bottom: 20px; }
         
-        .reviewer-info { display: flex; align-items: center; gap: 15px; border-top: 2px solid #f0f0f0; padding-top: 20px; }
-        .reviewer-avatar { 
-            width: 55px; height: 55px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: 800; font-size: 1.4rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .reviewer-info h5 { font-weight: 800; font-size: 1.1rem; margin: 0; color: #222; }
+        .reviewer-info span { font-size: 0.85rem; color: #777; font-weight: 600; text-transform: uppercase; }
+
+        /* Card Colors */
+        .card-blue { border-left-color: var(--primary-blue); } .card-blue .reviewer-info span { color: var(--primary-blue); }
+        .card-yellow { border-left-color: var(--primary-yellow); } .card-yellow .reviewer-info span { color: #dcb200; }
+        .card-purple { border-left-color: var(--primary-purple); } .card-purple .reviewer-info span { color: var(--primary-purple); }
+        .card-orange { border-left-color: var(--primary-orange); } .card-orange .reviewer-info span { color: var(--primary-orange); }
+        .card-green { border-left-color: var(--primary-green); } .card-green .reviewer-info span { color: var(--primary-green); }
+        .card-teal { border-left-color: var(--primary-teal); } .card-teal .reviewer-info span { color: var(--primary-teal); }
+        .card-pink { border-left-color: var(--primary-pink); } .card-pink .reviewer-info span { color: var(--primary-pink); }
+        .card-red { border-left-color: var(--primary-red); } .card-red .reviewer-info span { color: var(--primary-red); }
+
+
+        /* --- PARTICIPATION SECTION (Blob Layout) --- */
+        .participation-section { padding: 100px 0; background: #fff; position: relative; overflow: hidden; }
+        
+        .blob-badge {
+            background: var(--primary-purple); color: #fff;
+            padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;
+            display: inline-block; margin-bottom: 15px;
         }
-        .reviewer-name { font-weight: 800; font-size: 1.15rem; margin: 0; color: var(--text-dark); }
-        .reviewer-role { font-size: 0.9rem; color: #777; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- Ultra-Colorful Card Variations --- */
-        /* Each style defines the color, the avatar background, and a specific colored glow shadow on hover */
+        .section-heading { font-weight: 900; font-size: 2.5rem; margin-bottom: 20px; color: #222; }
+        
+        .feature-block { margin-bottom: 30px; }
+        .feature-title { font-weight: 800; font-size: 1.3rem; margin-bottom: 10px; color: var(--text-dark); }
+        .text-highlight-link { color: var(--primary-blue); font-weight: 700; text-decoration: none; position: relative; }
+        .text-highlight-link::after { content:''; position: absolute; width: 100%; height: 2px; bottom: 0; left: 0; background: var(--primary-yellow); }
 
-        .style-purple { border-top-color: var(--primary-purple); color: var(--primary-purple); }
-        .style-purple .reviewer-avatar { background: linear-gradient(45deg, var(--primary-purple), #a55eea); }
-        .style-purple:hover { box-shadow: 0 25px 50px rgba(142, 68, 173, 0.3); }
+        /* Organic Blob Images */
+        .blob-img-wrapper { position: relative; transition: 0.3s; }
+        .blob-img-wrapper:hover { transform: scale(1.05); }
         
-        .style-orange { border-top-color: var(--primary-orange); color: var(--primary-orange); }
-        .style-orange .reviewer-avatar { background: linear-gradient(45deg, var(--primary-orange), #ffaf40); }
-        .style-orange:hover { box-shadow: 0 25px 50px rgba(255, 127, 80, 0.3); }
-        
-        .style-red { border-top-color: var(--primary-red); color: var(--primary-red); }
-        .style-red .reviewer-avatar { background: linear-gradient(45deg, var(--primary-red), #ff6b81); }
-        .style-red:hover { box-shadow: 0 25px 50px rgba(255, 71, 87, 0.3); }
-        
-        .style-blue { border-top-color: var(--primary-blue); color: var(--primary-blue); }
-        .style-blue .reviewer-avatar { background: linear-gradient(45deg, var(--primary-blue), #4bcffa); }
-        .style-blue:hover { box-shadow: 0 25px 50px rgba(0, 156, 235, 0.3); }
-        
-        .style-green { border-top-color: var(--primary-green); color: var(--primary-green); }
-        .style-green .reviewer-avatar { background: linear-gradient(45deg, var(--primary-green), #26de81); }
-        .style-green:hover { box-shadow: 0 25px 50px rgba(46, 213, 115, 0.3); }
-        
-        .style-teal { border-top-color: var(--primary-teal); color: var(--primary-teal); }
-        .style-teal .reviewer-avatar { background: linear-gradient(45deg, var(--primary-teal), #01a3a4); }
-        .style-teal:hover { box-shadow: 0 25px 50px rgba(0, 210, 211, 0.3); }
-        
-        .style-pink { border-top-color: var(--primary-pink); color: var(--primary-pink); }
-        .style-pink .reviewer-avatar { background: linear-gradient(45deg, var(--primary-pink), #f368e0); }
-        .style-pink:hover { box-shadow: 0 25px 50px rgba(255, 159, 243, 0.3); }
-        
-        .style-yellow { border-top-color: var(--primary-yellow); color: #e1b12c; }
-        .style-yellow .reviewer-avatar { background: linear-gradient(45deg, var(--primary-yellow), #fbc531); color: #fff;}
-        .style-yellow:hover { box-shadow: 0 25px 50px rgba(255, 202, 0, 0.3); }
-
-
-        /* --- Footer --- */
-        footer{ background: #222f3e; color:#fff; padding:80px 0 40px 0; position: relative; overflow: hidden; }
-        /* Thicker rainbow strip */
-        .footer-top-strip { position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: linear-gradient(to right, var(--primary-red), var(--primary-orange), var(--primary-yellow), var(--primary-green), var(--primary-blue), var(--primary-purple), var(--primary-pink)); }
-        
-        .footer-link { color: #c8d6e5; text-decoration: none; display: block; margin-bottom: 12px; transition: 0.3s; font-weight: 600; }
-        .footer-link:hover { color: var(--primary-yellow); transform: translateX(5px); }
-
-        .social-icons { list-style: none; display: flex; gap: 12px; padding: 0; margin-top: 25px; }
-        .social-circle a { 
-            width: 48px; height: 48px; border-radius: 50%; 
-            background: rgba(255,255,255,0.08); 
-            display: flex; align-items: center; justify-content: center; 
-            color: #fff; font-size: 22px; transition: all 0.4s ease; 
+        .blob-img { 
+            width: 100%; height: 300px; object-fit: cover; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-        /* Colorful social hover */
-        .social-circle a.fb:hover { background: #1877f2; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4); }
-        .social-circle a.insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); }
         
-        @media (max-width: 768px) {
-            .header-title { font-size: 2.2rem; }
-            .shape { display: none; }
-            .review-card { padding: 30px 20px; }
+        .blob-shape-1 { border-radius: 46% 54% 39% 61% / 55% 36% 64% 45%; }
+        .blob-shape-2 { border-radius: 65% 35% 58% 42% / 46% 58% 42% 54%; }
+
+        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; z-index: 10; overflow: hidden; }
+        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
+        .footer-link:hover { opacity: 1; padding-left: 5px; }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
+        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
+        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
+        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
+
+        @media (max-width: 991px) {
+            .page-header { padding: 60px 0; flex-direction: column; text-align: center; }
+            .header-content-left { padding-right: 0; margin-bottom: 40px; }
+            .header-img-wrapper { transform: rotate(0deg); }
         }
 
     </style>
 </head>
 <body>
     
-     <nav class="navbar navbar-expand-lg sticky-top">
+      <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
@@ -235,13 +240,13 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                         <li><a class="dropdown-item" href="about-us.html#intro-section">About Us</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#founder-section">Vision & Mission</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#founder-section">Founder's Message</a></li>
                         <li><a class="dropdown-item" href="about-us.html#stats-section">Key Achievements</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#vm-section">Founder's Message</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#vm-section">Vision & Mission</a></li>
                         <li><a class="dropdown-item" href="about-us.html#features-section">Our Approach</a></li>
-                        <li><a class="dropdown-item" href="about-us.htmlleadership-section">Facilities</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#campus-section">Chairperson's Note</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#blog-section">Director's Word</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#Director-section">Director's Word</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#Chairperson-section">Chairperson's Note </a></li>
+                        <li><a class="dropdown-item" href="about-us.html#campus-section">Facilities</a></li>
                     </ul>
                 </li>
                     <li class="nav-item dropdown">
@@ -265,155 +270,134 @@
     <main>
         
         <section class="page-header">
-            <i class="fa-solid fa-shapes shape shape-1"></i>
-            <i class="fa-regular fa-circle-play shape shape-2"></i>
-            <i class="fa-solid fa-star-of-life shape shape-3"></i>
-            <i class="fa-solid fa-bolt shape shape-4"></i>
-
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto animate-up">
-                        <div class="header-title-wrapper">
-                            <span class="header-subtitle">Tales of Transformation</span>
-                            <h1 class="header-title">More than a school.<br>A Vibrant Community.</h1>
-                        </div>
-
-                        <div class="intro-text mx-auto mt-4">
-                            Parents are the heartbeat of our "teacher-student-parent" triad. We believe that <span class="highlight-text hl-purple">transparent communication</span> and <span class="highlight-text hl-orange">colorful learning environments</span> create the <span class="highlight-text hl-blue">brightest future</span> for our children.
+                <div class="row align-items-center">
+                    
+                    <div class="col-lg-6 header-content-left animate-up">
+                        <span class="header-badge">Tales of Transformation</span>
+                        <h1 class="header-title">Discover what makes Satyam International <br><span style="color: var(--primary-purple);">More Than Just A School</span></h1>
+                        <div style="height: 6px; width: 80px; background: var(--primary-blue); margin-bottom: 25px; border-radius: 4px;"></div>
+                        <div class="intro-text">
+                            Parents are an important part of the "teacher-student-parent" triad, and we pay a lot of attention to the development of the parent community. We believe that transparent communication creates the best environment for our children.
                         </div>
                     </div>
+
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="header-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Satyam Community" class="header-main-img">
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section class="review-section">
+        <section class="testimonials-section">
             <div class="container">
-                <div class="row g-4">
+                <h2 class="section-decor-title animate-up">Voices of Trust</h2>
+                
+                <div class="row g-5">
                     
                     <div class="col-lg-6 animate-up delay-1">
-                        <div class="review-card style-purple">
+                        <div class="review-card card-blue">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "We have seen remarkable growth academically, emotionally, and socially. The teachers pay attention to every child’s needs and ensure they feel supported."
+                                "We have seen remarkable growth in our child academically, emotionally, and socially. The teachers pay attention to every child’s needs and ensure they feel supported."
                             </p>
                             <div class="reviewer-info">
-                                <div class="reviewer-avatar">K</div>
-                                <div>
-                                    <h5 class="reviewer-name">Kishore</h5>
-                                    <span class="reviewer-role">Parent - Grade 4</span>
-                                </div>
+                                <h5>Kishore</h5>
+                                <span>Parent</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 animate-up delay-2">
-                        <div class="review-card style-orange">
+                        <div class="review-card card-yellow">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The teachers are really supportive and approachable. They understand the strengths of each child and help them thrive in those areas."
+                                "The teachers are really supportive and approachable. They understand the strengths of each child and help them thrive in those areas. It's been a wonderful journey so far."
                             </p>
                             <div class="reviewer-info">
-                                <div class="reviewer-avatar">R</div>
-                                <div>
-                                    <h5 class="reviewer-name">Ram Krishna</h5>
-                                    <span class="reviewer-role">Parent - Kindergarten</span>
-                                </div>
+                                <h5>Ram Krishna</h5>
+                                <span>Parent</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 animate-up delay-1">
-                        <div class="review-card style-red">
+                        <div class="review-card card-purple">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The variety of activities offered has helped my child discover new interests. Whether it’s sports, arts, or science, the school encourages everyone to shine."
+                                "The variety of activities offered by this school has helped my child discover new interests. Whether it’s sports, arts, or science, the school encourages every child to shine."
                             </p>
                             <div class="reviewer-info">
-                                <div class="reviewer-avatar">K</div>
-                                <div>
-                                    <h5 class="reviewer-name">Kathyayini</h5>
-                                    <span class="reviewer-role">Parent - Grade 8</span>
-                                </div>
+                                <h5>Kathyayini</h5>
+                                <span>Parent</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 animate-up delay-2">
-                        <div class="review-card style-blue">
+                        <div class="review-card card-orange">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "Communication with parents is excellent. We are always kept informed about progress and events. It truly makes us feel involved in the journey."
+                                "The school’s communication with parents is excellent. We are always kept informed about our child’s progress and school events. It truly makes us feel involved in their education."
                             </p>
                             <div class="reviewer-info">
-                                <div class="reviewer-avatar">S</div>
-                                <div>
-                                    <h5 class="reviewer-name">Sahil Gothwaal</h5>
-                                    <span class="reviewer-role">Parent - Grade 2</span>
-                                </div>
+                                <h5>Sahil Gothwaal</h5>
+                                <span>Parent</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 animate-up delay-1">
-                        <div class="review-card style-green">
+                        <div class="review-card card-green">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "This School's approach towards making students learn about technology and modern skills is really incredible. A forward-thinking institution."
+                                "This School's approach towards making students to learn about technology and many other skills is really incredible. A forward-thinking institution."
                             </p>
                             <div class="reviewer-info">
-                                <div class="reviewer-avatar">R</div>
-                                <div>
-                                    <h5 class="reviewer-name">Rahul Pandey</h5>
-                                    <span class="reviewer-role">Parent - Grade 10</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="col-lg-6 animate-up delay-2">
-                        <div class="review-card style-teal">
-                            <i class="fa-solid fa-quote-right review-icon"></i>
-                            <p class="review-text">
-                                "The teachers are warm, patient, and highly skilled. Their dedication is clearly visible in the way children grow, perform, and smile."
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">M</div>
-                                <div>
-                                    <h5 class="reviewer-name">Madhu Kumar</h5>
-                                    <span class="reviewer-role">Parent - Grade 1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 animate-up delay-1">
-                        <div class="review-card style-pink">
-                            <i class="fa-solid fa-quote-right review-icon"></i>
-                            <p class="review-text">
-                                "They have created a positive and engaging learning environment. Our child feels valued, supported, and excited to learn every single day."
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">S</div>
-                                <div>
-                                    <h5 class="reviewer-name">Sudha B.</h5>
-                                    <span class="reviewer-role">Parent - Grade 5</span>
-                                </div>
+                                <h5>Rahul Pandey</h5>
+                                <span>Parent</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 animate-up delay-2">
-                        <div class="review-card style-yellow">
+                        <div class="review-card card-teal">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "We love how the school encourages creativity and independent thinking. The activities and projects truly bring learning to life."
+                                "The teachers are warm, patient, and highly skilled. Their dedication is clearly visible in the way children grow and perform in both academics and extracurriculars."
                             </p>
                             <div class="reviewer-info">
-                                <div class="reviewer-avatar">S</div>
-                                <div>
-                                    <h5 class="reviewer-name">Sachin</h5>
-                                    <span class="reviewer-role">Parent - Grade 3</span>
-                                </div>
+                                <h5>Madhu Kumar</h5>
+                                <span>Parent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="review-card card-pink">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "The school has created a positive and engaging learning environment. Our child feels valued, supported, and excited to learn every single day."
+                            </p>
+                            <div class="reviewer-info">
+                                <h5>Sudha Basuthkar</h5>
+                                <span>Parent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 animate-up delay-2">
+                        <div class="review-card card-red">
+                            <i class="fa-solid fa-quote-right review-icon"></i>
+                            <p class="review-text">
+                                "We love how the school encourages creativity and independent thinking. The activities and projects truly bring learning to life for the students."
+                            </p>
+                            <div class="reviewer-info">
+                                <h5>Sachin</h5>
+                                <span>Parent</span>
                             </div>
                         </div>
                     </div>
@@ -421,10 +405,45 @@
                 </div>
             </div>
         </section>
+
+        <!-- <section class="participation-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    
+                    <div class="col-lg-6 order-lg-2 animate-up">
+                        <div class="ps-lg-5">
+                            <span class="blob-badge">COMMUNITY</span>
+                            <h2 class="section-heading">Participation of parents in the life of the school</h2>
+                            
+                            <div class="feature-block">
+                                <h4 class="feature-title" style="color: var(--primary-green);">WhatsApp & Telegram Updates</h4>
+                                <p class="text-muted">
+                                    For the convenience of parents, we have active WhatsApp groups and a <a href="#" class="text-highlight-link">Telegram channel</a>. We share daily updates, photos of classroom activities, and urgent notices instantly.
+                                </p>
+                            </div>
+
+                            <div class="feature-block">
+                                <h4 class="feature-title" style="color: var(--primary-orange);">Grandparents' Day & Events</h4>
+                                <p class="text-muted">
+                                    We believe education involves the whole family. We organize special events like Grandparents' Day, Matru-Pitru Pujan, and Sports Day where parents actively participate in races and fun games.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 order-lg-1 animate-up delay-1">
+                        <div class="blob-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Parents Event" class="blob-img blob-shape-1">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section> -->
 
     </main>
 
-      <footer>
+    <footer>
         <div class="footer-top-strip"></div>
         <div class="footer-decor-strip"></div>
         <div class="container">

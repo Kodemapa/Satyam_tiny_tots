@@ -159,7 +159,7 @@
         }
 
         .programs-header p.programs-intro { 
-            font-size: 1.05rem; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.7; 
+            font-size: 1.05rem; color: #000000; max-width: 800px; margin: 0 auto; line-height: 1.7; 
         }
 
         .programs-grid { position: relative; z-index: 2; }
@@ -661,13 +661,13 @@
         }
         .mission-left-col { position: relative; z-index: 5; padding-right: 20px; }
         .mission-title-wrap { position: relative; display: inline-block; margin-bottom: 20px; }
-        .mission-title { font-weight: 800; font-size: 3rem; color: #222; line-height: 1.1; margin: 0; }
+        .mission-title { font-weight: 800; font-size: 3rem; color: #ff6600; line-height: 1.1; margin: 0; }
         .mission-dot-orange {
             position: absolute; top: -5px; right: -25px; width: 20px; height: 20px;
             background-color: #f39200; border-radius: 50%; animation: breathe 4s infinite;
         }
         .mission-text { color: #555; line-height: 1.7; margin-bottom: 25px; font-size: 1rem; max-width: 450px; }
-        .mission-tagline { font-weight: 800; font-size: 1.1rem; color: #000; margin-bottom: 35px; }
+        .mission-tagline { font-weight: 800; font-size: 1.1rem; color: #e30f08bf; margin-bottom: 35px; }
         .btn-wrapper { display: flex; align-items: center; margin-bottom: 60px; }
         .btn-learn-more {
             background-color: #009ceb; color: #fff; font-weight: 700; font-size: 0.9rem; padding: 15px 35px;
@@ -822,36 +822,31 @@
         }
         @keyframes floatSlow { 0% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-24px) translateX(-24px); } 100% { transform: translateY(0) translateX(0); } }
         @keyframes quotePulse { 0% { transform: rotate(-6deg) translateY(0) scale(1); } 50% { transform: rotate(-6deg) translateY(-4px) scale(1.02); } 100% { transform: rotate(-6deg) translateY(0) scale(1); } }
-
-       .testimonials-section {
+                    
+            .testimonials-section {
                 padding: 80px 0;
-                /* Increased opacity from ~0.1 to ~0.25 and added a third bright color for vibrancy */
-                background: linear-gradient(120deg, rgba(45, 5, 109, 0.25), rgba(108, 23, 245, 0.25), rgba(108, 23, 245, 0.25));
+                /* Changed to a dark, rich purple gradient for depth and brightness */
+                background: linear-gradient(135deg, #7f02f3b8, #56019ca4);
                 background-size: 200% 200%;
                 animation: bgShift 10s ease-in-out infinite;
                 position: relative;
                 overflow: hidden;
             }
 
-            /* The tilted background shape - Made stronger Purple */
+            /* The tilted background shape - Made a richer, more opaque purple */
             .testimonials-section::before {
                 content: '';
                 position: absolute;
                 left: -6%; top: -12%; width: 64%; height: 160%;
-                /* Increased opacity to 0.3 for a clear shape */
-                background: radial-gradient(circle at 10% 20%,rgba(108, 23, 245, 0.25), transparent 70%);
+                background: rgba(91, 0, 160, 0.35);
                 transform: rotate(-8deg);
-                z-index: 0; pointer-events: none;
             }
 
-            /* The floating blob - Made stronger Cyan/Blue */
+            /* The floating blob - Made a brighter, more opaque blue-purple */
             .testimonials-section::after {
                 content: '';
                 position: absolute;
                 right: -5%; top: 10%; width: 400px; height: 400px;
-                /* Sharper color with higher opacity */
-                background: radial-gradient(circle, rgba(0, 89, 255, 0.4), rgba(0, 200, 255, 0));
-                filter: blur(30px); /* Reduced blur slightly so the color is more concentrated */
                 z-index: 0; pointer-events: none; transform-origin: center;
                 animation: floatSlow 10s ease-in-out infinite;
             }
@@ -887,15 +882,6 @@
         .testimonial-author { position: relative; z-index: 1; font-weight: 800; color: #222; margin-top: 6px; }
         .testimonial-role { font-size: 0.85rem; color: #777; }
 
-        /* Respect users who prefer reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .testimonials-section, .testimonials-section::before, .testimonials-section::after,
-            .testimonial-card, .quote-icon { animation: none !important; transition: none !important; }
-        }
-
-        /* =========================================
-           INFRASTRUCTURE ENHANCEMENTS
-           ========================================= */
         .infra-img-wrapper::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.04)); transition: opacity .5s; border-radius: 20px; }
         .infra-img-wrapper { transition: transform .7s cubic-bezier(.2,.9,.2,1), box-shadow .5s; }
         .infra-img-wrapper img { transition: transform .9s cubic-bezier(.22,.9,.24,1), filter .5s; }
@@ -1165,7 +1151,6 @@
     </section>
 
     <section class="values-section">
-        <div class="decor-green-circle"></div>
         <div class="decor-orange-lines">
             <div class="line-stripe stripe-long"></div>
             <div class="line-stripe stripe-short"></div>
@@ -1175,7 +1160,7 @@
             <div class="row">
                 <div class="col-lg-5 pe-lg-5 d-flex flex-column justify-content-center yellow-panel animate-up">
                     <div class="values-header">
-                        <h2>15 Years of<br>Legacy</h2>
+                        <h2><p style="color:rgb(228, 174, 12);">15 Years of<br>Legacy</p></h2>
                         <p style="color:white; font-weight:600;">Combination of years of trust with the expertise of highly skilled educators.</p>
                     </div>
                 </div>
@@ -1218,7 +1203,7 @@
 
         <div class="container">
             <div class="programs-header animate-up">
-                <h2>Classroom Of Tomorrow</h2>
+                <h2><p style="color:rgb(255, 255, 255);">Classroom Of Tomorrow</p></h2>
                 <p class="programs-intro">From interactive smart boards to immersive e-learning modules, we ensure students master the technology skills needed for the future.</p>
             </div>
 
@@ -1358,7 +1343,7 @@
     <section class="testimonials-section">
         <div class="container">
             <div class="programs-header animate-up">
-                <h2>The Trusted Pathway to a Brighter Future</h2>
+                <h2><p style="color:rgb(251, 255, 42);">The Trusted Pathway to a Brighter Future</p></h2>
                 <p class="programs-intro">Quality learning with years of expertise. See what parents have to say.</p>
             </div>
             

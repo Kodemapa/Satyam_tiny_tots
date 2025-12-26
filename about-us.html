@@ -55,7 +55,7 @@
             position: relative; 
             overflow: hidden; 
             /* Animated Gradient Background */
-            background: linear-gradient(-45deg, #e0f7fa, #f3e5f5, #e8f5e9, #fffde7);
+            background: linear-gradient(-45deg, #02e1ff, #d904fa, #7bd382, #fde90b);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -67,7 +67,7 @@
         .shape-blob { position: absolute; top: 30%; right: -5%; width: 200px; height: 200px; background: rgba(140, 198, 63, 0.15); animation: blobMorph 8s infinite linear; z-index: 0; }
 
         .tag-pill { display:inline-block; padding: 8px 16px; background: var(--primary-purple); color: #fff; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(125, 108, 170, 0.3); }
-        .intro-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: #222; }
+        .intro-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: #00eeee; }
         .intro-text { font-size: 1.15rem; line-height: 1.8; color: #555; margin-bottom: 30px; }
         .btn-pulse { animation: pulseBtn 2s infinite; }
 
@@ -100,7 +100,7 @@
         .vm-text { line-height:1.8; color:#555; font-size: 1.05rem; }
 
         /* Features */
-        .features-section { background-color: var(--bg-soft-yellow); padding: 120px 0; position: relative; }
+        .features-section { background-color: var(--primary-yellow); padding: 120px 0; position: relative; }
         .feature-item { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; }
         .feature-item:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .feature-icon-wrapper { width: 80px; height: 80px; background: var(--bg-soft-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px; transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); color: var(--primary-blue); }
@@ -122,7 +122,7 @@
 
         /* Activities Grid */
         .campus-section { padding: 120px 0; background: var(--bg-soft-green); }
-        .section-title { font-weight: 900; font-size: 3rem; color: #222; margin-bottom: 15px; }
+        .section-title { font-weight: 900; font-size: 3rem; color: #500181; margin-bottom: 15px; }
         
         .activity-card { border-radius: 20px; overflow: hidden; position: relative; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); height: 100%; background: #fff; }
         .activity-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
@@ -258,7 +258,6 @@
     <section id="intro-section" class="intro-section">
         <div class="intro-bg-diag"></div>
         <div class="float-shape shape-circle" data-aos="fade-down" data-aos-delay="500"></div>
-        <div class="float-shape shape-square" data-aos="fade-up" data-aos-delay="700"></div>
         <div class="float-shape shape-blob" data-aos="zoom-in" data-aos-delay="900"></div>
 
         <div class="container">
@@ -357,7 +356,7 @@
     <section id="features-section" class="features-section">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <h2 style="font-weight:900; margin-bottom:15px; font-size: 2.5rem;">Inspiring Tomorrow's Changemakers</h2>
+                <h2 style="font-weight:900; margin-bottom:15px; font-size: 2.5rem; color:var(--primary-purple)">Inspiring Tomorrow's Changemakers</h2>
                 <div style="width: 60px; height: 4px; background: var(--primary-yellow); margin: 0 auto 20px;"></div>
                 <p style="max-width:700px; margin:0 auto; color:#666; font-size: 1.1rem;">
                     We blend cutting-edge technology with holistic education to nurture well-rounded individuals.
@@ -552,7 +551,7 @@
             <div class="container">
                 <div class="text-center mb-5 animate-up">
                     <span style="color: var(--primary-purple); font-weight: 700; letter-spacing: 2px;">LATEST UPDATES</span>
-                    <h2 style="font-weight: 900; font-size: 2.5rem;">Insights for Growth</h2>
+                    <h2 style="font-weight: 900; font-size: 2.5rem; color: var(--primary-blue)">Insights for Growth</h2>
                 </div>
 
                 <div class="row g-4">
