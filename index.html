@@ -858,26 +858,23 @@
             background: linear-gradient(180deg,#fff,#fbfbff);
             padding: 40px 30px;
             border-radius: 12px;
-            box-shadow: 0 14px 38px rgba(0,0,0,0.07);
             height: 100%;
             transition: transform .55s cubic-bezier(.16,.95,.24,1), box-shadow .55s, opacity .5s;
             border-left: 5px solid var(--primary-purple);
             opacity: 0; transform: translateY(28px) scale(.98);
         }
-        .testimonial-card::before { content: ''; position: absolute; inset: 8px; border-radius: 10px; background: linear-gradient(90deg, rgba(125,108,170,0.06), rgba(0,156,235,0.02)); filter: blur(16px); z-index: -1; opacity: .85; pointer-events: none; }
         /* Reveal when the parent column receives .in-view (staggered by delay classes) */
         .animate-up.in-view .testimonial-card { opacity: 1; transform: translateY(0) scale(1); }
         .animate-up.delay-1.in-view .testimonial-card { transition-delay: 0.08s; }
         .animate-up.delay-2.in-view .testimonial-card { transition-delay: 0.22s; }
         .animate-up.delay-3.in-view .testimonial-card { transition-delay: 0.36s; }
 
-        .testimonial-card:hover { transform: translateY(-12px) scale(1.035); box-shadow: 0 26px 70px rgba(0,0,0,0.18); }
-        .testimonial-card.purple { border-left-color: var(--primary-purple); background: linear-gradient(180deg, rgba(125,108,170,0.06), #fff); }
-        .testimonial-card.green { border-left-color: var(--primary-green); background: linear-gradient(180deg, rgba(140,198,63,0.06), #fff); }
-        .testimonial-card.blue { border-left-color: var(--primary-blue); background: linear-gradient(180deg, rgba(0,156,235,0.06), #fff); }
+        .testimonial-card:hover { transform: translateY(-12px) scale(1.035);}
+        .testimonial-card.purple { border-left-color: var(--primary-purple);}
+        .testimonial-card.green { border-left-color: var(--primary-green);}
+        .testimonial-card.blue { border-left-color: var(--primary-blue);}
         .quote-icon { color: rgba(0,0,0,0.06); font-size: 5rem; position: absolute; top: 6px; left: 16px; z-index: 0; transform: rotate(-8deg) translateY(6px) scale(0.98); opacity: 0.08; transition: transform .7s cubic-bezier(.2,.9,.2,1), opacity .7s; }
         .animate-up.in-view .quote-icon { transform: rotate(-6deg) translateY(0) scale(1); opacity: 0.10; animation: quotePulse 6s ease-in-out infinite; }
-        .testimonial-card:hover .quote-icon { transform: rotate(-6deg) translateY(-8px) scale(1.04); color: rgba(0,0,0,0.08); }
         .testimonial-text { position: relative; z-index: 1; font-style: italic; color: #444; margin-bottom: 18px; }
         .testimonial-author { position: relative; z-index: 1; font-weight: 800; color: #222; margin-top: 6px; }
         .testimonial-role { font-size: 0.85rem; color: #777; }
