@@ -40,10 +40,13 @@
             text-align: center; 
         }
         
-        /* --- NAVBAR STYLES --- */
+        /* --- NAVBAR (Consistent) --- */
         .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
         .nav-link:hover { color: var(--primary-blue); }
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
         @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
         /* --- PAGE HEADER --- */
@@ -184,7 +187,6 @@
         .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
         .footer-triangle-btn:hover { border-bottom-color: var(--primary-yellow); }
     </style>
-    <link rel="stylesheet" href="css/nav-footer.css">
 </head>
 <body>
 

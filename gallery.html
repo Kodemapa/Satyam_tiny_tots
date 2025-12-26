@@ -14,9 +14,13 @@
             --primary-yellow: #ffdd00; 
             --primary-purple: #8e44ad; 
             --primary-orange: #ff6b35; 
+            --primary-red: #e74c3c; /* New Red */
             --primary-green: #2ecc71; 
             --bright-bg: #fffbf0;
             --footer-bg: #1f1f1f; 
+            --shape-bg-purple: rgba(142, 68, 173, 0.1);
+            --shape-bg-orange: rgba(255, 107, 53, 0.1);
+            --shape-bg-red: rgba(231, 76, 60, 0.1);
         }
         
         body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:#333; background-color: #fff; }
@@ -26,14 +30,13 @@
         .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
         .nav-link:hover { color: var(--primary-blue); }
-        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
         .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
         .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
         .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
-        
+        @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
+
         /* --- ANIMATIONS --- */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes bounceDot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
         @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
         
         .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
@@ -42,7 +45,7 @@
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
 
-        /* Floating Background Shapes (Consistent with other pages) */
+        /* Floating Background Shapes */
         .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out alternate; pointer-events: none; }
         .shape-circle { width: 60px; height: 60px; border-radius: 50%; border: 5px solid var(--primary-purple); top: 20%; left: 10%; }
         .shape-square { width: 40px; height: 40px; background: var(--primary-yellow); bottom: 30%; right: 15%; transform: rotate(15deg); }
@@ -51,85 +54,72 @@
         /* --- HEADER SECTION --- */
         .gallery-header {
             padding: 120px 0 80px;
-            background: linear-gradient(135deg, var(--bright-bg) 0%, #eef2f7 100%);
+            /* More colorful gradient */
+            background: linear-gradient(135deg, #ffe6fa 0%, #fff0e6 50%, #ffefef 100%);
             position: relative;
             overflow: hidden;
             text-align: center;
         }
 
-        /* --- GALLERY FILTERS --- */
-        .gallery-filters .btn-filter {
-            font-weight: 700;
-            padding: 10px 25px;
+        /* --- GALLERY SECTIONS --- */
+        .gallery-section { padding: 60px 0; position: relative; }
+        .section-bg-purple { background: var(--shape-bg-purple); }
+        .section-bg-orange { background: var(--shape-bg-orange); }
+        .section-bg-red { background: var(--shape-bg-red); }
+
+        .section-title-wrapper { text-align: center; margin-bottom: 40px; position: relative; z-index: 2; }
+        .section-badge {
+            display: inline-block;
+            padding: 8px 25px;
             border-radius: 50px;
-            margin: 0 5px 10px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            background: #fff;
-            color: #555;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        .badge-purple { background: var(--primary-purple); }
+        .badge-orange { background: var(--primary-orange); }
+        .badge-red { background: var(--primary-red); }
 
-        /* Colorful active/hover states for filters */
-        .btn-filter.active, .btn-filter:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: transparent; }
-        .filter-all.active, .filter-all:hover { background: var(--primary-blue); }
-        .filter-campus.active, .filter-campus:hover { background: var(--primary-purple); }
-        .filter-sports.active, .filter-sports:hover { background: var(--primary-green); }
-        .filter-events.active, .filter-events:hover { background: var(--primary-orange); }
-        .filter-academics.active, .filter-academics:hover { background: var(--primary-yellow); color: #333; }
-
-        /* --- GALLERY GRID ITEMS --- */
-        .gallery-item {
+        .section-title {
+            font-size: 2.5rem;
+            color: #333;
             position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            height: 300px; /* Fixed height for consistency */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            cursor: pointer;
+            display: inline-block;
         }
+
+        /* --- GALLERY GRID ITEMS (ORGANIC SHAPES) --- */
+        .gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; position: relative; z-index: 2; }
         
+        .gallery-item-blob {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+            /* Organic Border Radius */
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .gallery-item-blob:hover { transform: translateY(-10px) scale(1.02); }
+
+        /* Varying blob shapes for visual interest */
+        .blob-1 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        .blob-2 { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        .blob-3 { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+
         .gallery-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        
-        /* Vibrant Overlay */
-        .gallery-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* Colorful gradient overlay */
-            background: linear-gradient(45deg, rgba(142, 68, 173, 0.8), rgba(255, 107, 53, 0.8));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: all 0.4s ease;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        /* Make the dropdown menu display on hover */
-@media (min-width: 992px) { /* Applies only to desktop/large screens */
-    .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0; 
-    }
-}
+        .gallery-item-blob:hover .gallery-img { transform: scale(1.1); }
 
-        /* Hover Effects */
-        .gallery-item:hover .gallery-img { transform: scale(1.15); }
-        .gallery-item:hover .gallery-overlay { opacity: 1; backdrop-filter: blur(2px); }
-        
-        .overlay-icon { font-size: 2rem; margin-bottom: 15px; transform: translateY(20px); transition: 0.4s ease; }
-        .gallery-item:hover .overlay-icon { transform: translateY(0); }
-        
-        .overlay-text { font-weight: 700; font-size: 1.2rem; transform: translateY(20px); transition: 0.4s ease 0.1s; opacity: 0; }
-        .gallery-item:hover .overlay-text { transform: translateY(0); opacity: 1; }
-
-/* --- Footer --- */
+        /* --- Footer (Consistent) --- */
         footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; }
         .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
         .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
@@ -142,13 +132,11 @@
         .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
         .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
 
-
     </style>
-    <link rel="stylesheet" href="css/nav-footer.css">
 </head>
 <body>
 
-   <nav class="navbar navbar-expand-lg sticky-top">
+     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
@@ -158,36 +146,36 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav align-items-center text-center">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="about-us.html" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="about-us.html" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         About us
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                         <li><a class="dropdown-item" href="about-us.html#intro-section">About Us</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#founder-section">Vision & Mission</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#founder-section">Founder's Message</a></li>
                         <li><a class="dropdown-item" href="about-us.html#stats-section">Key Achievements</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#vm-section">Founder's Message</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#vm-section">Vision & Mission</a></li>
                         <li><a class="dropdown-item" href="about-us.html#features-section">Our Approach</a></li>
-                        <li><a class="dropdown-item" href="about-us.htmlleadership-section">Facilities</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#campus-section">Chairperson's Note</a></li>
-                        <li><a class="dropdown-item" href="about-us.htmlblog-section">Director's Word</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#Director-section">Director's Word</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#Chairperson-section">Chairperson's Note </a></li>
+                        <li><a class="dropdown-item" href="about-us.html#campus-section">Facilities</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Academics</a>
-                    <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
-                        <li><a class="dropdown-item" href="academics.html">Academics</a></li>
-                        <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
-                        <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
-                        <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
-                        <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
-                <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-            </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Academics</a>
+                        <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                            <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -206,116 +194,78 @@
             </div>
         </header>
 
-        <section class="py-5" style="background: #fff;">
-            <div class="container">
-                
-                <div class="gallery-filters d-flex flex-wrap justify-content-center mb-5 animate-up delay-1">
-                    <button class="btn btn-filter filter-all active">All Moments</button>
-                    <button class="btn btn-filter filter-campus">Campus Life</button>
-                    <button class="btn btn-filter filter-sports">Sports & Action</button>
-                    <button class="btn btn-filter filter-events">Events & Celebrations</button>
-                    <button class="btn btn-filter filter-academics">Academics</button>
+        <section class="gallery-section section-bg-purple">
+            <div class="container animate-up">
+                <div class="section-title-wrapper animate-up delay-1">
+                    <span class="section-badge badge-purple">ARTS</span>
+                    <h2 class="section-title">Creative & Active</h2>
                 </div>
-
-                <div class="row g-5">
-                    
-                    <div class="col-md-6 col-lg-4 animate-up delay-1">
-                        <div class="gallery-item">
-                            <img src="images/Puzzles.png" alt="Students Studying" class="gallery-img">
-                        </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item-blob blob-1 animate-up delay-2">
+                        <img src="images/drawing.jpg" alt="Student Drawing" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-2">
-                        <div class="gallery-item">
-                            <img src="images/sports copy.png" alt="Basketball Match" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-2 animate-up delay-3">
+                        <img src="images/Art.jpg" alt="Art Class" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-3">
-                        <div class="gallery-item">
-                            <img src="images/Yoga_class.webp" alt="Science Activity" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-3 animate-up delay-4">
+                        <img src="images/rangoli.webp" alt="Rangoli Making" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-2">
-                        <div class="gallery-item">
-                            <img src="images/voting.webp" alt="Morning Assembly" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-1 animate-up delay-2">
+                         <img src="images/craft.webp" alt="Craft Work" class="gallery-img">
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="col-md-6 col-lg-4 animate-up delay-3">
-                        <div class="gallery-item">
-                             <img src="images/chariot.webp" alt="Annual Day Performance" class="gallery-img">
-                        </div>
+        <section class="gallery-section section-bg-orange">
+             <div class="container animate-up">
+                <div class="section-title-wrapper animate-up delay-1">
+                    <span class="section-badge badge-orange">LIFE</span>
+                    <h2 class="section-title">Campus Moments</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item-blob blob-2 animate-up delay-2">
+                        <img src="images/voting.webp" alt="School Election" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/skating_roll.webp" alt="Student Skating" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-3 animate-up delay-3">
+                        <img src="images/anatomy.webp" alt="Science Lab" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/ncc.jpeg" alt="Student Skating" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-1 animate-up delay-4">
+                        <img src="images/Karate.webp" alt="Karate Practice" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/Art.jpg" alt="Student Skating" class="gallery-img">
-                        </div>
+                     <div class="gallery-item-blob blob-2 animate-up delay-2">
+                        <img src="images/skating_roll.webp" alt="Skating" class="gallery-img">
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/craft.webp" alt="Student Skating" class="gallery-img">
-                        </div>
+        <section class="gallery-section section-bg-red">
+             <div class="container animate-up">
+                <div class="section-title-wrapper animate-up delay-1">
+                    <span class="section-badge badge-red">LEARN</span>
+                    <h2 class="section-title">Academics & Beyond</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item-blob blob-3 animate-up delay-2">
+                        <img src="images/Puzzles.png" alt="Learning with Puzzles" class="gallery-img">
                     </div>
-
-                     <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/Karate.webp" alt="Student Skating" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-1 animate-up delay-3">
+                        <img src="images/Planting.webp" alt="Plantation Drive" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/anatomy.webp" alt="Student Skating" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-2 animate-up delay-4">
+                        <img src="images/ncc.jpeg" alt="NCC Cadets" class="gallery-img">
                     </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/Planting.webp" alt="Student Skating" class="gallery-img">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/Painting.webp" alt="Student Skating" class="gallery-img">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/rangoli.webp" alt="Student Skating" class="gallery-img">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 animate-up delay-4">
-                        <div class="gallery-item">
-                            <img src="images/drawing.jpg" alt="Student Skating" class="gallery-img">
-                        </div>
+                    <div class="gallery-item-blob blob-3 animate-up delay-2">
+                         <img src="images/Yoga_class.webp" alt="Yoga Session" class="gallery-img">
                     </div>
                 </div>
             </div>
         </section>
 
     </main>
-
     
-    <footer>
+   <footer>
         <div class="footer-top-strip"></div>
         <div class="footer-decor-strip"></div>
         <div class="container">
@@ -370,17 +320,5 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        const filterBtns = document.querySelectorAll('.btn-filter');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-            });
-        });
-    </script>
 </body>
 </html>

@@ -20,21 +20,16 @@
         }
         
         body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:#333; background-color: #fff; }
-        
-        /* Make the dropdown menu display on hover */
-@media (min-width: 992px) { /* Applies only to desktop/large screens */
-    .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0; 
-    }
-}
 
-        /* Navbar (Unchanged logic, just sharper styles) */
+       /* --- NAVBAR (Consistent) --- */
         .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
         .nav-link:hover { color: var(--primary-blue); }
-        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
-        
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
+        @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
+
         /* Animations */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulse-btn { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); } }
@@ -153,7 +148,6 @@
         .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
 
     </style>
-    <link rel="stylesheet" href="css/nav-footer.css">
 </head>
 <body>
 
@@ -214,10 +208,16 @@
                     <div class="col-md-6 col-lg-4 animate-up delay-1">
                         <div class="blog-card b-card-1">
                             <div style="overflow:hidden;">
-                                <img src="images/satyam-3.jpeg" alt="JEE Prep" class="blog-img">
+                                <a href="blog-1.html">
+                                    <img src="images/satyam-3.jpeg" alt="JEE Prep" class="blog-img">
+                                </a>
                             </div>
                             <div class="blog-body">
-                                <h4 class="blog-title">Struggling with JEE/NEET Preparation? Here's Why Most Students Fall Behind</h4>
+                                <h4 class="blog-title">
+                                    <a href="blog-1.html" style="text-decoration: none; color: inherit;">
+                                        Struggling with JEE/NEET Preparation? Here's Why Most Students Fall Behind
+                                    </a>
+                                </h4>
                                 <p class="small text-muted mb-4">Every year, over 2 million students appear for JEE and NEET exams, but less than 2% make it to their dream colleges.</p>
                             </div>
                         </div>
@@ -226,10 +226,15 @@
                     <div class="col-md-6 col-lg-4 animate-up delay-2">
                         <div class="blog-card b-card-2">
                             <div style="overflow:hidden;">
+                                <a href="blog-2.html">
                                 <img src="images/satyam-1.jpeg" alt="Sports" class="blog-img">
+                                </a>
                             </div>
                             <div class="blog-body">
-                                <h4 class="blog-title">More Than Just Play and the Life Changing Benefits of Sports</h4>
+                                <h4 class="blog-title">
+                                    <a href="blog-2.html" style="text-decoration: none; color: inherit;">
+                                    More Than Just Play and the Life Changing Benefits of Sports
+                                </a></h4>
                                 <p class="small text-muted mb-4">Many parents today face the challenge of watching their children excel academically yet struggle with essential life skills.</p>
                             </div>
                         </div>
@@ -238,10 +243,13 @@
                     <div class="col-md-6 col-lg-4 animate-up delay-3">
                         <div class="blog-card b-card-3">
                             <div style="overflow:hidden;">
+                                <a href="blog-3.html">
                                 <img src="images/satyam-4.jpeg" alt="Personality" class="blog-img">
+                                </a>
                             </div>
                             <div class="blog-body">
-                                <h4 class="blog-title">How Our School Builds Tomorrow's Leaders: A Guide to Personality Development</h4>
+                                <h4 class="blog-title">
+                                    <a href="blog-3.html" style="text-decoration: none; color: inherit;">How Our School Builds Tomorrow's Leaders: A Guide to Personality Development</a></h4>
                                 <p class="small text-muted mb-4">As a parent, you see beyond the report card. You notice the subtle signs that reveal your child's inner world.</p>
                             </div>
                         </div>

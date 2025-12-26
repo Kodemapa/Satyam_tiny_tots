@@ -10,201 +10,215 @@
     
     <style>
         :root{ 
-            /* Original Colors */
-            --primary-blue:#009ceb; 
-            --primary-yellow:#fdd800; 
-            --primary-purple:#7d6caa; 
-            --primary-orange:#f05a28; 
-            --primary-green:#8cc63f; 
+            /* Vibrant Palette */
+            --primary-blue: #009ceb; 
+            --primary-yellow: #ffca00; 
+            --primary-purple: #8e44ad; 
+            --primary-orange: #ff7f50; 
+            --primary-red: #ff4757; 
+            --primary-green: #2ed573; 
+            --primary-teal: #00d2d3;
+            --primary-pink: #ff9ff3;
             
-            /* New Colors for Variety */
-            --primary-teal: #20c997;
-            --primary-pink: #e83e8c;
-            --primary-red: #dc3545;
-            --primary-indigo: #6610f2;
-            
-            --text-dark:#212529; 
-            --footer-bg:#1f1f1f; 
+            --text-dark: #2f3542; 
+            --text-light: #57606f;
         }
         
-        body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background: #fdfdfd; }
+        body{ 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+            color: var(--text-dark); 
+            /* Added a subtle colorful pattern background instead of plain white */
+            background-color: #f8f9fa;
+            background-image: radial-gradient(rgba(0, 156, 235, 0.1) 1px, transparent 1px), radial-gradient(rgba(255, 71, 87, 0.1) 1px, #f8f9fa 1px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
         
-        /* Make the dropdown menu display on hover */
-@media (min-width: 992px) { /* Applies only to desktop/large screens */
-    .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0; 
-    }
-}
-        /* --- Navbar --- */
-        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
+        /* --- NAVBAR (Consistent) --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
         .nav-link:hover { color: var(--primary-blue); }
-        .nav-dot { width: 10px; height: 10px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; }
-        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; }
-        
-        /* --- Footer --- */
-        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; z-index: 10; overflow: hidden; }
-        .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
-        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
-        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
-        .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
-        .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
-        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
-        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px); }
-        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
-        .footer-link:hover { opacity: 1; padding-left: 5px; }
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
+        @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
         /* --- Animations --- */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes expandWidth { from { width: 0; } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; transform: scale(1.02); } 100% { opacity: 0.8; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(10deg); } }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-
-        .social-icons { list-style: none; display: flex; gap: 14px; padding: 0; margin: 0; }
-        .social-circle a { width: 46px; height: 46px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #000; font-size: 22px; transition: all 0.3s ease; }
-        .social-circle a:hover { background: #ffd800; color: #000; transform: translateY(-2px); }
-        .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
-        .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
+        .animate-up { animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
 
         /* --- Page Header --- */
-        .page-header { padding: 90px 0 70px 0; background: linear-gradient(to bottom, #fff, #f8f9fa); position: relative; }
-        .header-title-wrapper { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; text-align: center; }
+        .page-header { 
+            padding: 120px 0 100px 0; 
+            /* Stronger Animated Gradient */
+            background: linear-gradient(-45deg, #ffeae6, #e6e9ff, #e6fffd, #ffffe6);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02) inset;
+        }
+
+        /* Louder floating shapes */
+        .shape { position: absolute; opacity: 0.15; z-index: 0; animation: float 7s infinite ease-in-out; mix-blend-mode: multiply; }
+        .shape-1 { top: 5%; left: 2%; color: var(--primary-red); font-size: 5rem; }
+        .shape-2 { bottom: 15%; right: 5%; color: var(--primary-purple); font-size: 7rem; animation-delay: 1.5s; }
+        .shape-3 { top: 30%; right: 20%; color: var(--primary-orange); font-size: 4rem; animation-delay: 3s; }
+        .shape-4 { bottom: 5%; left: 10%; color: var(--primary-teal); font-size: 6rem; animation-delay: 4.5s; }
+
+        .header-title-wrapper { position: relative; z-index: 1; text-align: center; }
         
         .header-title { 
             font-weight: 900; 
-            font-size: clamp(2rem, 5vw, 3rem); 
-            line-height: 1.2;
-            margin: 0; color: #222; 
+            font-size: clamp(2.5rem, 6vw, 4rem); 
+            line-height: 1.1;
+            margin: 0 0 20px 0; 
+            /* Multi-color gradient text */
+            background: linear-gradient(to right, var(--primary-purple) 20%, var(--primary-red) 50%, var(--primary-orange) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
         }
 
         .header-subtitle {
-            margin-top: 15px;
-            font-size: 1.2rem;
-            color: var(--primary-blue);
-            font-weight: 600;
-            animation: pulse 3s infinite ease-in-out;
+            font-size: 1.2rem; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
+            display: inline-block; background: linear-gradient(45deg, var(--primary-orange), var(--primary-red));
+            padding: 8px 20px; border-radius: 30px; margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(255, 127, 80, 0.3);
         }
         
-        .header-line { height: 6px; background: var(--primary-blue); width: 80px; margin-top: 20px; border-radius: 4px; }
-        .intro-text { font-size: 1.1rem; line-height: 1.8; color: #555; max-width: 900px; text-align: center; }
+        .intro-text { font-size: 1.2rem; line-height: 1.8; color: var(--text-dark); max-width: 850px; text-align: center; position: relative; z-index: 1; font-weight: 500; }
+        /* Highlighting keywords in the intro */
+        .highlight-text { position: relative; z-index: 1; display: inline-block; }
+        .highlight-text::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 100%; height: 8px; z-index: -1; opacity: 0.4; border-radius: 4px; }
+        .hl-purple::after { background: var(--primary-purple); }
+        .hl-orange::after { background: var(--primary-orange); }
+        .hl-blue::after { background: var(--primary-blue); }
 
-        /* --- Testimonial Cards --- */
-        .review-section { padding: 60px 0; background-color: #f9f9f9; position: relative; }
-        .decor-ring {
-            position: absolute; top: -30px; right: 5%;
-            width: 80px; height: 80px;
-            border: 6px solid var(--primary-green);
-            border-radius: 50%;
-            z-index: 1;
-            animation: float 5s infinite ease-in-out;
-        }
-
+        /* --- Testimonial Cards (Major Overhaul) --- */
+        .review-section { padding: 90px 0; position: relative; }
+        
         .review-card {
             background: #fff;
-            padding: 40px 30px;
-            border-radius: 12px; 
-            border-left: 5px solid var(--primary-blue); /* Default */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 45px 35px;
+            border-radius: 25px; 
+            /* Thick top colored border */
+            border-top: 8px solid transparent; 
+            /* Neutral base shadow */
+            box-shadow: 0 15px 35px rgba(100,100,111,0.1);
             height: 100%;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-        }
-        
-        .review-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .review-icon { 
-            font-size: 2rem; color: #eee; 
-            position: absolute; top: 20px; right: 20px; 
-            transition: 0.6s ease;
-        }
-        
-        .review-card:hover .review-icon {
-            transform: rotate(360deg) scale(1.2);
-            color: inherit; /* Takes the color of the text */
-            opacity: 0.2;
-        }
-
-        .review-text { font-size: 1rem; color: #555; font-style: italic; line-height: 1.7; margin-bottom: 20px; }
-        .reviewer-info { display: flex; align-items: center; gap: 15px; }
-        .reviewer-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #eee; }
-        .reviewer-name { font-weight: 800; font-size: 1rem; margin: 0; color: #333; }
-        .reviewer-role { font-size: 0.85rem; color: #777; font-weight: 600; }
-
-        /* Specific Card Colors */
-        .card-blue { border-left-color: var(--primary-blue); }
-        .card-yellow { border-left-color: var(--primary-yellow); }
-        .card-purple { border-left-color: var(--primary-purple); }
-        .card-orange { border-left-color: var(--primary-orange); }
-        .card-green { border-left-color: var(--primary-green); }
-        .card-teal { border-left-color: var(--primary-teal); }
-        .card-pink { border-left-color: var(--primary-pink); }
-        .card-red { border-left-color: var(--primary-red); }
-
-        /* --- Participation Section --- */
-        .participation-section { padding: 80px 0; background: #fff; }
-        .section-heading { 
-            font-weight: 900; 
-            font-size: clamp(1.8rem, 4vw, 2.2rem); 
-            margin-bottom: 30px; color: #222; 
-        }
-        .feature-title { font-weight: 800; font-size: 1.2rem; margin-bottom: 10px; color: #222; margin-top: 30px; }
-        .feature-text { font-size: 1rem; color: #666; line-height: 1.6; margin-bottom: 15px; }
-        
-        .text-highlight-link { color: var(--primary-blue); font-weight: 700; text-decoration: none; }
-        .text-highlight-link:hover { text-decoration: underline; }
-
-        .participation-imgs { margin-top: 40px; }
-        .participation-img-box {
-            height: 300px;
             overflow: hidden;
-            border-radius: 10px;
-            position: relative;
+            z-index: 1;
         }
-        .participation-img-box img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s ease;
+        
+        /* Subtle gradient tint on hover for the whole card background */
+        .review-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 60%, currentColor);
+            opacity: 0; transition: opacity 0.4s ease; z-index: -1;
         }
-        .participation-img-box:hover img { transform: scale(1.05); }
+        .review-card:hover::before { opacity: 0.08; }
 
-        /* ============================ */
-        /* MOBILE RESPONSIVE TWEAKS     */
-        /* ============================ */
-        @media (max-width: 991px) {
-            .navbar-collapse {
-                background: #fff;
-                padding: 20px;
-                border-radius: 0 0 15px 15px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            }
-            .nav-dot { display: none; }
-        }
+        .review-card:hover { transform: translateY(-15px) scale(1.02); }
 
+        /* Gradient Icons */
+        .review-icon { 
+            font-size: 4rem; position: absolute; top: 25px; right: 25px; 
+            opacity: 0.2; transition: 0.6s ease;
+            background: linear-gradient(to bottom right, currentColor, #ddd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .review-card:hover .review-icon { transform: rotate(-15deg) scale(1.3); opacity: 0.4; }
+
+        .review-text { font-size: 1.1rem; color: #444; font-weight: 500; font-style: italic; line-height: 1.7; margin-bottom: 30px; position: relative; }
+        
+        .reviewer-info { display: flex; align-items: center; gap: 15px; border-top: 2px solid #f0f0f0; padding-top: 20px; }
+        .reviewer-avatar { 
+            width: 55px; height: 55px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 1.4rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .reviewer-name { font-weight: 800; font-size: 1.15rem; margin: 0; color: var(--text-dark); }
+        .reviewer-role { font-size: 0.9rem; color: #777; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Ultra-Colorful Card Variations --- */
+        /* Each style defines the color, the avatar background, and a specific colored glow shadow on hover */
+
+        .style-purple { border-top-color: var(--primary-purple); color: var(--primary-purple); }
+        .style-purple .reviewer-avatar { background: linear-gradient(45deg, var(--primary-purple), #a55eea); }
+        .style-purple:hover { box-shadow: 0 25px 50px rgba(142, 68, 173, 0.3); }
+        
+        .style-orange { border-top-color: var(--primary-orange); color: var(--primary-orange); }
+        .style-orange .reviewer-avatar { background: linear-gradient(45deg, var(--primary-orange), #ffaf40); }
+        .style-orange:hover { box-shadow: 0 25px 50px rgba(255, 127, 80, 0.3); }
+        
+        .style-red { border-top-color: var(--primary-red); color: var(--primary-red); }
+        .style-red .reviewer-avatar { background: linear-gradient(45deg, var(--primary-red), #ff6b81); }
+        .style-red:hover { box-shadow: 0 25px 50px rgba(255, 71, 87, 0.3); }
+        
+        .style-blue { border-top-color: var(--primary-blue); color: var(--primary-blue); }
+        .style-blue .reviewer-avatar { background: linear-gradient(45deg, var(--primary-blue), #4bcffa); }
+        .style-blue:hover { box-shadow: 0 25px 50px rgba(0, 156, 235, 0.3); }
+        
+        .style-green { border-top-color: var(--primary-green); color: var(--primary-green); }
+        .style-green .reviewer-avatar { background: linear-gradient(45deg, var(--primary-green), #26de81); }
+        .style-green:hover { box-shadow: 0 25px 50px rgba(46, 213, 115, 0.3); }
+        
+        .style-teal { border-top-color: var(--primary-teal); color: var(--primary-teal); }
+        .style-teal .reviewer-avatar { background: linear-gradient(45deg, var(--primary-teal), #01a3a4); }
+        .style-teal:hover { box-shadow: 0 25px 50px rgba(0, 210, 211, 0.3); }
+        
+        .style-pink { border-top-color: var(--primary-pink); color: var(--primary-pink); }
+        .style-pink .reviewer-avatar { background: linear-gradient(45deg, var(--primary-pink), #f368e0); }
+        .style-pink:hover { box-shadow: 0 25px 50px rgba(255, 159, 243, 0.3); }
+        
+        .style-yellow { border-top-color: var(--primary-yellow); color: #e1b12c; }
+        .style-yellow .reviewer-avatar { background: linear-gradient(45deg, var(--primary-yellow), #fbc531); color: #fff;}
+        .style-yellow:hover { box-shadow: 0 25px 50px rgba(255, 202, 0, 0.3); }
+
+
+        /* --- Footer --- */
+        footer{ background: #222f3e; color:#fff; padding:80px 0 40px 0; position: relative; overflow: hidden; }
+        /* Thicker rainbow strip */
+        .footer-top-strip { position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: linear-gradient(to right, var(--primary-red), var(--primary-orange), var(--primary-yellow), var(--primary-green), var(--primary-blue), var(--primary-purple), var(--primary-pink)); }
+        
+        .footer-link { color: #c8d6e5; text-decoration: none; display: block; margin-bottom: 12px; transition: 0.3s; font-weight: 600; }
+        .footer-link:hover { color: var(--primary-yellow); transform: translateX(5px); }
+
+        .social-icons { list-style: none; display: flex; gap: 12px; padding: 0; margin-top: 25px; }
+        .social-circle a { 
+            width: 48px; height: 48px; border-radius: 50%; 
+            background: rgba(255,255,255,0.08); 
+            display: flex; align-items: center; justify-content: center; 
+            color: #fff; font-size: 22px; transition: all 0.4s ease; 
+        }
+        /* Colorful social hover */
+        .social-circle a.fb:hover { background: #1877f2; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4); }
+        .social-circle a.insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); }
+        
         @media (max-width: 768px) {
-            .page-header, .review-section, .participation-section { padding: 40px 0; }
-            .header-title-wrapper { flex-direction: column; align-items: center; gap: 10px; }
-            .decor-ring { display: none; }
-            .participation-img-box { height: 200px; }
-            footer { text-align: center; padding-top: 50px; }
-            .footer-decor-strip { display: none; }
-            .d-flex.justify-content-between { flex-direction: column; gap: 20px; }
-            .d-flex.justify-content-end { justify-content: center !important; }
+            .header-title { font-size: 2.2rem; }
+            .shape { display: none; }
+            .review-card { padding: 30px 20px; }
         }
 
     </style>
-    <link rel="stylesheet" href="css/nav-footer.css">
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg sticky-top">
+     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="images/Satyam_Icon_1.png" alt="Tiny-tots Logo">
@@ -214,9 +228,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav align-items-center text-center">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="about-us.html" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="about-us.html" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         About us
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
@@ -227,23 +241,23 @@
                         <li><a class="dropdown-item" href="about-us.html#features-section">Our Approach</a></li>
                         <li><a class="dropdown-item" href="about-us.htmlleadership-section">Facilities</a></li>
                         <li><a class="dropdown-item" href="about-us.html#campus-section">Chairperson's Note</a></li>
-                        <li><a class="dropdown-item" href="about-us.htmlblog-section">Director's Word</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#blog-section">Director's Word</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Academics</a>
-                    <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
-                        <li><a class="dropdown-item" href="academics.html">Academics</a></li>
-                        <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
-                        <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
-                        <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
-                        <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
-                <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-            </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Academics</a>
+                        <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="academics.html">Academics</a></li>
+                            <li><a class="dropdown-item" href="blog-listing.html">Blog-Listing</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
+                            <li><a class="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mandatory_disclosure.html">Mandatory Disclosure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -251,17 +265,21 @@
     <main>
         
         <section class="page-header">
+            <i class="fa-solid fa-shapes shape shape-1"></i>
+            <i class="fa-regular fa-circle-play shape shape-2"></i>
+            <i class="fa-solid fa-star-of-life shape shape-3"></i>
+            <i class="fa-solid fa-bolt shape shape-4"></i>
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 mx-auto animate-up">
                         <div class="header-title-wrapper">
-                            <h1 class="header-title">Discover what makes Satyam International School more than just a school</h1>
-                            <div class="header-line"></div>
-                            <div class="header-subtitle">Tales of Transformation</div>
+                            <span class="header-subtitle">Tales of Transformation</span>
+                            <h1 class="header-title">More than a school.<br>A Vibrant Community.</h1>
                         </div>
 
-                        <div class="intro-text mx-auto mb-4">
-                            Parents are an important part of the "teacher-student-parent" triad, and we pay a lot of attention to the development of the parent community. We believe that transparent communication creates the best environment for our children.
+                        <div class="intro-text mx-auto mt-4">
+                            Parents are the heartbeat of our "teacher-student-parent" triad. We believe that <span class="highlight-text hl-purple">transparent communication</span> and <span class="highlight-text hl-orange">colorful learning environments</span> create the <span class="highlight-text hl-blue">brightest future</span> for our children.
                         </div>
                     </div>
                 </div>
@@ -269,168 +287,137 @@
         </section>
 
         <section class="review-section">
-            <div class="decor-ring"></div>
             <div class="container">
                 <div class="row g-4">
                     
-                    <div class="col-md-6 animate-up delay-1">
-                        <div class="review-card card-blue">
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="review-card style-purple">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "We have seen remarkable growth in our child academically, emotionally, and socially. The teachers pay attention to every child’s needs and ensure they feel supported and motivated."
+                                "We have seen remarkable growth academically, emotionally, and socially. The teachers pay attention to every child’s needs and ensure they feel supported."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">K</div>
                                 <div>
                                     <h5 class="reviewer-name">Kishore</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <span class="reviewer-role">Parent - Grade 4</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 animate-up delay-2">
-                        <div class="review-card card-yellow">
+                    <div class="col-lg-6 animate-up delay-2">
+                        <div class="review-card style-orange">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The teachers are really supportive and approachable. They understand the strengths of each child and help them in those areas."
+                                "The teachers are really supportive and approachable. They understand the strengths of each child and help them thrive in those areas."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">R</div>
                                 <div>
                                     <h5 class="reviewer-name">Ram Krishna</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <span class="reviewer-role">Parent - Kindergarten</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 animate-up delay-1">
-                        <div class="review-card card-purple">
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="review-card style-red">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The variety of activities offered by this school has helped my child discover new interests and talents. Whether it’s sports, arts, or science, the school encourages every child to explore and shine beyond academics."
+                                "The variety of activities offered has helped my child discover new interests. Whether it’s sports, arts, or science, the school encourages everyone to shine."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">K</div>
                                 <div>
                                     <h5 class="reviewer-name">Kathyayini</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <span class="reviewer-role">Parent - Grade 8</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 animate-up delay-2">
-                        <div class="review-card card-orange">
+                    <div class="col-lg-6 animate-up delay-2">
+                        <div class="review-card style-blue">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The school’s communication with parents is excellent. We are always kept informed about our child’s progress, events, and classroom activities. It truly makes us feel involved and connected to their learning journey."
+                                "Communication with parents is excellent. We are always kept informed about progress and events. It truly makes us feel involved in the journey."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">S</div>
                                 <div>
                                     <h5 class="reviewer-name">Sahil Gothwaal</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <span class="reviewer-role">Parent - Grade 2</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 animate-up delay-1">
-                        <div class="review-card card-green">
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="review-card style-green">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "This School's approach towards making students to learn about technology and many other skills is really incredible."
+                                "This School's approach towards making students learn about technology and modern skills is really incredible. A forward-thinking institution."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">R</div>
                                 <div>
                                     <h5 class="reviewer-name">Rahul Pandey</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <span class="reviewer-role">Parent - Grade 10</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                     <div class="col-md-6 animate-up delay-2">
-                        <div class="review-card card-teal">
+                     <div class="col-lg-6 animate-up delay-2">
+                        <div class="review-card style-teal">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The teachers are warm, patient, and highly skilled. Their dedication is clearly visible in the way children grow and perform."
+                                "The teachers are warm, patient, and highly skilled. Their dedication is clearly visible in the way children grow, perform, and smile."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">M</div>
                                 <div>
                                     <h5 class="reviewer-name">Madhu Kumar</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <span class="reviewer-role">Parent - Grade 1</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 animate-up delay-1">
-                        <div class="review-card card-pink">
+                    <div class="col-lg-6 animate-up delay-1">
+                        <div class="review-card style-pink">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
-                                "The school has created a positive and engaging learning environment. Our child feels valued, supported, and excited to learn every day."
+                                "They have created a positive and engaging learning environment. Our child feels valued, supported, and excited to learn every single day."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">S</div>
                                 <div>
-                                    <h5 class="reviewer-name">Sudha Basuthkar</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <h5 class="reviewer-name">Sudha B.</h5>
+                                    <span class="reviewer-role">Parent - Grade 5</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 animate-up delay-2">
-                        <div class="review-card card-red">
+                    <div class="col-lg-6 animate-up delay-2">
+                        <div class="review-card style-yellow">
                             <i class="fa-solid fa-quote-right review-icon"></i>
                             <p class="review-text">
                                 "We love how the school encourages creativity and independent thinking. The activities and projects truly bring learning to life."
                             </p>
                             <div class="reviewer-info">
+                                <div class="reviewer-avatar">S</div>
                                 <div>
                                     <h5 class="reviewer-name">Sachin</h5>
-                                    <span class="reviewer-role">Parent</span>
+                                    <span class="reviewer-role">Parent - Grade 3</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </section>
-
-        <section class="participation-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto animate-up">
-                        <h2 class="section-heading">Participation of parents in the life of the school</h2>
-                        
-                        <div class="feature-block">
-                            <h4 class="feature-title">WhatsApp & Telegram Updates</h4>
-                            <p class="feature-text">
-                                For the convenience of parents, we have active WhatsApp groups and a <a href="#" class="text-highlight-link">Telegram channel</a>. We share daily updates, photos of classroom activities, and urgent notices instantly. This ensures you never miss out on your child's milestones.
-                            </p>
-                        </div>
-
-                        <div class="feature-block">
-                            <h4 class="feature-title">Grandparents' Day & Events</h4>
-                            <p class="feature-text">
-                                We believe education involves the whole family. We organize special events like Grandparents' Day, Matru-Pitru Pujan, and Sports Day where parents actively participate in races and fun games.
-                            </p>
-                        </div>
-
-                        <div class="participation-imgs row g-4">
-                            <div class="col-md-6 animate-up delay-1">
-                                <div class="participation-img-box">
-                                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Parents Event">
-                                </div>
-                            </div>
-                            <div class="col-md-6 animate-up delay-2">
-                                <div class="participation-img-box">
-                                    <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Group of Parents and Teachers">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </section>

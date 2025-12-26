@@ -34,24 +34,14 @@
             background-color: #fff; 
         }
         
-        /* Make the dropdown menu display on hover */
-        @media (min-width: 992px) { /* Applies only to desktop/large screens */
-            .nav-item.dropdown:hover .dropdown-menu {
-                display: block;
-                margin-top: 0; 
-            }
-        }
-
-        /* Navbar */
-        .navbar { padding: 15px 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; z-index: 1000; }
-        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; position: relative; }
+        /* --- NAVBAR (Consistent) --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
         .nav-link:hover { color: var(--primary-blue); }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; 
-            background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px;
-        }
-        .nav-link:hover::after { width: 80%; }
-        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: bounceDot 2s infinite; }
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
+        @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
         /* Custom Animations Keyframes */
         @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(5deg); } }
@@ -218,7 +208,6 @@
             .news-input, .btn-join { width: 100%; }
         }
     </style>
-    <link rel="stylesheet" href="css/nav-footer.css">
 </head>
 <body>
 
@@ -239,13 +228,13 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                         <li><a class="dropdown-item" href="about-us.html#intro-section">About Us</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#founder-section">Vision & Mission</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#founder-section">Founder's Message</a></li>
                         <li><a class="dropdown-item" href="about-us.html#stats-section">Key Achievements</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#vm-section">Founder's Message</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#vm-section">Vision & Mission</a></li>
                         <li><a class="dropdown-item" href="about-us.html#features-section">Our Approach</a></li>
-                        <li><a class="dropdown-item" href="about-us.htmlleadership-section">Facilities</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#campus-section">Chairperson's Note</a></li>
-                        <li><a class="dropdown-item" href="about-us.html#blog-section">Director's Word</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#Director-section">Director's Word</a></li>
+                        <li><a class="dropdown-item" href="about-us.html#Chairperson-section">Chairperson's Note </a></li>
+                        <li><a class="dropdown-item" href="about-us.html#campus-section">Facilities</a></li>
                     </ul>
                 </li>
                     <li class="nav-item dropdown">
@@ -266,7 +255,7 @@
         </div>
     </nav>
 
-    <section class="intro-section">
+    <section id="intro-section" class="intro-section">
         <div class="intro-bg-diag"></div>
         <div class="float-shape shape-circle" data-aos="fade-down" data-aos-delay="500"></div>
         <div class="float-shape shape-square" data-aos="fade-up" data-aos-delay="700"></div>
@@ -291,7 +280,7 @@
         </div>
     </section>
 
-    <section class="founder-section">
+    <section id="founder-section" class="founder-section">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 text-center mb-5 mb-lg-0" data-aos="zoom-in-right">
@@ -314,7 +303,7 @@
         </div>
     </section>
 
-    <section class="stats-section">
+    <section id="stats-section" class="stats-section">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-4" data-aos="flip-up">
@@ -342,7 +331,7 @@
         </div>
     </section>
 
-    <section class="vm-section">
+    <section id="vm-section" class="vm-section">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6" data-aos="fade-right">
@@ -365,7 +354,7 @@
         </div>
     </section>
 
-    <section class="features-section">
+    <section id="features-section" class="features-section">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 style="font-weight:900; margin-bottom:15px; font-size: 2.5rem;">Inspiring Tomorrow's Changemakers</h2>
@@ -422,7 +411,7 @@
         </div>
     </section>
 
-    <section class="leadership-section">
+    <section id="Director-section" class="leadership-section">
         <div class="container">
             
             <div class="leader-card" data-aos="fade-right">
@@ -438,7 +427,12 @@
                 </div>
             </div>
 
-            <div class="leader-card" style="flex-direction: row-reverse;" data-aos="fade-left" data-aos-delay="300">
+        </div>
+    </section>
+
+    <section id="Chairperson-section" class="leadership-section">
+        <div class="container">
+             <div class="leader-card" style="flex-direction: row-reverse;" data-aos="fade-left" data-aos-delay="300">
                 <div class="leader-content">
                     <div class="leader-role" style="color:var(--primary-orange)">A Note from Our Chairperson</div>
                     <p class="leader-quote">
@@ -451,10 +445,11 @@
                 </div>
             </div>
 
+            
         </div>
     </section>
 
-    <section class="campus-section">
+    <section id="campus-section" class="campus-section">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-title">Our Passion Drives Innovation</h2>
@@ -553,7 +548,7 @@
         </div>
     </section>
 
-    <section class="blog-section">
+    <section id="blog-section" class="blog-section">
             <div class="container">
                 <div class="text-center mb-5 animate-up">
                     <span style="color: var(--primary-purple); font-weight: 700; letter-spacing: 2px;">LATEST UPDATES</span>
@@ -614,7 +609,7 @@
             </div>
         </section>
 
-    <section class="newsletter-section">
+    <section id="newsletter-section" class="newsletter-section">
         <div class="container">
             <div class="row align-items-center" data-aos="zoom-in">
                 <div class="col-lg-6 mb-4 mb-lg-0">

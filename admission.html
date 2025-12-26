@@ -22,16 +22,15 @@
         
         body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:var(--text-dark); background: #fff; }
         
-        /* Navbar */
-        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .nav-link { color: #000; font-weight: 600; font-size: 14px; margin: 0 8px; transition: color 0.3s; position: relative; }
+         /* --- NAVBAR (Consistent) --- */
+        .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
         .nav-link:hover { color: var(--primary-blue); }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; background: var(--primary-yellow); transition: all 0.3s ease; transform: translateX(-50%); border-radius: 10px; }
-        .nav-link:hover::after { width: 80%; }
-        .nav-dot { width: 8px; height: 8px; background-color: var(--primary-orange); border-radius: 50%; display: inline-block; margin: 0 5px; animation: pulseDot 2s infinite; }
-        .navbar .dropdown-menu{ min-width:260px;background:#f5f5f5;border:none;box-shadow:0 12px 30px rgba(0,0,0,0.08);padding:18px 12px; border-radius: 12px; }
-        .dropdown-item:hover { background-color: #e9ecef; color: var(--primary-blue); border-radius: 5px; }
-        
+        .dropdown-menu{ border:none; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 15px; }
+        .dropdown-item { font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+        .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
+        @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
+
         /* Animations */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes expandWidth { from { width: 0; } }
@@ -134,14 +133,6 @@
             font-size: 1.1rem; font-weight: 700; color: var(--primary-purple); margin-top: 10px; margin-bottom: 20px;
             padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; display: flex; align-items: center; gap: 10px;
         }
-
-        /* Make the dropdown menu display on hover */
-@media (min-width: 992px) { /* Applies only to desktop/large screens */
-    .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0; 
-    }
-}
         
         /* Floating Labels & Inputs */
         .form-floating > .form-control, .form-floating > .form-select { 
@@ -188,7 +179,6 @@
             .form-card { padding: 30px 20px; }
         }
     </style>
-    <link rel="stylesheet" href="css/nav-footer.css">
 </head>
 <body>
     
@@ -280,7 +270,7 @@
             <div class="container">
                 <div class="text-center mb-5 animate-up">
                     <h2 style="font-weight: 900; font-size: 2.5rem;">How to Verify CBSE Certification</h2>
-                    <p class="text-muted">Protecting your child's educational future requires due diligence. Here is your guide.</p>
+                    <p class="text-muted">Protecting your child's educational future requires due diligence. Here is your 4-step guide.</p>
                 </div>
                 
                 <div class="row step-row animate-up delay-1">
@@ -293,7 +283,7 @@
                     <div class="col-lg-8">
                         <div class="step-content">
                             <h3 class="step-title">Check the School's Affiliation Number</h3>
-                            <p class="step-desc">Every CBSE-affiliated school has a unique affiliation number. This is your first and most important verification step. Look for the complete school name, ensure the affiliation number is active, and verify the address matches the physical location.</p>
+                            <p class="step-desc">Every CBSE-affiliated school has a unique affiliation number. This is your first and most important verification step. Ensure the complete school name matches exactly, the affiliation number is active and valid, and the address matches the school's physical location.</p>
                         </div>
                     </div>
                 </div>
@@ -307,11 +297,42 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="step-content">
-                            <h3 class="step-title">Verify Affiliation Status and Validity</h3>
-                            <p class="step-desc">CBSE affiliations aren't permanent; they come with specific validity periods. Check the "Valid Up To" date on the CBSE portal. Confirm the school has affiliation for all classes they operate (Primary, Secondary, Senior Secondary) and check for any pending conditions.</p>
+                            <h3 class="step-title">Verify Affiliation Status and Validity Period</h3>
+                            <p class="step-desc">CBSE affiliations aren't permanent; they come in different categories with specific validity periods. Check the "Valid Up To" date on the CBSE portal. Confirm the school has affiliation for all classes they're operating (Primary, Secondary, Senior Secondary). Verify there are no pending conditions or show-cause notices.</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="row step-row animate-up delay-3">
+                    <div class="col-lg-2 offset-lg-1">
+                        <div class="step-visual">
+                            <span class="step-number num-yellow">03</span>
+                            <div class="step-arrow-box">Step</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="step-content">
+                            <h3 class="step-title">Examine Mandatory Documents</h3>
+                            <p class="step-desc">CBSE requires affiliated schools to maintain and display specific documents. During your school visit, request to see the essential checklist.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row step-row animate-up delay-4">
+                    <div class="col-lg-2 offset-lg-1">
+                        <div class="step-visual">
+                            <span class="step-number num-blue">04</span>
+                            <div class="step-arrow-box">Step</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="step-content">
+                            <h3 class="step-title">Physical Infrastructure Verification</h3>
+                            <p class="step-desc">Beyond documents, physically inspect the school premises to ensure compliance with CBSE norms.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
