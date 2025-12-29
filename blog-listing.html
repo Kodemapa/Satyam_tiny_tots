@@ -3,22 +3,10 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="author" content="elite-themes24">
-   <meta name="description" content="Satyam International School - Excellence in Education for a Brighter Future">
-   <meta name="keywords"
-      content="Responsive, HTML5, elite-themes24, Landing, Software, Mobile App, SaaS, Startup, Creative, Digital Product">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- SITE TITLE -->
-   <title>Satyam International School - Excellence in Education for a Brighter Future</title>
-  <!-- FAVICON AND TOUCH ICONS -->
-	<link rel="shortcut icon" href="images/Satyam_Icon_1.png" type="image/x-icon">
-	<link rel="icon" href="images/Satyam_Icon_1.png" type="image/x-icon">
-	<link rel="apple-touch-icon" sizes="152x152" href="images/Satyam_Icon_1.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="images/Satyam_Icon_1.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="images/Satyam_Icon_1.png">
-	<link rel="apple-touch-icon" href="images/Satyam_Icon_1.png">
-	<link rel="icon" href="images/Satyam_Icon_1.png" type="image/x-icon">
-
+   <title>Satyam International School - Insights & Blogs</title>
+  <link rel="shortcut icon" href="images/Satyam_Icon_1.png" type="image/x-icon">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -45,92 +33,84 @@
         .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
         @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
-        /* Animations */
+        /* --- ANIMATIONS --- */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse-btn { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        /* NEW: Background Gradient Animation */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* NEW: Floating Shapes Animation */
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
+        }
 
         .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
 
-        /* --- NEW CBSE SECTION --- */
-        .cbse-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #fffbf2 0%, #fff 100%);
+        /* --- BLOG SECTION STYLING --- */
+        /* Updated Section with Animated Background */
+        .blog-section { 
+            padding: 100px 0; 
             position: relative;
             overflow: hidden;
-            border-bottom: 5px solid var(--primary-yellow);
-        }
-        
-        /* Decorative background blobs for CBSE section */
-        .blob { position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.4; z-index: 0; }
-        .blob-1 { top: -50px; left: -50px; width: 200px; height: 200px; background: var(--primary-yellow); }
-        .blob-2 { bottom: -50px; right: -50px; width: 300px; height: 300px; background: var(--primary-blue); }
-
-        .cbse-img-wrapper {
-            position: relative;
-            z-index: 2;
-            transform: rotate(-2deg);
-            transition: transform 0.3s;
-        }
-        .cbse-img-wrapper:hover { transform: rotate(0deg) scale(1.02); }
-        
-        .cbse-img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 20px 20px 0px var(--primary-blue); /* Hard shadow for pop */
-            border: 4px solid #fff;
+            /* Soft Pastel Gradient matching school colors */
+            background: linear-gradient(90deg,#ff6b35,#ffdd00);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
         }
 
-        .cbse-badge {
-            display: inline-block;
-            background: var(--primary-orange);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(240, 90, 40, 0.4);
-        }
-
-        .cbse-link {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s;
-        }
-        .cbse-link:hover h2 { color: var(--primary-blue); text-decoration: underline; }
-
-        .btn-vibrant {
-            background: var(--primary-orange);
-            color: white;
-            font-weight: 700;
-            padding: 12px 30px;
-            border-radius: 50px;
-            border: none;
-            transition: all 0.3s;
-            animation: pulse-btn 2s infinite;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-        }
-        .btn-vibrant:hover { background: #d94e1f; color: #fff; transform: translateY(-3px); }
-
-
-        /* --- BLOG SECTION (Updated) --- */
-        .blog-section { padding: 80px 0; background: #fff; }
-        
-        .blog-card {
-            background: #fff; border-radius: 15px; overflow: hidden; height: 100%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.4s;
-            border: 1px solid #eee;
-            position: relative;
+        /* Floating Background Shapes Container */
+        .shapes-container {
+            position: absolute;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1; /* Behind content */
+            pointer-events: none;
         }
-        .blog-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .bg-shape {
+            position: absolute;
+            bottom: -100px;
+            display: block;
+            opacity: 0;
+            animation: floatUp 15s linear infinite;
+        }
+
+        /* Specific Shapes */
+        .shape-1 { width: 80px; height: 80px; background: rgba(255, 221, 0, 0.2); left: 10%; border-radius: 50%; animation-delay: 0s; }
+        .shape-2 { width: 120px; height: 120px; background: rgba(0, 156, 235, 0.15); left: 30%; border-radius: 10px; animation-delay: 5s; animation-duration: 12s; }
+        .shape-3 { width: 60px; height: 60px; background: rgba(142, 68, 173, 0.2); left: 70%; border-radius: 50%; animation-delay: 2s; animation-duration: 18s; }
+        .shape-4 { width: 100px; height: 100px; background: rgba(255, 107, 53, 0.15); left: 90%; transform: rotate(45deg); animation-delay: 8s; animation-duration: 14s; }
+
+        /* Blog Content */
+        .blog-container-inner { position: relative; z-index: 2; }
+
+        .blog-card {
+            background: #fff; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            height: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy hover */
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .blog-card:hover { 
+            transform: translateY(-15px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+        }
         
         /* Colorful top borders for cards */
         .b-card-1 { border-top: 6px solid var(--primary-orange); }
@@ -143,14 +123,8 @@
         .blog-body { padding: 30px 25px; }
         .blog-title { font-weight: 800; font-size: 1.25rem; margin-bottom: 15px; line-height: 1.4; }
         
-        .read-more-link { 
-            font-weight: 800; text-decoration: none; transition: 0.3s; 
-            display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; font-size: 0.85rem;
-        }
-        .read-more-link:hover { gap: 15px; letter-spacing: 1px; }
-
-          /* --- Footer --- */
-        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; }
+        /* --- Footer --- */
+        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; z-index: 10; }
         .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
         .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
         .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: 0.3s;}
@@ -213,10 +187,18 @@
     <main>
 
         <section class="blog-section">
-            <div class="container">
+            <div class="shapes-container">
+                <div class="bg-shape shape-1"></div>
+                <div class="bg-shape shape-2"></div>
+                <div class="bg-shape shape-3"></div>
+                <div class="bg-shape shape-4"></div>
+            </div>
+
+            <div class="container blog-container-inner">
                 <div class="text-center mb-5 animate-up">
                     <span style="color: var(--primary-purple); font-weight: 700; letter-spacing: 2px;">LATEST UPDATES</span>
-                    <h2 style="font-weight: 900; font-size: 2.5rem; color:#ffdd00;">Insights for Growth</h2>
+                    <h2 style="font-weight: 900; font-size: 2.5rem; color:#333;">Insights for Growth</h2>
+                    <div style="width: 60px; height: 5px; background: var(--primary-yellow); margin: 15px auto; border-radius: 10px;"></div>
                 </div>
 
                 <div class="row g-4">
@@ -309,7 +291,7 @@
                             <a href="#" class="magwai-link">All rights reserved by Kodemapa</a>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <ul class="large-icon dark social-icons">
+                            <ul class="large-icon dark social-icons list-unstyled d-flex mb-0">
                                 <li class="social-circle">
                                     <a class="facebook" href="" target="_blank">
                                         <i class="fa-brands fa-facebook-f"></i>

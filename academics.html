@@ -62,6 +62,35 @@
         }
         .page-title { font-size: clamp(2.5rem, 5vw, 4rem);color: #e6ff05; font-weight: 900; line-height: 1.1; margin-bottom: 20px; position: relative; z-index: 1; }
         .title-underline { height: 8px; background: var(--primary-orange); animation: expandWidth 1s ease-out forwards; border-radius: 4px; }
+
+        @keyframes purpleGradientAnim {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* The class for the new outer wrapper */
+    .animated-purple-bg {
+        /* Create a diagonal gradient with soft purple shades */
+        /* You can adjust these hex codes to make it darker or lighter */
+        background: linear-gradient(-90deg, #bf4df8a7, #c748fdab);
+
+        /* Make the background larger than the container so it has room to move */
+        background-size: 400% 400%;
+
+        /* Apply the animation: name, duration, timing-function, iteration-count */
+        animation: purpleGradientAnim 15s ease infinite;
+
+        /* Ensure it handles overflow correctly */
+        position: relative;
+        overflow: hidden;
+    }
         
         /* Floating Shapes */
         .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out alternate; }
@@ -224,62 +253,65 @@
             </div>
         </section>
 
-        <section class="container py-5">
-            <div class="text-center mb-5 animate-up">
-                <h2 style="font-weight: 900; font-size: 2.5rem;">Why Choose Satyam?</h2>
-                <p class="text-muted">A comprehensive educational experience</p>
-            </div>
+        <section class="animated-purple-bg py-5">
 
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 animate-up delay-1">
-                    <div class="feature-card fc-blue">
-                        <div class="icon-box"><i class="fa-solid fa-certificate"></i></div>
-                        <h5 style="font-weight: 800;">Recognized CBSE Affiliation</h5>
-                        <p class="small text-muted mb-0">Government approved curriculum providing structured learning pathways and recognition across India, ensuring your child's credentials are respected nationwide.</p>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="text-center mb-5 animate-up">
+            <h2 style="font-weight: 900; font-size: 2.5rem;">Why Choose Satyam?</h2>
+            <p class="text-muted">A comprehensive educational experience</p>
+        </div>
 
-                <div class="col-md-6 col-lg-4 animate-up delay-2">
-                    <div class="feature-card fc-purple">
-                        <div class="icon-box"><i class="fa-solid fa-computer"></i></div>
-                        <h5 style="font-weight: 800;">LEAD Digital Classrooms</h5>
-                        <p class="small text-muted mb-0">Partnership with LEAD School bringing world-class digital infrastructure, interactive smart classrooms, and engaging digital textbooks.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 animate-up delay-3">
-                    <div class="feature-card fc-orange">
-                        <div class="icon-box"><i class="fa-solid fa-flask"></i></div>
-                        <h5 style="font-weight: 800;">Future-Ready STEM Focus</h5>
-                        <p class="small text-muted mb-0">Innovative Science, Technology, Engineering, and Mathematics curriculum with state-of-the-art laboratories and coding classes.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 animate-up delay-1">
-                    <div class="feature-card fc-green">
-                        <div class="icon-box"><i class="fa-solid fa-trophy"></i></div>
-                        <h5 style="font-weight: 800;">Holistic Development</h5>
-                        <p class="small text-muted mb-0">Wide-ranging activities including athletics, cricket, basketball, dance, and instrumental music for complete growth.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 animate-up delay-2">
-                    <div class="feature-card fc-yellow">
-                        <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
-                        <h5 style="font-weight: 800;">Expert Faculty Team</h5>
-                        <p class="small text-muted mb-0">Dedicated teachers with years of classroom experience, specialized subject knowledge, and modern teaching certifications.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 animate-up delay-3">
-                    <div class="feature-card fc-blue">
-                        <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
-                        <h5 style="font-weight: 800;">Accessible Quality</h5>
-                        <p class="small text-muted mb-0">Affordable fee structure without compromising educational quality, with transparent cost breakdowns.</p>
-                    </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 animate-up delay-1">
+                <div class="feature-card fc-blue">
+                    <div class="icon-box"><i class="fa-solid fa-certificate"></i></div>
+                    <h5 style="font-weight: 800;">Recognized CBSE Affiliation</h5>
+                    <p class="small text-muted mb-0">Government approved curriculum providing structured learning pathways and recognition across India, ensuring your child's credentials are respected nationwide.</p>
                 </div>
             </div>
-        </section>
+
+            <div class="col-md-6 col-lg-4 animate-up delay-2">
+                <div class="feature-card fc-purple">
+                    <div class="icon-box"><i class="fa-solid fa-computer"></i></div>
+                    <h5 style="font-weight: 800;">LEAD Digital Classrooms</h5>
+                    <p class="small text-muted mb-0">Partnership with LEAD School bringing world-class digital infrastructure, interactive smart classrooms, and engaging digital textbooks.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 animate-up delay-3">
+                <div class="feature-card fc-orange">
+                    <div class="icon-box"><i class="fa-solid fa-flask"></i></div>
+                    <h5 style="font-weight: 800;">Future-Ready STEM Focus</h5>
+                    <p class="small text-muted mb-0">Innovative Science, Technology, Engineering, and Mathematics curriculum with state-of-the-art laboratories and coding classes.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 animate-up delay-1">
+                <div class="feature-card fc-green">
+                    <div class="icon-box"><i class="fa-solid fa-trophy"></i></div>
+                    <h5 style="font-weight: 800;">Holistic Development</h5>
+                    <p class="small text-muted mb-0">Wide-ranging activities including athletics, cricket, basketball, dance, and instrumental music for complete growth.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 animate-up delay-2">
+                <div class="feature-card fc-yellow">
+                    <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <h5 style="font-weight: 800;">Expert Faculty Team</h5>
+                    <p class="small text-muted mb-0">Dedicated teachers with years of classroom experience, specialized subject knowledge, and modern teaching certifications.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 animate-up delay-3">
+                <div class="feature-card fc-blue">
+                    <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
+                    <h5 style="font-weight: 800;">Accessible Quality</h5>
+                    <p class="small text-muted mb-0">Affordable fee structure without compromising educational quality, with transparent cost breakdowns.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section class="content-section" style="background-color: #fcfcfc;">
             <div class="container">

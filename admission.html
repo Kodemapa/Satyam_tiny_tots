@@ -67,7 +67,7 @@
         .header-title { font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; margin: 0; }
         .header-line { height: 8px; background: var(--primary-green); width: 0; flex-grow: 1; animation: expandWidth 1.5s ease-out forwards; border-radius: 4px; }
         .admission-intro p { font-size: 1.05rem; line-height: 1.8; color: #555; margin-bottom: 25px; position: relative; z-index: 1; }
-
+        
         /* Champions Banner */
         .champions-section {
             background: var(--primary-purple);
@@ -241,21 +241,23 @@
     </nav>
 
     <main>
-        <section class="page-header">
-            <div class="float-shape shape-circle"></div>
-            <div class="float-shape shape-square"></div>
-
+    
+        <section class="page-header py-5" style="background: linear-gradient(to right, #f3863e, #ffa01c);">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
                         <div class="header-title-wrapper animate-up">
                             <h1 class="header-title">Admissions & Verification</h1>
                             <div class="header-line"></div>
                         </div>
-
                         <div class="admission-intro animate-up delay-1">
-                            <p><strong>Choosing the right school is one of the most critical decisions you'll make for your child's future.</strong> But what if the trust you place in an institution turns out to be misplaced? You enroll your child in what appears to be a reputable CBSE school, only to discover years later that the school's affiliation has expired or was never valid.</p>
+                            <p class=" admission-paragraph"><strong>Choosing the right school is one of the most critical decisions you'll make for your child's future.</strong> But what if the trust you place in an institution turns out to be misplaced? You enroll your child in what appears to be a reputable CBSE school, only to discover years later that the school's affiliation has expired or was never valid.</p>
                             <p>Satyam International School, Ballari solves it by disclosing the documents to parents, where we follow transparency in every aspect.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="image-holder animate-up delay-2" style="transform: rotate(2deg); border: 8px solid #fff; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                            <img src="images/admission.png" alt="Students in a classroom using tablets" class="img-fluid" style="width: 100%; height: auto; display: block; border-radius: 22px;">
                         </div>
                     </div>
                 </div>
@@ -271,16 +273,11 @@
                         <h2 style="font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">Where Champions<br>Are Made in Every<br>Arena</h2>
                         <p class="lead opacity-75">We believe true success comes from developing well-rounded individuals. So we've created a balanced approach that gives equal importance to academics, sports, and character-building.</p>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row g-2 p-4">
-                            <div class="col-6 text-end"><img src="images/admission.png"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="steps-wrapper">
+        <!-- <section class="steps-wrapper">
             <div class="container">
                 <div class="text-center mb-5 animate-up">
                     <h2 style="font-weight: 900; font-size: 2.5rem;">How to Verify CBSE Certification</h2>
@@ -348,7 +345,7 @@
                 </div>
 
             </div>
-        </section>
+        </section> -->
 
         <section class="form-section" id="admissionForm">
             <div class="container">
