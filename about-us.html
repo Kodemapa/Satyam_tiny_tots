@@ -201,6 +201,20 @@
         .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
         .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
 
+        .social-icons {
+            list-style: none; display: flex; gap: 14px; padding: 0; margin: 0;
+        }
+        .social-circle a {
+            width: 46px; height: 46px; border-radius: 50%; background: #ffffff;
+            display: flex; align-items: center; justify-content: center;
+            color: #000; font-size: 22px; transition: all 0.3s ease;
+        }
+        .social-circle a:hover {
+            background: #ffd800; color: #000; transform: translateY(-2px);
+        }
+        .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
+        .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
+
         /* Mobile Responsive Adjustments */
         @media (max-width: 991px) {
             .intro-section { padding-top: 100px; text-align: center; }
@@ -643,16 +657,17 @@
                     <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="row text-center text-md-start">
+                   <div class="row text-center text-md-start">
                           <div class="col-6">
                             <a href="index.html" class="footer-link">Home</a>
                             <a href="about-us.html" class="footer-link">About-us</a>
                             <a href="academics.html" class="footer-link">Academics</a>
                             <a href="gallery.html" class="footer-link">Gallery</a>
+                            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
                         </div>
                         <div class="col-6">
                             <a href="admission.html" class="footer-link">Admissions</a>
-                            <a href="Mandatory-disclosure.html" class="footer-link">Mandatory Disclosure</a>
+                            <a href="mandatory_disclosure.html" class="footer-link">Mandatory Disclosure</a>
                             <a href="contact-us.html" class="footer-link">Contacts</a>
                         </div>
                     </div>
