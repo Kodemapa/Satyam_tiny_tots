@@ -221,6 +221,159 @@
             .col-lg-4 .d-flex.justify-content-end { justify-content: center !important; margin-top: 20px; }
         }
     </style>
+    <style>
+    /* --- UNIQUE FORM VARIABLES --- */
+    :root {
+        --uf-orange: #ff6b35;
+        --uf-purple: #8e44ad;
+        --uf-bg-tint: #f9f3fc; /* Very light purple tint */
+        --uf-input-bg: #ffffff;
+        --uf-input-border: #e0d4e8;
+    }
+
+    /* Section Background with subtle gradient */
+    .unique-form-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #e7c2fc7e 0%, #fdfbff 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- DECORATIVE BLOBS --- */
+    .form-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: 0;
+        opacity: 0.5;
+    }
+    .blob-1 { top: -5%; left: -5%; width: 300px; height: 300px; background: var(--uf-orange); animation: floatForm 8s infinite alternate; }
+    .blob-2 { bottom: 5%; right: -5%; width: 400px; height: 400px; background: var(--uf-purple); animation: floatForm 10s infinite alternate-reverse; }
+
+    @keyframes floatForm { from { transform: translate(0, 0); } to { transform: translate(20px, 30px); } }
+
+    /* --- MAIN CARD --- */
+    .unique-form-card {
+        background: rgba(255, 255, 255, 0.95); /* Slight transparency */
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        padding: 50px;
+        box-shadow: 0 20px 60px rgba(142, 68, 173, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        position: relative;
+        z-index: 2;
+        /* Top Gradient Border */
+        border-top: 8px solid var(--uf-orange); 
+    }
+
+    /* Mobile padding adjustment */
+    @media (max-width: 768px) {
+        .unique-form-card { padding: 30px 20px; }
+    }
+
+    /* --- TYPOGRAPHY --- */
+    .gradient-text {
+        background: linear-gradient(45deg, var(--uf-orange), var(--uf-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+    }
+
+    /* --- SECTION HEADERS --- */
+    .form-section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        margin-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 2px dashed var(--uf-input-border);
+    }
+
+    .header-icon-box {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--uf-orange), #ff9f43);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-right: 15px;
+        box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+    }
+    
+    /* Make even sections purple for variety */
+    .form-section-header.purple-theme .header-icon-box {
+        background: linear-gradient(135deg, var(--uf-purple), #9b59b6);
+        box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3);
+    }
+
+    .header-title {
+        font-weight: 700;
+        color: #444;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    /* --- CUSTOM INPUTS --- */
+    .form-floating > .form-control, 
+    .form-floating > .form-select {
+        border-radius: 15px;
+        border: 2px solid var(--uf-input-border);
+        background-color: #fff;
+        height: 58px;
+        padding-left: 20px;
+        font-weight: 600;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    /* Focus State - Glows Orange */
+    .form-floating > .form-control:focus, 
+    .form-floating > .form-select:focus {
+        border-color: var(--uf-orange);
+        box-shadow: 0 0 0 5px rgba(255, 107, 53, 0.1);
+    }
+
+    .form-floating > label {
+        padding-left: 20px;
+        color: #888;
+    }
+
+    /* --- SUBMIT BUTTON --- */
+    .btn-unique-submit {
+        background: linear-gradient(90deg, var(--uf-orange) 0%, var(--uf-purple) 100%);
+        border: none;
+        color: white;
+        width: 100%;
+        padding: 18px;
+        border-radius: 50px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 30px rgba(142, 68, 173, 0.3);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-unique-submit:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(142, 68, 173, 0.5);
+    }
+
+    .btn-unique-submit i {
+        transition: transform 0.3s;
+    }
+    
+    .btn-unique-submit:hover i {
+        transform: translateX(5px) scale(1.1);
+    }
+
+</style>
+
 </head>
 <body>
     
@@ -292,7 +445,7 @@
             </div>
         </section>
 
-        <section class="container animate-up delay-1">
+        <!-- <section class="container animate-up delay-1">
             <div class="champions-section">
                 <div class="champions-bg-shape"></div>
                 <div class="row align-items-center position-relative z-1">
@@ -303,7 +456,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- <section class="steps-wrapper">
             <div class="container">
@@ -375,188 +528,187 @@
             </div>
         </section> -->
 
-        <section class="form-section" id="admissionForm">
-            <div class="container">
-                <div class="text-center mb-5 animate-up">
-                    <span class="form-title-decor">Start the Journey</span>
-                    <h2 style="font-weight: 900; font-size: 2.5rem;">Admission Enquiry Form</h2>
-                    <div style="height: 4px; width: 60px; background: var(--primary-orange); margin: 10px auto; border-radius:10px;"></div>
-                    <p class="text-muted">Fill in the details below and our admissions team will contact you shortly.</p>
-                </div>
+    
+<section class="unique-form-section" id="admissionForm">
+    <div class="form-blob blob-1"></div>
+    <div class="form-blob blob-2"></div>
 
-                <div class="row justify-content-center animate-up delay-1">
-                    <div class="col-lg-10 col-xl-9">
-                        <div class="form-card">
-                            <form>
-                                <div class="form-sub-header">
-                                    <i class="fa-solid fa-child-reaching"></i> Student Details
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="studentFirstName" placeholder="First Name" required>
-                                            <label for="studentFirstName">First Name*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="studentLastName" placeholder="Last Name" required>
-                                            <label for="studentLastName">Last Name*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input type="date" class="form-control" id="dob" required>
-                                            <label for="dob">Date of Birth*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="gender">
-                                                <option selected disabled>Select</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                                <option value="other">Other</option>
-                                            </select>
-                                            <label for="gender">Gender*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="bloodGroup">
-                                                <option selected disabled>Select</option>
-                                                <option>A+</option><option>A-</option>
-                                                <option>B+</option><option>B-</option>
-                                                <option>O+</option><option>O-</option>
-                                                <option>AB+</option><option>AB-</option>
-                                            </select>
-                                            <label for="bloodGroup">Blood Group</label>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="container">
+        <div class="text-center mb-5 animate-up" style="position: relative; z-index: 2;">
+            <span style="color: var(--uf-purple); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem;">Join Our Family</span>
+            <h2 class="gradient-text" style="font-size: 3rem; margin-top: 5px;">Admission Enquiry</h2>
+            <p class="text-muted" style="max-width: 500px; margin: 10px auto;">Take the first step towards a brilliant future. Fill in the details below.</p>
+        </div>
 
-                                <div class="form-sub-header mt-4">
-                                    <i class="fa-solid fa-graduation-cap"></i> Admission Details
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="gradeRequired" required>
-                                                <option selected disabled>Select Grade</option>
-                                                <option>Nursery</option><option>LKG</option><option>UKG</option>
-                                                <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option>
-                                                <option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
-                                                <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
-                                                <option>Grade 10</option>
-                                            </select>
-                                            <label for="gradeRequired">Grade Applying For*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="academicYear">
-                                                <option>2025-2026</option>
-                                                <option>2026-2027</option>
-                                            </select>
-                                            <label for="academicYear">Academic Year*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="prevSchool" placeholder="Previous School Name">
-                                            <label for="prevSchool">Previous School Name (if applicable)</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-sub-header mt-4">
-                                    <i class="fa-solid fa-users"></i> Parent / Guardian Details
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="fatherName" placeholder="Father's Name" required>
-                                            <label for="fatherName">Father's Name*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="motherName" placeholder="Mother's Name" required>
-                                            <label for="motherName">Mother's Name*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
-                                            <label for="email">Email Address*</label>
-                                            <i class="fa-regular fa-envelope input-group-text"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="tel" class="form-control" id="phone" placeholder="Phone" required>
-                                            <label for="phone">Phone Number*</label>
-                                            <i class="fa-solid fa-phone input-group-text"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="occupation" placeholder="Occupation">
-                                            <label for="occupation">Parent's Occupation</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-sub-header mt-4">
-                                    <i class="fa-solid fa-location-dot"></i> Address Details
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="address" placeholder="Address" required>
-                                            <label for="address">Street Address / Area*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="city" placeholder="City" required>
-                                            <label for="city">City*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="state" placeholder="State" value="Karnataka">
-                                            <label for="state">State</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="zip" placeholder="Zip">
-                                            <label for="zip">Pin Code</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-3 mt-1">
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Comments" id="comments" style="height: 100px"></textarea>
-                                            <label for="comments">Any specific requirements or queries?</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <button type="submit" class="btn-submit">
-                                            Submit Admission Enquiry <i class="fa-solid fa-paper-plane ms-2"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </form>
+        <div class="row justify-content-center animate-up delay-1">
+            <div class="col-lg-10 col-xl-9">
+                <div class="unique-form-card">
+                    <form>
+                        
+                        <div class="form-section-header">
+                            <div class="header-icon-box"><i class="fa-solid fa-child"></i></div>
+                            <h4 class="header-title">Student Details</h4>
                         </div>
-                    </div>
+
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="studentFirstName" placeholder="First Name" required>
+                                    <label for="studentFirstName">First Name*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="studentLastName" placeholder="Last Name" required>
+                                    <label for="studentLastName">Last Name*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" id="dob" required>
+                                    <label for="dob">Date of Birth*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <select class="form-select" id="gender">
+                                        <option selected disabled>Select</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <label for="gender">Gender*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <select class="form-select" id="bloodGroup">
+                                        <option selected disabled>Select</option>
+                                        <option>A+</option><option>A-</option>
+                                        <option>B+</option><option>B-</option>
+                                        <option>O+</option><option>O-</option>
+                                        <option>AB+</option><option>AB-</option>
+                                    </select>
+                                    <label for="bloodGroup">Blood Group</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section-header purple-theme mt-5">
+                            <div class="header-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <h4 class="header-title">Academic Details</h4>
+                        </div>
+
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="gradeRequired" required>
+                                        <option selected disabled>Select Grade</option>
+                                        <option>Nursery</option><option>LKG</option><option>UKG</option>
+                                        <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option>
+                                        <option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
+                                        <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
+                                        <option>Grade 10</option>
+                                    </select>
+                                    <label for="gradeRequired">Applying For Grade*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="academicYear" placeholder="e.g. 2025-2026" required>
+                                    <label for="academicYear">Academic Year (e.g. 2025-2026)*</label>
+                                </div>
+                            </div>      
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="prevSchool" placeholder="Previous School Name">
+                                    <label for="prevSchool">Previous School Name (if applicable)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section-header mt-5">
+                            <div class="header-icon-box"><i class="fa-solid fa-user-group"></i></div>
+                            <h4 class="header-title">Parent / Guardian Details</h4>
+                        </div>
+
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="fatherName" placeholder="Father's Name" required>
+                                    <label for="fatherName">Father's Name*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="motherName" placeholder="Mother's Name" required>
+                                    <label for="motherName">Mother's Name*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                    <label for="email">Email Address*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="phone" placeholder="Phone" required>
+                                    <label for="phone">Phone Number*</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section-header purple-theme mt-5">
+                            <div class="header-icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <h4 class="header-title">Address & Comments</h4>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="address" placeholder="Address" required>
+                                    <label for="address">Street Address / Area*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="city" placeholder="City" required>
+                                    <label for="city">City*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="state" placeholder="State" value="Karnataka">
+                                    <label for="state">State</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="zip" placeholder="Zip">
+                                    <label for="zip">Pin Code</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Comments" id="comments" style="height: 120px"></textarea>
+                                    <label for="comments">Any specific requirements or queries?</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 mt-5">
+                                <button type="submit" class="btn-unique-submit">
+                                    Submit Admission Enquiry <i class="fa-solid fa-paper-plane ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
         
         <section class="container animate-up delay-2">
             <div class="enroll-banner">
