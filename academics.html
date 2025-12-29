@@ -97,14 +97,6 @@
         .shape-square { width: 50px; height: 50px; border: 4px solid var(--primary-yellow); top: 15%; right: 15%; transform: rotate(15deg); }
         .shape-circle { width: 40px; height: 40px; background: var(--primary-purple); border-radius: 50%; bottom: 20%; left: 10%; opacity: 0.2; }
 
-        /* Make the dropdown menu display on hover */
-        @media (min-width: 992px) { /* Applies only to desktop/large screens */
-            .nav-item.dropdown:hover .dropdown-menu {
-                display: block;
-                margin-top: 0; 
-            }
-        }
-
         /* Feature Cards Grid */
         .feature-card {
             background: #fff; border-radius: 15px; padding: 30px 25px; height: 100%;
@@ -154,18 +146,21 @@
             display: inline-block; padding: 5px 15px; border-radius: 20px; 
             font-weight: 700; font-size: 0.85rem; margin-bottom: 15px; color: #fff;
         }
-
-        /* Footer (Identical to reference) */
-        footer{ background:var(--footer-bg); color:#fff; padding:70px 0 40px 0; position: relative; overflow: hidden; }
+        
+        /* --- Footer --- */
+        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; animation: floatY 4s ease-in-out infinite; }
         .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
-        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
-        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
+        .footer-logo img { max-width: 120px; margin-bottom: 20px; }
+        .footer-col-title { color: #fff; font-weight: 700; margin-bottom: 15px; display: block; text-decoration: none; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: opacity 0.3s; }
+        .footer-link:hover { opacity: 0.8; padding-left: 5px; color: var(--primary-yellow); }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; transition: transform 0.3s, background 0.3s, color 0.3s; }
+        .social-circle:hover { transform: translateY(-5px); background: var(--primary-blue); color: #fff; }
+        .magwai-link { color: var(--primary-blue); text-decoration: none; margin-top: 20px; display: block; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
         .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
         .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
-        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
-        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
-        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; opacity: 0.8; transition: 0.3s; }
-        .footer-link:hover { opacity: 1; padding-left: 5px; color: var(--primary-yellow); }
         
         .social-icons {
             list-style: none; display: flex; gap: 14px; padding: 0; margin: 0;
@@ -181,13 +176,15 @@
         .social-circle a.facebook:hover { background: #1877f2; color: #fff; }
         .social-circle a.instagram:hover { background: #e1306c; color: #fff; }
 
-        /* Mobile Tweaks */
         @media (max-width: 991px) {
-            .navbar-collapse { background: #fff; padding: 20px; border-radius: 0 0 15px 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-            .nav-dot, .nav-link::after { display: none; }
-            .content-row { flex-direction: column !important; margin-bottom: 50px; }
-            .content-img { margin-bottom: 25px; box-shadow: 10px 10px 0px var(--primary-blue) !important; }
-            .quote-box { margin-top: 30px; }
+            .footer-decor-strip { display: none; }
+            .footer-top-strip { width: 100%; }
+            .d-flex.justify-content-between { flex-direction: column; text-align: center; }
+            .d-flex.flex-column.align-items-end { align-items: center !important; margin-top: 20px; flex-direction: row !important; justify-content: center; gap: 10px; }
+            
+            /* Socials in Footer */
+            .large-icon { justify-content: center; }
+            .col-lg-4 .d-flex.justify-content-end { justify-content: center !important; margin-top: 20px; }
         }
     </style>
 </head>
@@ -374,18 +371,19 @@
                     <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
-                   <div class="row text-center text-md-start">
+                    <div class="row text-center text-md-start">
                           <div class="col-6">
                             <a href="index.html" class="footer-link">Home</a>
                             <a href="about-us.html" class="footer-link">About-us</a>
                             <a href="academics.html" class="footer-link">Academics</a>
-                            <a href="gallery.html" class="footer-link">Gallery</a>
-                            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+                            <a href="mandatory_disclosure.html" class="footer-link">Mandatory Disclosure</a>
+                           
                         </div>
                         <div class="col-6">
                             <a href="admission.html" class="footer-link">Admissions</a>
-                            <a href="mandatory_disclosure.html" class="footer-link">Mandatory Disclosure</a>
+                            <a href="gallery.html" class="footer-link">Gallery</a>
                             <a href="contact-us.html" class="footer-link">Contacts</a>
+                            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
                         </div>
                     </div>
                 </div>

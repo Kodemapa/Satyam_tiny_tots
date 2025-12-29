@@ -16,12 +16,11 @@
             --primary-yellow: #ffdd00; 
             --primary-purple: #8e44ad; 
             --primary-orange: #ff6b35; 
-            --primary-red: #e74c3c; /* New Red */
+            --primary-red: #e74c3c; 
             --primary-green: #2ecc71; 
             --bright-bg: #fffbf0;
             --footer-bg: #1f1f1f; 
             
-            /* Section Background Tints */
             --shape-bg-purple: rgba(142, 68, 173, 0.08);
             --shape-bg-orange: rgba(255, 107, 53, 0.08);
             --shape-bg-red: rgba(231, 76, 60, 0.08);
@@ -30,7 +29,7 @@
         body{ font-family: 'Montserrat', sans-serif; overflow-x:hidden; color:#333; background-color: #fff; }
         h1, h2, h3, h4 { font-weight: 800; }
 
-        /* --- NAVBAR (Consistent) --- */
+        /* --- NAVBAR --- */
         .navbar { padding: 15px 0; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .nav-link { color: #000; font-weight: 700; font-size: 14px; margin: 0 8px; transition: color 0.3s; }
         .nav-link:hover { color: var(--primary-blue); }
@@ -42,31 +41,37 @@
         /* --- ANIMATIONS --- */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* NEW: Pop Up Animation for Gallery Items */
         @keyframes popUp { 
             0% { opacity: 0; transform: scale(0.5) translateY(50px); } 
-            70% { opacity: 1; transform: scale(1.05); } /* Bouncy effect */
+            70% { opacity: 1; transform: scale(1.05); } 
             100% { opacity: 1; transform: scale(1); } 
         }
 
         @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
 
-        /* General Fade Up used for titles/sections */
-        .animate-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+        /* --- KEY CHANGE: Default state is hidden, Animation only runs when .in-view is added --- */
+        .animate-up { 
+            opacity: 0; 
+            will-change: transform, opacity; /* Improves mobile performance */
+        }
+        .animate-up.in-view {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
         
-        /* NEW: Class for Pop Up items */
         .pop-in { 
             opacity: 0; 
-            /* Uses a bouncy cubic-bezier timing function */
-            animation: popUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; 
+            will-change: transform, opacity; 
+        }
+        .pop-in.in-view {
+            animation: popUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
-        /* Extended delays for sequential popping */
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-        .delay-5 { animation-delay: 1.0s; }
+        /* Delays */
+        .delay-1 { animation-delay: 0.1s; } /* Faster delays for mobile feel */
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
 
         /* Floating Background Shapes */
         .float-shape { position: absolute; opacity: 0.6; z-index: 0; animation: float 6s infinite ease-in-out alternate; pointer-events: none; }
@@ -77,11 +82,24 @@
         /* --- HEADER SECTION --- */
         .gallery-header {
             padding: 120px 0 80px;
-            /* Vibrant Gradient */
             background: linear-gradient(135deg, #ff625c 0%, #c069ff 50%, #ca50f7 100%);
             position: relative;
             overflow: hidden;
             text-align: center;
+        }
+        /* Mobile Header Adjustments */
+        @media (max-width: 768px) {
+            .gallery-header { padding: 80px 0 50px; }
+            .gallery-header h1 { font-size: 2.5rem !important; }
+
+            .footer-decor-strip { display: none; }
+            .footer-top-strip { width: 100%; }
+            .d-flex.justify-content-between { flex-direction: column; text-align: center; }
+            .d-flex.flex-column.align-items-end { align-items: center !important; margin-top: 20px; flex-direction: row !important; justify-content: center; gap: 10px; }
+            
+            /* Socials in Footer */
+            .large-icon { justify-content: center; }
+            .col-lg-4 .d-flex.justify-content-end { justify-content: center !important; margin-top: 20px; }
         }
 
         /* --- GALLERY SECTIONS --- */
@@ -117,8 +135,9 @@
             display: inline-block;
             margin: 0;
         }
+        @media (max-width: 768px) { .section-title { font-size: 2.2rem; } }
 
-        /* --- GALLERY GRID ITEMS (ORGANIC BLOBS) --- */
+        /* --- GALLERY GRID ITEMS --- */
         .gallery-grid { 
             display: flex; 
             flex-wrap: wrap; 
@@ -134,23 +153,18 @@
             height: 320px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            /* Ensure transition lasts long enough for the shape change */
             transition: all 0.5s ease; 
             cursor: pointer;
             background: #fff;
-            /* Default state will be defined by specific blob classes below */
         }
 
-        /* UPDATED Hover Animation - Turns into a circle */
         .gallery-item-blob:hover { 
-            transform: translateY(-15px) rotate(0deg); /* Removed rotation on hover for cleaner circle effect */
+            transform: translateY(-15px) rotate(0deg); 
             box-shadow: 0 25px 50px rgba(0,0,0,0.3);
             z-index: 10;
-            /* !important is used here to override the specific blob-X border-radius definitions */
             border-radius: 50% !important; 
         }
 
-        /* Organic Border Radius Definitions */
         .blob-1 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         .blob-2 { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         .blob-3 { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
@@ -167,18 +181,21 @@
             transform: scale(1.15); 
         }
 
-        /* --- Footer (Consistent) --- */
-        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; overflow: hidden; }
+       
+        /* --- Footer --- */
+        footer { background-color: var(--footer-bg); color: #fff; padding: 70px 0 40px 0; position: relative; font-size: 14px; }
+        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; animation: floatY 4s ease-in-out infinite; }
         .footer-top-strip { position: absolute; top: 0; right: 0; width: 40%; height: 8px; background: var(--primary-yellow); }
-        .footer-decor-strip { position: absolute; top: -20px; right: 15%; width: 15px; height: 100px; background: var(--primary-purple); transform: rotate(45deg); z-index: 1; }
-        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: 0.3s;}
-        .footer-link:hover { padding-left: 5px; opacity: 0.8; color: var(--primary-yellow); }
-        .footer-col-title { color: #fff; font-weight: 700; margin-bottom: 15px; display: block; }
-        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: 0.3s; }
+        .footer-logo img { max-width: 120px; margin-bottom: 20px; }
+        .footer-col-title { color: #fff; font-weight: 700; margin-bottom: 15px; display: block; text-decoration: none; }
+        .footer-link { color: #fff; text-decoration: none; display: block; margin-bottom: 8px; transition: opacity 0.3s; }
+        .footer-link:hover { opacity: 0.8; padding-left: 5px; color: var(--primary-yellow); }
+        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; transition: transform 0.3s, background 0.3s, color 0.3s; }
+        .social-circle:hover { transform: translateY(-5px); background: var(--primary-blue); color: #fff; }
+        .magwai-link { color: var(--primary-blue); text-decoration: none; margin-top: 20px; display: block; }
+        .footer-triangle-btn { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 40px solid var(--primary-purple); cursor: pointer; transition: transform 0.3s; }
         .footer-triangle-btn:hover { transform: translateX(-50%) scale(1.1); }
         .footer-triangle-btn i { position: absolute; bottom: -35px; left: -6px; color: white; font-size: 12px; }
-        .social-circle { width: 30px; height: 30px; background: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #000; margin-bottom: 10px; text-decoration: none; margin-left: 10px; transition: 0.3s; }
-        .social-circle:hover { background: var(--primary-blue); color: #fff; transform: translateY(-3px) rotate(360deg); }
 
         .social-icons {
             list-style: none; display: flex; gap: 14px; padding: 0; margin: 0;
@@ -250,7 +267,7 @@
 
             <div class="container position-relative z-2 animate-up">
                 <span style="color: var(--primary-purple); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">LIFE AT SATYAM</span>
-                <h1 style="font-size: 3.5rem; margin: 10px 0 20px; color:#ffdd00;">Our Photo Gallery</h1>
+                <h1 class="header-title" style="font-size: 3.5rem; margin: 10px 0 20px; color:#ffdd00;">Our Photo Gallery</h1>
                 <div style="height: 6px; width: 80px; background: var(--primary-orange); margin: 0 auto 30px; border-radius: 10px;"></div>
                 <p class="lead text-muted mx-auto" style="max-width: 700px;">Explore moments of joy, learning, discovery, and achievement captured across our campus. Witness the vibrant energy that defines the Satyam experience.</p>
             </div>
@@ -345,18 +362,18 @@
                     <a href="#" class="footer-logo"><img src="images/Satyam_Icon_1.png" alt="Footer Logo"></a>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
-                   <div class="row text-center text-md-start">
-                          <div class="col-6">
+                    <div class="row text-center text-md-start">
+                           <div class="col-6">
                             <a href="index.html" class="footer-link">Home</a>
                             <a href="about-us.html" class="footer-link">About-us</a>
                             <a href="academics.html" class="footer-link">Academics</a>
-                            <a href="gallery.html" class="footer-link">Gallery</a>
-                            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+                            <a href="mandatory_disclosure.html" class="footer-link">Mandatory Disclosure</a>
                         </div>
                         <div class="col-6">
                             <a href="admission.html" class="footer-link">Admissions</a>
-                            <a href="mandatory_disclosure.html" class="footer-link">Mandatory Disclosure</a>
+                            <a href="gallery.html" class="footer-link">Gallery</a>
                             <a href="contact-us.html" class="footer-link">Contacts</a>
+                            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
                         </div>
                     </div>
                 </div>
@@ -391,5 +408,27 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target); // Play once
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animation classes
+            const animatedElements = document.querySelectorAll('.animate-up, .pop-in');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
