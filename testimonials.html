@@ -66,18 +66,34 @@
         .dropdown-item:hover { background-color: #f8f9fa; color: var(--primary-purple); transform: translateX(5px); }
         @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
-        /* --- PAGE HEADER (Split Layout) --- */
-        .page-header { 
-            padding: 80px 0; 
-            /* Soft Gradient similar to guides */
-            background: linear-gradient(90deg, #f3e245 0%, #fa9033 100%);
-            position: relative; 
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            min-height: 80vh;
-        }
+         /* Hero Section */
+        .page-header {
+                padding: 80px 0;
+                /* Changed to a dark, rich purple gradient for depth and brightness */
+                background: linear-gradient(135deg, #fc6101bb, #f2ff0072);
+                background-size: 200% 200%;
+                animation: bgShift 10s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
+            }
 
+        .page-header::before {
+                content: '';
+                position: absolute;
+                left: -6%; top: -12%; width: 64%; height: 160%;
+                background: rgba(255, 136, 0, 0.35);
+                transform: rotate(-8deg);
+            }
+
+            /* The floating blob - Made a brighter, more opaque blue-purple */
+            .page-header::after {
+                content: '';
+                position: absolute;
+                right: -5%; top: 10%; width: 400px; height: 400px;
+                z-index: 0; pointer-events: none; transform-origin: center;
+                animation: floatSlow 10s ease-in-out infinite;
+            }
+            
         .header-content-left {
             padding-right: 30px;
             z-index: 2;

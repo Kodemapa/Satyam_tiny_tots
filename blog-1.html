@@ -63,17 +63,33 @@
         .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
         @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
-        /* --- REDESIGNED HEADER SECTION (Split Layout) --- */
+         /* Hero Section */
         .page-header {
-            /* Soft gradient background similar to reference image */
-            background: linear-gradient(90deg, #fffde7 0%, #e0f7fa 100%);
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            min-height: 85vh; /* Fills screen height nicely */
-        }
+                padding: 80px 0;
+                /* Changed to a dark, rich purple gradient for depth and brightness */
+                background: linear-gradient(135deg, #31005f57, #56019c27);
+                background-size: 200% 200%;
+                animation: bgShift 10s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
+            }
+
+        .page-header::before {
+                content: '';
+                position: absolute;
+                left: -6%; top: -12%; width: 64%; height: 160%;
+                background: rgba(91, 0, 160, 0.35);
+                transform: rotate(-8deg);
+            }
+
+            /* The floating blob - Made a brighter, more opaque blue-purple */
+            .page-header::after {
+                content: '';
+                position: absolute;
+                right: -5%; top: 10%; width: 400px; height: 400px;
+                z-index: 0; pointer-events: none; transform-origin: center;
+                animation: floatSlow 10s ease-in-out infinite;
+            }
 
         .header-content-left {
             padding-right: 20px;
@@ -83,7 +99,7 @@
 
         /* Small Badge Style */
         .header-badge-small {
-            color: var(--primary-yellow);
+            color: var(--primary-green);
             font-weight: 700;
             font-size: 0.9rem;
             letter-spacing: 1.5px;
@@ -101,7 +117,7 @@
 
         .header-lead {
             font-size: 1.25rem;
-            color: var(--text-grey);
+            color: var(--text-black);
             font-weight: 500;
             max-width: 90%;
             margin-bottom: 30px;
@@ -297,12 +313,12 @@
                         <span class="header-badge-small">ACADEMIC GUIDE</span>
                         
                         <h1 class="header-title">
-                            <span style="color: var(--primary-orange);">Struggling with </span><span style="color: var(--primary-blue);">JEE/NEET</span><span style="color: var(--primary-orange);"> Preparation? </span>
+                            <span style="color: var(--primary-yellow);">Struggling with </span><span style="color: var(--primary-blue);">JEE/NEET</span><span style="color: var(--primary-yellow);"> Preparation? </span>
                         </h1>
                         
                         <p class="header-lead">
                             Here's Why Most Students Fall Behind. <br>
-                            <span style="font-size: 1rem; color: #777;">Discover the strategy that separates top rankers from the rest.</span>
+                            <span style="font-size: 1rem; color: #2d2c2c;">Discover the strategy that separates top rankers from the rest.</span>
                         </p>
 
                         <div class="d-flex gap-3">

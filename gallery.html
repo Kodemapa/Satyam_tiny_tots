@@ -79,14 +79,34 @@
         .shape-square { width: 40px; height: 40px; background: var(--primary-yellow); bottom: 30%; right: 15%; transform: rotate(15deg); }
         .shape-tri { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 40px solid var(--primary-green); top: 15%; right: 40%; }
 
-        /* --- HEADER SECTION --- */
+         /* Hero Section */
         .gallery-header {
-            padding: 120px 0 80px;
-            background: linear-gradient(135deg, #a52afe8f 50%, #cb3dffd9 100%);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
+                padding: 80px 0;
+                /* Changed to a dark, rich purple gradient for depth and brightness */
+                background: linear-gradient(135deg, #31005f57, #56019c27);
+                background-size: 200% 200%;
+                animation: bgShift 10s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+            }
+
+        .gallery-header::before {
+                content: '';
+                position: absolute;
+                left: -6%; top: -12%; width: 64%; height: 160%;
+                background: rgba(91, 0, 160, 0.35);
+                transform: rotate(-8deg);
+            }
+
+            /* The floating blob - Made a brighter, more opaque blue-purple */
+            .gallery-header::after {
+                content: '';
+                position: absolute;
+                right: -5%; top: 10%; width: 400px; height: 400px;
+                z-index: 0; pointer-events: none; transform-origin: center;
+                animation: floatSlow 10s ease-in-out infinite;
+            }
         /* Mobile Header Adjustments */
         @media (max-width: 768px) {
             .gallery-header { padding: 80px 0 50px; }

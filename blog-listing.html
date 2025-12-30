@@ -56,17 +56,33 @@
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
 
-        /* --- BLOG SECTION STYLING --- */
-        /* Updated Section with Animated Background */
-        .blog-section { 
-            padding: 100px 0; 
-            position: relative;
-            overflow: hidden;
-            /* Soft Pastel Gradient matching school colors */
-            background: linear-gradient(90deg,#ff84009c,#fb8b01);
-            background-size: 400% 400%;
-            animation: gradientFlow 15s ease infinite;
-        }
+         /* Hero Section */
+        .blog-section {
+                padding: 80px 0;
+                /* Changed to a dark, rich purple gradient for depth and brightness */
+                background: linear-gradient(135deg, #31005f57, #56019c27);
+                background-size: 200% 200%;
+                animation: bgShift 10s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
+            }
+
+        .blog-section::before {
+                content: '';
+                position: absolute;
+                left: -6%; top: -12%; width: 64%; height: 160%;
+                background: rgba(91, 0, 160, 0.35);
+                transform: rotate(-8deg);
+            }
+
+            /* The floating blob - Made a brighter, more opaque blue-purple */
+            .blog-section::after {
+                content: '';
+                position: absolute;
+                right: -5%; top: 10%; width: 400px; height: 400px;
+                z-index: 0; pointer-events: none; transform-origin: center;
+                animation: floatSlow 10s ease-in-out infinite;
+            }
 
         /* Floating Background Shapes Container */
         .shapes-container {

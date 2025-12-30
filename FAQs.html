@@ -160,14 +160,34 @@
             right: 40%;
         }
 
-        /* --- HEADER SECTION --- */
+          /* Hero Section */
         .faq-header {
-            padding: 120px 0 80px;
-            background: linear-gradient(170deg, #ac2ffab3);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
+                padding: 80px 0;
+                /* Changed to a dark, rich purple gradient for depth and brightness */
+                background: linear-gradient(135deg, #31005f57, #56019c27);
+                background-size: 200% 200%;
+                animation: bgShift 10s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+            }
+
+        .faq-header::before {
+                content: '';
+                position: absolute;
+                left: -6%; top: -12%; width: 64%; height: 160%;
+                background: rgba(91, 0, 160, 0.35);
+                transform: rotate(-8deg);
+            }
+
+            /* The floating blob - Made a brighter, more opaque blue-purple */
+            .faq-header::after {
+                content: '';
+                position: absolute;
+                right: -5%; top: 10%; width: 400px; height: 400px;
+                z-index: 0; pointer-events: none; transform-origin: center;
+                animation: floatSlow 10s ease-in-out infinite;
+            }
 
         /* --- FAQ FILTER BUTTONS --- */
         .faq-filters .category-btn {

@@ -65,17 +65,33 @@
         .dropdown-item:hover { background-color: var(--bright-bg); color: var(--primary-purple); transform: translateX(5px); }
         @media (min-width: 992px) { .nav-item.dropdown:hover .dropdown-menu { display: block; margin-top: 0; } }
 
-        /* --- REDESIGNED HEADER SECTION (Split Layout) --- */
+         /* Hero Section */
         .page-header {
-            /* Soft Purple-to-White Gradient for Leadership Theme */
-            background: linear-gradient(90deg, #f3e5f5 0%, #e3f2fd 100%);
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            min-height: 85vh; /* Fills screen height */
-        }
+                padding: 80px 0;
+                /* Changed to a dark, rich purple gradient for depth and brightness */
+                background: linear-gradient(135deg, #31005f57, #56019c27);
+                background-size: 200% 200%;
+                animation: bgShift 10s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
+            }
+
+        .page-header::before {
+                content: '';
+                position: absolute;
+                left: -6%; top: -12%; width: 64%; height: 160%;
+                background: rgba(91, 0, 160, 0.35);
+                transform: rotate(-8deg);
+            }
+
+            /* The floating blob - Made a brighter, more opaque blue-purple */
+            .page-header::after {
+                content: '';
+                position: absolute;
+                right: -5%; top: 10%; width: 400px; height: 400px;
+                z-index: 0; pointer-events: none; transform-origin: center;
+                animation: floatSlow 10s ease-in-out infinite;
+            }
 
         .header-content-left {
             padding-right: 20px;
@@ -106,7 +122,7 @@
 
         .header-lead {
             font-size: 1.25rem;
-            color: var(--text-grey);
+            color: var(--text-black);
             font-weight: 500;
             max-width: 90%;
             margin-bottom: 30px;
@@ -133,11 +149,6 @@
             object-fit: cover;
             max-height: 550px;
         }
-
-        /* Breadcrumb styling */
-        .breadcrumb { justify-content: flex-start; }
-        .breadcrumb-item a { color: var(--primary-purple); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-        .breadcrumb-item.active { font-size: 0.9rem; }
 
         /* Mobile Adjustments */
         @media (max-width: 991px) {
@@ -311,14 +322,6 @@
                 <div class="row align-items-center">
                     
                     <div class="col-lg-6 header-content-left" data-aos="fade-right">
-                        
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Academics</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Student Development</li>
-                            </ol>
-                        </nav>
 
                         <span class="header-badge-small">PERSONALITY DEVELOPMENT</span>
                         
@@ -329,7 +332,7 @@
                         
                         <p class="header-lead">
                             A Complete Guide to Holistic Growth. <br>
-                            <span style="font-size: 1rem; color: #777;">See how we nurture confidence, communication, and character.</span>
+                            <span style="font-size: 1rem; color: #2b2a2a;">See how we nurture confidence, communication, and character.</span>
                         </p>
 
                         <div class="d-flex gap-3">
